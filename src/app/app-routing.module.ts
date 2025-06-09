@@ -14,13 +14,7 @@ import { RouterModule, Routes } from '@angular/router';
 //   loadChildren: () =>
 //     import('./modules/report/report.module').then((m) => m.ReportModule),
 // },
-// {
-//   path: 'shift-swap',
-//   loadChildren: () =>
-//     import('./modules/shift-swap/shift-swap.module').then(
-//       (m) => m.ShiftSwapModule
-//     ),
-// },
+
 const routes: Routes = [
   {
     path: 'attendance-employee',
@@ -41,6 +35,13 @@ const routes: Routes = [
   loadChildren: () =>
     import('./modules/leave-request/leave-request.module').then(
       (m) => m.LeaveRequestModule
+    ),
+},
+{
+  path: '',
+  loadChildren: () =>
+    import('./modules/shift-swap/shift-swap.module').then(
+      (m) => m.ShiftSwapModule
     ),
 },
 ];

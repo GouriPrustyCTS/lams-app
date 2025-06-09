@@ -10,7 +10,6 @@ import { routes } from './leave-request.routes';
   declarations: [LeaveRequestComponent],
   imports: [
     CommonModule,
-    CommonModule,
     LeaveRequestRoutingModule,
     RouterModule.forChild([
       {
