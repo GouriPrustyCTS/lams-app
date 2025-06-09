@@ -11,8 +11,8 @@ export const routes: Routes = [
   { path: 'add-leave-balance', component: CreateLeaveBalanceComponent },
   // { path: 'leave-balances/employee/:employeeId', component: LeaveBalanceByEmployeeIdComponent },
   {path: 'search-leave-by-employee', component: LeaveBalanceByEmployeeIdComponent},
-  { path: 'update-by-leave-id', component: UpdateLeaveBalanceByLeaveIdComponent },
+  { path: 'update-by-leave-id/:id', component: UpdateLeaveBalanceByLeaveIdComponent },
   { path: 'update-by-employee-id', component: UpdateLeaveBalanceByEmployeeIdComponent },
   // { path: '', redirectTo: '/leave-balances', pathMatch: 'full' },
   // { path: '**', redirectTo: '/leave-balances' }
-]; 
+];  
