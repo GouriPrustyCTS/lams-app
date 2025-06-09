@@ -5,8 +5,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  standalone:true,
-  imports:[RouterOutlet]
+  standalone:false,
 })
 export class AppComponent {
   title = 'lams-app';
