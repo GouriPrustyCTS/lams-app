@@ -1,0 +1,32 @@
+<h2>{{ isEditMode ? 'Edit Shift Swap Request' : 'Create New Shift Swap Request' }}</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <!-- Requester Employee ID will be set by the application logic (e.g., from auth), not user input -->
+  <!-- <div>
+    <label for="requesterEmployeeId">Requester Employee ID:</label>
+    <input type="number" id="requesterEmployeeId" [(ngModel)]="shiftSwapRequest.requesterEmployeeId" name="requesterEmployeeId" required>
+  </div> -->
+  
+  <div>
+    <label for="requestedShiftId">Your Current Shift ID (the shift you want to give up):</label>
+    <input type="number" id="requestedShiftId" [(ngModel)]="shiftSwapRequest.requestedShiftId" name="requestedShiftId" required>
+  </div>
+  <div>
+    <label for="targetEmployeeId">Target Employee ID (whose shift you want):</label>
+    <input type="number" id="targetEmployeeId" [(ngModel)]="shiftSwapRequest.targetEmployeeId" name="targetEmployeeId" required>
+  </div>
+  <div>
+    <label for="targetShiftId">Target Shift ID (the shift you want to get):</label>
+    <input type="number" id="targetShiftId" [(ngModel)]="shiftSwapRequest.targetShiftId" name="targetShiftId" required>
+  </div>
+  <div *ngIf="isEditMode">
+    <label for="status">Status:</label>
+    <select id="status" [(ngModel)]="shiftSwapRequest.status" name="status" required>
+      <option value="PENDING">PENDING</option>
+      <option value="APPROVED">APPROVED</option>
+      <option value="REJECTED">REJECTED</option>
+    </select>
+  </div>
+  <button type="submit">{{ isEditMode ? 'Update Request' : 'Create Request' }}</button>
+  <button type="button" (click)="router.navigate(['/swap-requests'])">Cancel</button>
+</form>

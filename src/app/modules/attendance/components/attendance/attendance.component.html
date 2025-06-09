@@ -1,0 +1,100 @@
+<h2>Attendance Records</h2>
+
+
+
+<button (click)="getAllAttendances()">Get All Attendances</button>
+<table *ngIf="attendances.length" border="2">
+  <thead>
+    <tr>
+      <th>Employee ID</th>
+      <th>Clock In</th>
+      <th>Clock Out</th>
+      <th>Work Hours</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of attendances">
+      <td>{{ record.employeeId }}</td>
+      <td>{{ record.clockInTime }}</td>
+      <td>{{ record.clockOutTime }}</td>
+      <td>{{ record.workHours }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="getMyAttendance()">My Attendance</button>
+<button (click)="toggleSearch()">Search Attendance Record</button>
+
+<div *ngIf="showSearch">
+  <h3>Search Attendance By Date</h3>
+  <input type="date" [(ngModel)]="attendanceDate">
+  <button (click)="getAttendanceByDate()">Search</button>
+
+  <h3>Search Attendance By EmployeeId</h3>
+  <input type="number" [(ngModel)]="employeeId">
+  <button (click)="getAttendanceByEmployee()">Search</button>
+</div>
+
+
+<table *ngIf="selectedAttendance" border="2">
+  <thead>
+    <tr>
+      <th>Employee ID</th>
+      <th>Clock In</th>
+      <th>Clock Out</th>
+      <th>Work Hours</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ selectedAttendance.employeeId }}</td>
+      <td>{{ selectedAttendance.clockInTime }}</td>
+      <td>{{ selectedAttendance.clockOutTime }}</td>
+      <td>{{ selectedAttendance.workHours }}</td>
+    </tr>
+  </tbody>
+</table>
+<button (click)="toggleDelete()">Delete Attendance Record</button>
+
+<div *ngIf="showDelete">
+  <h3>Delete Attendance</h3>
+  <input type="number" placeholder="Enter Attendance ID" [(ngModel)]="attendanceId">
+  <button (click)="deleteAttendance()">Delete Attendance</button>
+</div>
+
+<p>{{ message }}</p>
+<button (click)="toggleClockInOut()">Clock In/Out Record</button>
+<div *ngIf="showClockInOut">
+  <h3>Employee Clock In/Out</h3>
+  <input type="number" placeholder="Enter Employee ID" [(ngModel)]="employeeId">
+  <button (click)="clockIn()">Clock In</button>
+  <button (click)="clockOut()">Clock Out</button>
+</div>
+
+<!-- <h3>Manage Attendance</h3>
+<input type="number" placeholder="Employee ID" [(ngModel)]="newAttendance.employeeId">
+<input type="date" placeholder="Attendance Date" [(ngModel)]="newAttendance.attendanceDate">
+<input type="datetime-local" [(ngModel)]="newAttendance.clockInTime">
+<input type="datetime-local" [(ngModel)]="newAttendance.clockOutTime">
+<button (click)="toggleUpdate()">Add Attendance</button>
+
+<div *ngIf="showUpdate">
+  <h3>Update Attendance</h3>
+  <input type="number" placeholder="Enter Attendance ID" [(ngModel)]="attendanceId">
+  <button (click)="fetchAttendance()">Fetch Attendance</button>
+</div> -->
+
+<form *ngIf="selectedAttendance">
+  <input type="number" placeholder="Employee ID" [(ngModel)]="selectedAttendance.employeeId">
+  <input type="date" placeholder="Attendance Date" [(ngModel)]="selectedAttendance.attendanceDate">
+  <input type="datetime-local" [(ngModel)]="selectedAttendance.clockInTime">
+  <input type="datetime-local" [(ngModel)]="selectedAttendance.clockOutTime">
+  <button (click)="updateAttendance()">Update Attendance</button>
+</form>
+
+<p>{{ message }}</p>
+
+
+
+
+

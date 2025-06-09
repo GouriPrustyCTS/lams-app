@@ -1,0 +1,15 @@
+<div *ngIf="swapRequest">
+    <h2>Shift Swap Request Details</h2>
+    <p><strong>ID:</strong> {{ swapRequest.id }}</p>
+    <p><strong>Requester Employee ID:</strong> {{ swapRequest.requesterEmployeeId }}</p>
+    <p><strong>Requester's Current Shift ID:</strong> {{ swapRequest.requestedShiftId }}</p> <!-- Updated label -->
+    <p><strong>Target Employee ID:</strong> {{ swapRequest.targetEmployeeId }}</p>
+    <p><strong>Target Shift ID:</strong> {{ swapRequest.targetShiftId }}</p>
+    <p><strong>Status:</strong> {{ swapRequest.status }}</p>
+    <button (click)="goBack()">Back to List</button>
+  </div>
+  <div *ngIf="!swapRequest">
+    <p>Shift swap request not found.</p>
+    <button (click)="goBack()">Back to List</button>
+  </div>
+  

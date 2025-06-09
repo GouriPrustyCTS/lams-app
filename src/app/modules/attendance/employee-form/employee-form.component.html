@@ -1,0 +1,35 @@
+<h2>Add Employee Details</h2>
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <label for="name">Name:</label>
+  <input id="name" formControlName="name" type="text" />
+
+  <label for="email">Email:</label>
+  <input id="email" formControlName="email" type="email" />
+
+  <label for="department">Department:</label>
+  <input id="department" formControlName="department" type="text" />
+
+  <label for="jobTitle">Job Title:</label>
+  <input id="jobTitle" formControlName="jobTitle" type="text" />
+
+  <label for="hireDate">Hire Date:</label>
+  <input id="hireDate" formControlName="hireDate" type="date" />
+
+  <label for="password">Password:</label>
+  <input id="password" formControlName="password" type="password" />
+
+  <button type="submit" [disabled]="employeeForm.invalid">Submit</button>
+</form>
+
+<h2>Update Employee Details</h2>
+<form action="">
+  <label for="employeeId">Enter Employee ID:</label>
+  <input
+    id="employeeId"
+    type="number"
+    [(ngModel)]="employeeId"
+    name="employeeId"
+  />
+  <button (click)="loadEmployee()">Load Employee details</button>
+</form>

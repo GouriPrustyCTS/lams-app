@@ -1,0 +1,43 @@
+<div class="p-4">
+    <h2 class="text-2xl font-bold mb-4">Manage Leave Approvals</h2>
+  
+    <button (click)="goBackToLeaveRequests()" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 mb-4">
+      Back to All Leave Requests
+    </button>
+  
+    <h3 class="text-xl font-semibold mb-3">Pending Requests</h3>
+  
+    <table border="1" class="w-full text-left table-auto">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="p-2 border">ID</th>
+          <th class="p-2 border">Requester Employee ID</th>
+          <th class="p-2 border">Leave Type</th>
+          <th class="p-2 border">Reason</th>
+          <th class="p-2 border">Start Date</th>
+          <th class="p-2 border">End Date</th>
+          <th class="p-2 border">Requested Date</th>
+          <th class="p-2 border">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of pendingRequests" class="hover:bg-gray-100">
+          <td class="p-2 border">{{ request.leaveRequestId }}</td>
+          <td class="p-2 border">{{ request.employeeId }}</td>
+          <td class="p-2 border">{{ request.leaveType }}</td>
+          <td class="p-2 border">{{ request.reason }}</td>
+          <td class="p-2 border">{{ request.startDate }}</td>
+          <td class="p-2 border">{{ request.endDate }}</td>
+          <td class="p-2 border">{{ request.requestDate }}</td>
+          <td class="p-2 border"> 
+            <button (click)="approveRequest(request.leaveRequestId)" class="px-3 py-1 bg-green-500 text-white rounded mr-2 hover:bg-green-600">Approve</button>
+            <button (click)="rejectRequest(request.leaveRequestId)" class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">Reject</button>
+          </td>
+        </tr>
+        <tr *ngIf="pendingRequests.length === 0">
+          <td colspan="6" class="p-2 border text-center">No pending leave requests found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

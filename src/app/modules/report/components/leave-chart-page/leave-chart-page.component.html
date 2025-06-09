@@ -1,0 +1,10 @@
+<h2>Leave Distribution Pie Chart</h2>
+
+<div *ngIf="isLoading">Loading chart...</div>
+<div *ngIf="error" class="error-message">{{ error }}</div>
+
+<div *ngIf="chartImageUrl && !isLoading">
+  <img [src]="chartImageUrl" alt="Leave Pie Chart" style="max-width: 100%; height: auto;">
+</div>
+
+<button (click)="getLeavePieChart()">Refresh Chart</button>

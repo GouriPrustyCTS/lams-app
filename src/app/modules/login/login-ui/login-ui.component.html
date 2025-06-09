@@ -1,0 +1,22 @@
+<div class="login-container">
+  <h2>Login to LAMS</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">Email:</label>
+      <input type="email" id="username" formControlName="username" placeholder="Enter your email">
+      <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)" class="error-message">
+        <span *ngIf="loginForm.get('username')?.errors?.['required']">Email is required.</span>
+        <span *ngIf="loginForm.get('username')?.errors?.['email']">Please enter a valid email.</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" placeholder="Enter your password">
+      <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="error-message">
+        <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</span>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </form>
+</div>

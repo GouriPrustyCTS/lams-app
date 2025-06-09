@@ -1,0 +1,15 @@
+<div *ngIf="shift">
+    <h2>Shift Details</h2>
+    <p><strong>ID:</strong> {{ shift.shiftId }}</p>
+    <p><strong>Shift Name:</strong> {{ shift.shiftName }}</p>
+    <p><strong>Shift Date:</strong> {{ shift.shiftDate }}</p>
+    <p><strong>Employee ID:</strong> {{ shift.employeeId }}</p>
+    <p><strong>Start Time:</strong> {{ shift.shiftStartTime }}</p>
+    <p><strong>End Time:</strong> {{ shift.shiftEndTime }}</p>
+    <button (click)="goBack()">Back to List</button>
+  </div>
+  <div *ngIf="!shift">
+    <p>Shift not found.</p>
+    <button (click)="goBack()">Back to List</button>
+  </div>
+  

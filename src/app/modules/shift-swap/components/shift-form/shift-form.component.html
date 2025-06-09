@@ -1,0 +1,26 @@
+<h2>{{ isEditMode ? 'Edit Shift' : 'Add New Shift' }}</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="shiftName">Shift Name:</label>
+    <input type="text" id="shiftName" [(ngModel)]="shift.shiftName" name="shiftName" required>
+  </div>
+  <div>
+    <label for="shiftDate">Shift Date:</label>
+    <input type="date" id="shiftDate" [(ngModel)]="shift.shiftDate" name="shiftDate" required>
+  </div>
+  <div>
+    <label for="employeeId">Employee ID:</label>
+    <input type="number" id="employeeId" [(ngModel)]="shift.employeeId" name="employeeId" required>
+  </div>
+  <div>
+    <label for="shiftStartTime">Start Time:</label>
+    <input type="time" id="shiftStartTime" [(ngModel)]="shift.shiftStartTime" name="shiftStartTime" placeholder="HH:MM" required>
+  </div>
+  <div>
+    <label for="shiftEndTime">End Time:</label>
+    <input type="time" id="shiftEndTime" [(ngModel)]="shift.shiftEndTime" name="shiftEndTime" placeholder="HH:MM" required>
+  </div>
+  <button type="submit">{{ isEditMode ? 'Update Shift' : 'Create Shift' }}</button>
+  <button type="button" (click)="router.navigate(['/shifts'])">Cancel</button>
+</form>

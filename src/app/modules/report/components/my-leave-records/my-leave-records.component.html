@@ -1,0 +1,45 @@
+<h2>My Leave Records</h2>
+
+<div *ngIf="empId">
+  <h3>Records for Employee ID: {{ empId }}</h3>
+</div>
+
+<div *ngIf="loading">Loading employee leave records...</div>
+<div *ngIf="errorMessage" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
+
+<div *ngIf="!loading && leaveRecords.length > 0">
+  <table>
+    <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Reason</th>
+        <th>End Date</th>
+        <th>Leave Type</th>
+        <th>Start Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of leaveRecords">
+        <td>{{ record.employeeId }}</td>
+        <td>{{ record.name }}</td>
+        <td>{{ record.reason }}</td>
+        <td>{{ record.endDate }}</td>
+        <td>{{ record.leaveType }}</td>
+        <td>{{ record.startDate }}</td>
+        <td>{{ record.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Download Options</h3>
+  <button (click)="downloadEmployeePdfReport()">Download Employee PDF Report</button>
+</div>
+<div *ngIf="!loading && leaveRecords.length === 0 && !errorMessage">
+  <p>No leave records found for Employee ID: {{ empId }}.</p>
+</div>
+
+<button (click)="fetchMyLeaveRecords()">Refresh Records</button>

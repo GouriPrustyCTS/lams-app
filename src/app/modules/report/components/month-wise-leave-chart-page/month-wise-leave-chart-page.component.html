@@ -1,0 +1,8 @@
+<h2>Month-Wise Leave Chart</h2>
+<div *ngIf="monthWiseLeaveChartUrl">
+  <img [src]="monthWiseLeaveChartUrl" alt="Month-Wise Leave Chart">
+</div>
+<div *ngIf="errorMessage" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
+<button (click)="getMonthWiseLeaveChart()">Refresh Month-Wise Chart</button>

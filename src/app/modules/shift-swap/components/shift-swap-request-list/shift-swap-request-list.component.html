@@ -1,0 +1,36 @@
+<h2>Shift Swap Request List</h2>
+
+<button (click)="addSwapRequest()">Create New Swap Request</button>
+<button (click)="viewPendingRequests()">View Pending Requests</button>
+<button (click)="manageApprovals()">Manage Approvals</button>
+<button (click)="viewAllRequests()">View All Requests</button> <!-- Ensure this button calls the correct function -->
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Requester Employee ID</th>
+      <th>Requester's Current Shift ID</th>
+      <th>Target Employee ID</th>
+      <th>Target Shift ID</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let request of swapRequests">
+      <td>{{ request.id }}</td>
+      <td>{{ request.requesterEmployeeId }}</td>
+      <td>{{ request.requestedShiftId }}</td>
+      <td>{{ request.targetEmployeeId }}</td>
+      <td>{{ request.targetShiftId }}</td>
+      <td>{{ request.status }}</td>
+      <td>
+        <button (click)="viewRequestDetails(request.id)">View</button>
+      </td>
+    </tr>
+    <tr *ngIf="swapRequests.length === 0">
+        <td colspan="7">No swap requests found.</td>
+    </tr>
+  </tbody>
+</table>

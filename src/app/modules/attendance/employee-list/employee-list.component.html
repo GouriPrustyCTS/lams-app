@@ -1,0 +1,52 @@
+<button (click)="getEmployees()">Get All Employees</button>
+<button (click)="showForm = !showForm">Add / Update Employee</button>
+
+<div *ngIf="showForm">
+  <app-employee-form></app-employee-form>
+</div>
+
+<!-- Show table only when employees are available -->
+<table border="1" *ngIf="employees.length">
+  <thead>
+    <tr>
+      <th>Employee ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Department</th>
+      <th>Job Title</th>
+      <th>Hire Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{ employee.employeeId }}</td>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.email }}</td>
+      <td>{{ employee.department }}</td>
+      <td>{{ employee.jobTitle }}</td>
+      <td>{{ employee.hireDate }}</td>
+      <td>
+        <button (click)="getEmployeeById(employee.employeeId)">View</button>
+      </td>
+      <td>
+        <button (click)="deleteEmployee(employee.employeeId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="showPopup" class="popup-overlay">
+  <div class="popup-content">
+    <h3>Employee Details</h3>
+    <p><strong>ID:</strong> {{ selectedEmployee?.employeeId }}</p>
+    <p><strong>Name:</strong> {{ selectedEmployee?.name }}</p>
+    <p><strong>Email:</strong> {{ selectedEmployee?.email }}</p>
+    <p><strong>Department:</strong> {{ selectedEmployee?.department }}</p>
+    <p><strong>Job Title:</strong> {{ selectedEmployee?.jobTitle }}</p>
+    <p><strong>Hire Date:</strong> {{ selectedEmployee?.hireDate | date: 'yyyy-MM-dd' }}</p>
+
+
+    <button (click)="closePopup()">Close</button>
+  </div>
+</div>
+
