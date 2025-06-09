@@ -8,13 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 //     import('./modules/login/login.module').then((m) => m.LoginModule),
 // },
 
-// {
-//   path: 'leave-request',
-//   loadChildren: () =>
-//     import('./modules/leave-request/leave-request.module').then(
-//       (m) => m.LeaveRequestModule
-//     ),
-// },
+
 // {
 //   path: 'report',
 //   loadChildren: () =>
@@ -40,6 +34,13 @@ const routes: Routes = [
   loadChildren: () =>
     import('./modules/leave-balance/leave-balance.module').then(
       (m) => m.LeaveBalanceModule
+    ),
+},
+{
+  path: '',
+  loadChildren: () =>
+    import('./modules/leave-request/leave-request.module').then(
+      (m) => m.LeaveRequestModule
     ),
 },
 ];

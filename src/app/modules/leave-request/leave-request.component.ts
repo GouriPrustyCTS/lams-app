@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, RouterModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  selector: 'leave-request-root',
+  standalone:false,
+  templateUrl: './leave-request.component.html',
+  styleUrl: './leave-request.component.css',
 })
-export class AppComponent {
+export class LeaveRequestComponent {
   title = 'lams-ui';
 }

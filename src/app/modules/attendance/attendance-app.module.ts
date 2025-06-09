@@ -9,7 +9,7 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
  
 @NgModule({
   declarations: [
-    AttendanceAppComponent,
+    AttendanceAppComponent, 
   ],
   imports: [
     CommonModule,
