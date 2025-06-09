@@ -3,10 +3,11 @@ import { Employee } from './employee';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { EmployeeService } from '../services/employee.service';
 import { EmployeeFormComponent } from '../employee-form/employee-form.component';
+import { AttendanceComponent } from "../components/attendance/attendance.component";
 @Component({
   selector: 'app-employee-list',
   standalone: true, // If using Angular Standalone Components
-  imports: [NgFor,EmployeeFormComponent,NgIf, DatePipe],
+  imports: [NgFor, EmployeeFormComponent, NgIf, DatePipe, AttendanceComponent],
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css'] // Corrected from 'styleUrl' to 'styleUrls'
 })
