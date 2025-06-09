@@ -5,25 +5,25 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard, LoginGuard } from './guards/auth.guard';
 import { MyLeaveRequestsComponent } from './my-leave-requests/my-leave-requests.component';
 export const routes: Routes = [
-  { path: '', component: LoginUiComponent, canActivate: [LoginGuard] },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'my-leave-requests',
-    component: MyLeaveRequestsComponent,
-    canActivate: [AuthGuard],
-  },
-  { path: 'login', component: LoginUiComponent, canActivate: [LoginGuard] },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-  },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' },
+  // { path: '', component: LoginUiComponent, canActivate: [LoginGuard] },
+  // {
+  //   path: 'dashboard',
+  //   component: DashboardComponent,
+  //   canActivate: [AuthGuard],
+  // },
+  // {
+  //   path: 'my-leave-requests',
+  //   component: MyLeaveRequestsComponent,
+  //   canActivate: [AuthGuard],
+  // },
+  // { path: 'login', component: LoginUiComponent, canActivate: [LoginGuard] },
+  // {
+  //   path: 'dashboard',
+  //   component: DashboardComponent,
+  //   canActivate: [AuthGuard],
+  // },
+  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/login' },
 ];
 @NgModule({ imports: [RouterModule.forChild(routes)], exports: [RouterModule] })
 export class LoginRoutingModule {}
