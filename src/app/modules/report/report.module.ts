@@ -2,7 +2,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterModule,
+  RouterOutlet,
+  Routes,
+} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 // --- CORRECTED COMPONENT IMPORTS BASED ON YOUR PATHS ---
@@ -14,38 +20,50 @@ import { TruTimeChartPageComponent } from './components/tru-time-chart-page/tru-
 import { MyLeaveRecordsPageComponent } from './components/my-leave-records/my-leave-records.component'; // Also added this one
 
 // Main App Component
-import { AppComponent } from './app.component';
+import { ReportComponent } from './report.component';
+import { CommonModule } from '@angular/common';
 
 // Define your routes
 const appRoutes: Routes = [
   { path: 'leave-chart', component: LeaveChartPageComponent },
+  { path: 'leave-charts', component: ReportComponent },
   { path: 'leave-report', component: LeaveReportPageComponent },
-  { path: 'month-wise-leave-chart', component: MonthWiseLeaveChartPageComponent },
+  {
+    path: 'month-wise-leave-chart',
+    component: MonthWiseLeaveChartPageComponent,
+  },
   { path: 'year-wise-leave-chart', component: YearWiseLeaveChartPageComponent },
   { path: 'tru-time-chart', component: TruTimeChartPageComponent },
   { path: 'my-leave-records/:empId', component: MyLeaveRecordsPageComponent }, // Added route for specific employee records
   { path: '', redirectTo: '/leave-chart', pathMatch: 'full' },
-  { path: '**', redirectTo: '/leave-chart' }
+  { path: '**', redirectTo: '/leave-chart' },
 ];
 
 @NgModule({
   declarations: [
-    AppComponent,
+    ReportComponent,
     // --- DECLARE ALL YOUR COMPONENTS HERE ---
+    // Declare the MyLeaveRecordsPageComponent
+  ],
+  imports: [
+    // BrowserModule,
+    HttpClientModule,
+    FormsModule,
     LeaveChartPageComponent,
+    RouterOutlet,
+    RouterLink, 
+    RouterLinkActive,
+    CommonModule,
     LeaveReportPageComponent,
     MonthWiseLeaveChartPageComponent,
     YearWiseLeaveChartPageComponent,
     TruTimeChartPageComponent,
-    MyLeaveRecordsPageComponent // Declare the MyLeaveRecordsPageComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes)
+    MyLeaveRecordsPageComponent,
+    RouterModule.forChild(appRoutes),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ReportComponent],
 })
-export class AppModule { }
+export class ReportModule {}
+
+// imports: [],

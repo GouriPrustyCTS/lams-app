@@ -9,11 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 // },
 
 
-// {
-//   path: 'report',
-//   loadChildren: () =>
-//     import('./modules/report/report.module').then((m) => m.ReportModule),
-// },
+
 
 const routes: Routes = [
   {
@@ -43,6 +39,11 @@ const routes: Routes = [
     import('./modules/shift-swap/shift-swap.module').then(
       (m) => m.ShiftSwapModule
     ),
+},
+{
+  path: '',
+  loadChildren: () =>
+    import('./modules/report/report.module').then((m) => m.ReportModule),
 },
 ];
 
