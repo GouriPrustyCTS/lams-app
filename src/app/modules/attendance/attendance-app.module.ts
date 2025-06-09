@@ -6,7 +6,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { FormsModule } from '@angular/forms';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
-
+ 
 @NgModule({
   declarations: [
     AttendanceAppComponent,
@@ -34,6 +34,6 @@ export class AttendanceModule {}
 
 
 
-
+ 
 
 

@@ -15,4 +15,4 @@ export const routes: Routes = [
   { path: 'update-by-employee-id', component: UpdateLeaveBalanceByEmployeeIdComponent },
   { path: '', redirectTo: '/leave-balances', pathMatch: 'full' },
   { path: '**', redirectTo: '/leave-balances' }
-];
+]; 

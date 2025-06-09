@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { LeaveBalanceRoutingModule } from './leave-balance-routing.module';
 import { LeaveBalanceComponent } from './leave-balance.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './leave-balance.routes';
 
 
 @NgModule({
@@ -11,7 +13,15 @@ import { LeaveBalanceComponent } from './leave-balance.component';
   ],
   imports: [
     CommonModule,
-    LeaveBalanceRoutingModule
+    LeaveBalanceRoutingModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: LeaveBalanceComponent, 
+        children: routes
+      }
+    ])
   ]
 })
 export class LeaveBalanceModule { }
+ 

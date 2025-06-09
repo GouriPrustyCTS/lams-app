@@ -3,15 +3,11 @@ import { CommonModule } from '@angular/common'; // Good to include for general d
 import { RouterModule } from '@angular/router'; // PROVIDES routerLink AND router-outlet
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule, // Provides *ngIf, *ngFor (if you use them in app.component.html)
-    RouterModule  // Provides routerLink and router-outlet
-  ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'leave-balance-root',
+  standalone: false,
+  templateUrl: './leave-balance.component.html',
+  styleUrls: ['./leave-balance.component.css']
 })
-export class AppComponent {
+export class LeaveBalanceComponent {
   title = 'lams-frontend';
-} 
+}   

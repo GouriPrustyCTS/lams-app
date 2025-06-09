@@ -7,13 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 //   loadChildren: () =>
 //     import('./modules/login/login.module').then((m) => m.LoginModule),
 // },
-// {
-//   path: 'leave-balance',
-//   loadChildren: () =>
-//     import('./modules/leave-balance/leave-balance.module').then(
-//       (m) => m.LeaveBalanceModule
-//     ),
-// },
+
 // {
 //   path: 'leave-request',
 //   loadChildren: () =>
@@ -41,6 +35,13 @@ const routes: Routes = [
         (m) => m.AttendanceModule
       ),
   },
+  {
+  path: 'leave-balance',
+  loadChildren: () =>
+    import('./modules/leave-balance/leave-balance.module').then(
+      (m) => m.LeaveBalanceModule
+    ),
+},
 ];
 
 @NgModule({
