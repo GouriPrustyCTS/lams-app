@@ -25,7 +25,7 @@
                 <td>{{lb.name}}</td>
                 <td>{{ lb.leaveType }}</td>
                 <td>{{ lb.balance }}</td>
-                <td>
+                <td> 
                     <div class="d-flex gap-2">
                         <button class="btn btn-sm btn-primary" [routerLink]="['/update-by-leave-id', lb.leaveBalanceId]">Edit</button>
                         <button type="button" class="btn btn-sm btn-danger" (click)="deleteLeaveBalance(lb.leaveBalanceId)">Delete</button>

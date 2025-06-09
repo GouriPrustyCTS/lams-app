@@ -36,7 +36,7 @@ const routes: Routes = [
       ),
   },
   {
-  path: 'leave-balance',
+  path: '',
   loadChildren: () =>
     import('./modules/leave-balance/leave-balance.module').then(
       (m) => m.LeaveBalanceModule
