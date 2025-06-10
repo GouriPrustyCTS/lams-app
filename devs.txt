@@ -1,0 +1,277 @@
+http://localhost:4200/leaveRequests
+http://localhost:4200/attendance-employee
+http://localhost:4200/leave-balances
+http://localhost:4200/shifts
+http://localhost:4200/swap-requests
+http://localhost:4200/leave-charts
+
+C:\Users\2402051\Desktop\Project - LAMS\test
+├── lams-app
+|  ├── angular.json
+|  ├── package-lock.json
+|  ├── package.json
+|  ├── public
+|  |  └── favicon.ico
+|  ├── README.md
+|  ├── src
+|  |  ├── app
+|  |  |  ├── app-routing.module.ts
+|  |  |  ├── app.component.css
+|  |  |  ├── app.component.html
+|  |  |  ├── app.component.spec.ts
+|  |  |  ├── app.component.ts
+|  |  |  ├── app.module.ts
+|  |  |  └── modules
+|  |  |     ├── attendance
+|  |  |     |  ├── attendance.component.css
+|  |  |     |  ├── attendance.component.html
+|  |  |     |  ├── attendance.component.spec.ts
+|  |  |     |  ├── attendance.component.ts
+|  |  |     |  ├── attendance.config.server.ts
+|  |  |     |  ├── attendance.config.ts
+|  |  |     |  ├── attendance.routes.server.ts
+|  |  |     |  ├── attendance.routes.ts
+|  |  |     |  ├── components
+|  |  |     |  |  └── attendance
+|  |  |     |  |     ├── attendance.component.css
+|  |  |     |  |     ├── attendance.component.html
+|  |  |     |  |     ├── attendance.component.spec.ts
+|  |  |     |  |     ├── attendance.component.ts
+|  |  |     |  |     └── attendance.ts
+|  |  |     |  ├── employee-form
+|  |  |     |  |  ├── employee-form.component.css
+|  |  |     |  |  ├── employee-form.component.html
+|  |  |     |  |  ├── employee-form.component.spec.ts
+|  |  |     |  |  └── employee-form.component.ts
+|  |  |     |  ├── employee-list
+|  |  |     |  |  ├── employee-list.component.css
+|  |  |     |  |  ├── employee-list.component.html
+|  |  |     |  |  ├── employee-list.component.spec.ts
+|  |  |     |  |  ├── employee-list.component.ts
+|  |  |     |  |  └── employee.ts
+|  |  |     |  ├── employee.service.spec.ts
+|  |  |     |  ├── employee.spec.ts
+|  |  |     |  └── services
+|  |  |     |     ├── attendance.service.spec.ts
+|  |  |     |     ├── attendance.service.ts
+|  |  |     |     ├── employee.service.spec.ts
+|  |  |     |     └── employee.service.ts
+|  |  |     ├── leave-balance
+|  |  |     |  ├── components
+|  |  |     |  |  ├── create-leave-balance
+|  |  |     |  |  |  ├── create-leave-balance.component.css
+|  |  |     |  |  |  ├── create-leave-balance.component.html
+|  |  |     |  |  |  ├── create-leave-balance.component.spec.ts
+|  |  |     |  |  |  └── create-leave-balance.component.ts
+|  |  |     |  |  ├── leave-balance-by-employee-id
+|  |  |     |  |  |  ├── leave-balance-by-employee-id.component.css
+|  |  |     |  |  |  ├── leave-balance-by-employee-id.component.html
+|  |  |     |  |  |  ├── leave-balance-by-employee-id.component.spec.ts
+|  |  |     |  |  |  └── leave-balance-by-employee-id.component.ts
+|  |  |     |  |  ├── leave-balance-list
+|  |  |     |  |  |  ├── leave-balance-list.component.css
+|  |  |     |  |  |  ├── leave-balance-list.component.html
+|  |  |     |  |  |  └── leave-balance-list.component.ts
+|  |  |     |  |  ├── update-leave-balance-by-employee-id
+|  |  |     |  |  |  ├── update-leave-balance-by-employee-id.component.css
+|  |  |     |  |  |  ├── update-leave-balance-by-employee-id.component.html
+|  |  |     |  |  |  ├── update-leave-balance-by-employee-id.component.spec.ts
+|  |  |     |  |  |  └── update-leave-balance-by-employee-id.component.ts
+|  |  |     |  |  └── update-leave-balance-by-leave-id
+|  |  |     |  |     ├── update-leave-balance-by-leave-id.component.css
+|  |  |     |  |     ├── update-leave-balance-by-leave-id.component.html
+|  |  |     |  |     ├── update-leave-balance-by-leave-id.component.spec.ts
+|  |  |     |  |     └── update-leave-balance-by-leave-id.component.ts
+|  |  |     |  ├── environments
+|  |  |     |  |  ├── environment.development.ts
+|  |  |     |  |  └── environment.ts
+|  |  |     |  ├── leave-balance-routing.module.ts
+|  |  |     |  ├── leave-balance.component.css
+|  |  |     |  ├── leave-balance.component.html
+|  |  |     |  ├── leave-balance.component.spec.ts
+|  |  |     |  ├── leave-balance.component.ts
+|  |  |     |  ├── leave-balance.config.server.ts
+|  |  |     |  ├── leave-balance.config.ts
+|  |  |     |  ├── leave-balance.module.ts
+|  |  |     |  ├── leave-balance.routes.server.ts
+|  |  |     |  ├── leave-balance.routes.ts
+|  |  |     |  ├── models
+|  |  |     |  |  └── leave-balance.dto.ts
+|  |  |     |  └── services
+|  |  |     |     └── leave-balance.service.ts
+|  |  |     ├── leave-request
+|  |  |     |  ├── components
+|  |  |     |  |  ├── leave-request-approval
+|  |  |     |  |  |  ├── leave-request-approval.component.css
+|  |  |     |  |  |  ├── leave-request-approval.component.html
+|  |  |     |  |  |  ├── leave-request-approval.component.spec.ts
+|  |  |     |  |  |  └── leave-request-approval.component.ts
+|  |  |     |  |  ├── leave-request-detail
+|  |  |     |  |  |  ├── leave-request-detail.component.css
+|  |  |     |  |  |  ├── leave-request-detail.component.html
+|  |  |     |  |  |  ├── leave-request-detail.component.spec.ts
+|  |  |     |  |  |  └── leave-request-detail.component.ts
+|  |  |     |  |  ├── leave-request-form
+|  |  |     |  |  |  ├── leave-request-form.component.css
+|  |  |     |  |  |  ├── leave-request-form.component.html
+|  |  |     |  |  |  ├── leave-request-form.component.spec.ts
+|  |  |     |  |  |  └── leave-request-form.component.ts
+|  |  |     |  |  └── leave-request-list
+|  |  |     |  |     ├── leave-request-list.component.css
+|  |  |     |  |     ├── leave-request-list.component.html
+|  |  |     |  |     ├── leave-request-list.component.spec.ts
+|  |  |     |  |     └── leave-request-list.component.ts
+|  |  |     |  ├── leave-request-routing.module.ts
+|  |  |     |  ├── leave-request.component.css
+|  |  |     |  ├── leave-request.component.html
+|  |  |     |  ├── leave-request.component.spec.ts
+|  |  |     |  ├── leave-request.component.ts
+|  |  |     |  ├── leave-request.config.ts
+|  |  |     |  ├── leave-request.module.ts
+|  |  |     |  ├── leave-request.routes.ts
+|  |  |     |  ├── models
+|  |  |     |  |  └── leave-request.model.ts
+|  |  |     |  └── service
+|  |  |     |     ├── leave-request.service.spec.ts
+|  |  |     |     └── leave-request.service.ts
+|  |  |     ├── login
+|  |  |     |  ├── dashboard
+|  |  |     |  |  ├── dashboard.component.css
+|  |  |     |  |  ├── dashboard.component.html
+|  |  |     |  |  └── dashboard.component.ts
+|  |  |     |  ├── guards
+|  |  |     |  |  └── auth.guard.ts
+|  |  |     |  ├── login-routing.module.ts
+|  |  |     |  ├── login-ui
+|  |  |     |  |  ├── login-ui.component.css
+|  |  |     |  |  ├── login-ui.component.html
+|  |  |     |  |  └── login-ui.component.ts
+|  |  |     |  ├── login.component.css
+|  |  |     |  ├── login.component.html
+|  |  |     |  ├── login.component.spec.ts
+|  |  |     |  ├── login.component.ts
+|  |  |     |  ├── login.module.ts
+|  |  |     |  ├── login.routes.server.ts
+|  |  |     |  ├── models
+|  |  |     |  |  ├── auth-response.model.ts
+|  |  |     |  |  └── user-details.model.ts
+|  |  |     |  ├── my-leave-requests
+|  |  |     |  |  ├── my-leave-requests.component.css
+|  |  |     |  |  ├── my-leave-requests.component.html
+|  |  |     |  |  └── my-leave-requests.component.ts
+|  |  |     |  ├── notes.ts
+|  |  |     |  └── services
+|  |  |     |     ├── auth.service.ts
+|  |  |     |     └── jwt.interceptor.ts
+|  |  |     ├── report
+|  |  |     |  ├── components
+|  |  |     |  |  ├── leave-chart-page
+|  |  |     |  |  |  ├── leave-chart-page.component.css
+|  |  |     |  |  |  ├── leave-chart-page.component.html
+|  |  |     |  |  |  ├── leave-chart-page.component.spec.ts
+|  |  |     |  |  |  └── leave-chart-page.component.ts
+|  |  |     |  |  ├── leave-report-page
+|  |  |     |  |  |  ├── leave-report-page.component.css
+|  |  |     |  |  |  ├── leave-report-page.component.html
+|  |  |     |  |  |  ├── leave-report-page.component.spec.ts
+|  |  |     |  |  |  └── leave-report-page.component.ts
+|  |  |     |  |  ├── month-wise-leave-chart-page
+|  |  |     |  |  |  ├── month-wise-leave-chart-page.component.css
+|  |  |     |  |  |  ├── month-wise-leave-chart-page.component.html
+|  |  |     |  |  |  ├── month-wise-leave-chart-page.component.spec.ts
+|  |  |     |  |  |  └── month-wise-leave-chart-page.component.ts
+|  |  |     |  |  ├── my-leave-records
+|  |  |     |  |  |  ├── my-leave-records.component.css
+|  |  |     |  |  |  ├── my-leave-records.component.html
+|  |  |     |  |  |  ├── my-leave-records.component.spec.ts
+|  |  |     |  |  |  └── my-leave-records.component.ts
+|  |  |     |  |  ├── tru-time-chart-page
+|  |  |     |  |  |  ├── tru-time-chart-page.component.css
+|  |  |     |  |  |  ├── tru-time-chart-page.component.html
+|  |  |     |  |  |  ├── tru-time-chart-page.component.spec.ts
+|  |  |     |  |  |  └── tru-time-chart-page.component.ts
+|  |  |     |  |  └── year-wise-leave-chart-page
+|  |  |     |  |     ├── year-wise-leave-chart-page.component.css
+|  |  |     |  |     ├── year-wise-leave-chart-page.component.html
+|  |  |     |  |     ├── year-wise-leave-chart-page.component.spec.ts
+|  |  |     |  |     └── year-wise-leave-chart-page.component.ts
+|  |  |     |  ├── report-routing.module.ts
+|  |  |     |  ├── report.component.css
+|  |  |     |  ├── report.component.html
+|  |  |     |  ├── report.component.spec.ts
+|  |  |     |  ├── report.component.ts
+|  |  |     |  ├── report.config.server.ts
+|  |  |     |  ├── report.config.ts
+|  |  |     |  ├── report.module.ts
+|  |  |     |  ├── report.routes.server.ts
+|  |  |     |  ├── report.routes.ts
+|  |  |     |  └── services
+|  |  |     |     ├── report.service.spec.ts
+|  |  |     |     └── report.service.ts
+|  |  |     └── shift-swap
+|  |  |        ├── components
+|  |  |        |  ├── shift-detail
+|  |  |        |  |  ├── shift-detail.component.css
+|  |  |        |  |  ├── shift-detail.component.html
+|  |  |        |  |  ├── shift-detail.component.spec.ts
+|  |  |        |  |  └── shift-detail.component.ts
+|  |  |        |  ├── shift-form
+|  |  |        |  |  ├── shift-form.component.css
+|  |  |        |  |  ├── shift-form.component.html
+|  |  |        |  |  ├── shift-form.component.spec.ts
+|  |  |        |  |  └── shift-form.component.ts
+|  |  |        |  ├── shift-list
+|  |  |        |  |  ├── shift-list.component.css
+|  |  |        |  |  ├── shift-list.component.html
+|  |  |        |  |  ├── shift-list.component.spec.ts
+|  |  |        |  |  └── shift-list.component.ts
+|  |  |        |  ├── shift-swap-request-approval
+|  |  |        |  |  ├── shift-swap-request-approval.component.css
+|  |  |        |  |  ├── shift-swap-request-approval.component.html
+|  |  |        |  |  ├── shift-swap-request-approval.component.spec.ts
+|  |  |        |  |  └── shift-swap-request-approval.component.ts
+|  |  |        |  ├── shift-swap-request-detail
+|  |  |        |  |  ├── shift-swap-request-detail.component.css
+|  |  |        |  |  ├── shift-swap-request-detail.component.html
+|  |  |        |  |  ├── shift-swap-request-detail.component.spec.ts
+|  |  |        |  |  └── shift-swap-request-detail.component.ts
+|  |  |        |  ├── shift-swap-request-form
+|  |  |        |  |  ├── shift-swap-request-form.component.css
+|  |  |        |  |  ├── shift-swap-request-form.component.html
+|  |  |        |  |  ├── shift-swap-request-form.component.spec.ts
+|  |  |        |  |  └── shift-swap-request-form.component.ts
+|  |  |        |  └── shift-swap-request-list
+|  |  |        |     ├── shift-swap-request-list.component.css
+|  |  |        |     ├── shift-swap-request-list.component.html
+|  |  |        |     ├── shift-swap-request-list.component.spec.ts
+|  |  |        |     └── shift-swap-request-list.component.ts
+|  |  |        ├── models
+|  |  |        |  ├── shift-swap-request.ts
+|  |  |        |  └── shift.ts
+|  |  |        ├── services
+|  |  |        |  ├── shift-swap-request.service.spec.ts
+|  |  |        |  ├── shift-swap-request.service.ts
+|  |  |        |  ├── shift.service.spec.ts
+|  |  |        |  └── shift.service.ts
+|  |  |        ├── shift-swap-routing.module.ts
+|  |  |        ├── shift-swap.component.css
+|  |  |        ├── shift-swap.component.html
+|  |  |        ├── shift-swap.component.spec.ts
+|  |  |        ├── shift-swap.component.ts
+|  |  |        ├── shift-swap.config.server.ts
+|  |  |        ├── shift-swap.config.ts
+|  |  |        ├── shift-swap.module.ts
+|  |  |        ├── shift-swap.routes.server.ts
+|  |  |        └── shift-swap.routes.ts
+|  |  ├── index.html
+|  |  ├── main.ts
+|  |  └── styles.css
+|  ├── tsconfig.app.json
+|  ├── tsconfig.json
+|  └── tsconfig.spec.json
+├── out.txt
+└── output.txt
+
+directory: 3168 file: 24833
+
+ignored: directory (98)
