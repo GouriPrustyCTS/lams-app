@@ -6,7 +6,7 @@ import { LeaveRequestApprovalComponent } from './components/leave-request-approv
 
 export const routes: Routes = [
   { path: 'leaveRequests', component: LeaveRequestListComponent }, // List of all swap requests
-  { path: 'leaveRequests/add', component: LeaveRequestFormComponent }, // Form for creating new swap requests
+  { path: 'addLeaveRequests', component: LeaveRequestFormComponent }, // Form for creating new swap requests
   { path: 'leaveRequests/:id', component: LeaveRequestDetailComponent }, // Details of a specific swap request
   { path: 'leaveRequests/edit/:id', component: LeaveRequestFormComponent }, // Details of a specific swap request
 
