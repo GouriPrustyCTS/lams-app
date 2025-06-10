@@ -21,7 +21,7 @@ interface LeaveRequestDTO {
   providedIn: 'root'
 })
 export class ReportService {
-  private baseUrl = 'http://localhost:8888/reports';
+  private baseUrl = 'http://localhost:2694/reports';
 
   constructor(private http: HttpClient) { }
 

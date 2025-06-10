@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LeaveRequest } from '../models/leave-request.model';
 
-const BASE_URL = 'http://localhost:8888/leaveRequests';
+const BASE_URL = 'http://localhost:2694/leaveRequests';
 
 @Injectable({
   providedIn: 'root',

@@ -10,7 +10,7 @@ import { UserDetails } from '../models/user-details.model';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8888';
+  private baseUrl = 'http://localhost:2694';
   private isBrowser: boolean; // Flag to check if running in browser
 
   constructor(

@@ -8,7 +8,7 @@ import { Employee } from '../employee-list/employee';
 })
 export class EmployeeService {
   
-  private baseURL = "http://localhost:8888/employee/"; // Ensure proper URL format
+  private baseURL = "http://localhost:2694/employee/"; // Ensure proper URL format
 
   constructor(private httpClient: HttpClient) {}
 
