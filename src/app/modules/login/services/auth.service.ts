@@ -64,8 +64,6 @@ export class AuthService {
    * @returns An Observable of UserDetails.
    */
   getUserDetails(): Observable<UserDetails> {
-    console.log("Sending req");
-    
     return this.http.get<UserDetails>(`${this.baseUrl}/employee/details`);
   }
 

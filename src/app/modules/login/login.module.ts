@@ -9,9 +9,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MyLeaveRequestsComponent } from './my-leave-requests/my-leave-requests.component';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './login.component';
  
 @NgModule({
-  declarations:[],
+  declarations:[LoginComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -30,11 +31,8 @@ import { RouterModule } from '@angular/router';
     ]),
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true
-    }
-  ]
+
+  ],
+  bootstrap:[LoginComponent]
 })
 export class LoginModule {}

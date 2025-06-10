@@ -2,20 +2,20 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JwtInterceptor } from './modules/login/services/jwt.interceptor';
 
 @NgModule({
-  declarations:[
-    AppComponent
-  ],
+  declarations: [AppComponent],
 
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    AppRoutingModule,
-],
+  imports: [HttpClientModule, BrowserModule, AppRoutingModule],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
   ],
-  bootstrap:[AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

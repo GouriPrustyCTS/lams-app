@@ -31,14 +31,12 @@ export class JwtInterceptor implements HttpInterceptor {
     // Attach JWT to all requests except login and register
     // Ensure the token is not null before cloning the request
     if (token && !request.url.includes('/login') && !request.url.includes('/register')) {
-      
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
       });
     }
-    console.log(request.headers);
     return next.handle(request);
   }
 }
