@@ -129,7 +129,7 @@ body {
 .navbar-toggler-sidebar:hover {
     background-color: #45a049;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
+} 
 
 .navbar-toggler-sidebar .navbar-toggler-icon {
     filter: brightness(0) invert(1);

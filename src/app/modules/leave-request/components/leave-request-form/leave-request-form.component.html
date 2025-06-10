@@ -1,35 +1,30 @@
 <h2>{{ isEditMode ? 'Edit Leave Request' : 'Create New Leave Request' }}</h2>
 
 <form (ngSubmit)="onSubmit()">
-  <!-- Requester Employee ID will be set by the application logic (e.g., from auth), not user input -->
-  <!-- <div>
-    <label for="requesterEmployeeId">Requester Employee ID:</label>
-    <input type="number" id="requesterEmployeeId" [(ngModel)]="shiftSwapRequest.requesterEmployeeId" name="requesterEmployeeId" required>
-  </div> -->
-  <div>
-    <label for="leaveType">Your leave type:</label>
-    <input type="text" id="leaveType" [(ngModel)]="leaveRequest.leaveType" name="leaveType" required>
+  <div class="mb-3">
+    <label for="leaveType" class="form-label">Your Leave Type:</label>
+    <input type="text" class="form-control" id="leaveType" [(ngModel)]="leaveRequest.leaveType" name="leaveType" required>
   </div>
-  <div>
-    <label for="reason">Your Reason for the leave:</label>
-    <input type="text" id="reason" [(ngModel)]="leaveRequest.reason" name="reason" required>
+  <div class="mb-3"> 
+    <label for="reason" class="form-label">Your Reason for the Leave:</label>
+    <input type="text" class="form-control" id="reason" [(ngModel)]="leaveRequest.reason" name="reason" required>
   </div>
-  <div>
-    <label for="startDate">Start Date:</label>
-    <input type="date" id="startDate" [(ngModel)]="leaveRequest.startDate" name="startDate" required>
+  <div class="mb-3">
+    <label for="startDate" class="form-label">Start Date:</label>
+    <input type="date" class="form-control" id="startDate" [(ngModel)]="leaveRequest.startDate" name="startDate" required>
   </div>
-  <div>
-    <label for="endDate">End Date:</label>
-    <input type="date" id="endDate" [(ngModel)]="leaveRequest.endDate" name="endDate" required>
+  <div class="mb-3">
+    <label for="endDate" class="form-label">End Date:</label>
+    <input type="date" class="form-control" id="endDate" [(ngModel)]="leaveRequest.endDate" name="endDate" required>
   </div>
-  <div *ngIf="isEditMode">
-    <label for="status">Status:</label>
-    <select id="status" [(ngModel)]="leaveRequest.status" name="status" required>
+  <div class="mb-3" *ngIf="isEditMode">
+    <label for="status" class="form-label">Status:</label>
+    <select class="form-select" id="status" [(ngModel)]="leaveRequest.status" name="status" required>
       <option value="PENDING">PENDING</option>
       <option value="APPROVED">APPROVED</option>
       <option value="REJECTED">REJECTED</option>
     </select>
   </div>
-  <button type="submit">{{ isEditMode ? 'Update Request' : 'Create Request' }}</button>
-  <button type="button" (click)="router.navigate(['/leaveRequests'])">Cancel</button>
+  <button type="submit" class="btn btn-primary me-2">{{ isEditMode ? 'Update Request' : 'Create Request' }}</button>
+  <button type="button" class="btn btn-secondary" (click)="router.navigate(['/leaveRequests'])">Cancel</button>
 </form>

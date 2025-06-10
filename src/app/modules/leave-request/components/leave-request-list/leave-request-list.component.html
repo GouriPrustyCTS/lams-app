@@ -1,22 +1,23 @@
-<h2>Leave Request List</h2>
+<h2 class="mb-4">Leave Request List</h2>
 
 <label>
   Enter Employee ID:
   <input type="number" [(ngModel)]="searchEmployeeId" placeholder="Employee ID" />
 </label>
-<button (click)="filterByEmployeeId()">Search</button>
+<button class="btn btn-primary" (click)="filterByEmployeeId()">Search</button>
 
 
-<button (click)="addLeaveRequest()">Create New Swap Request</button>
-<button (click)="viewRequests()">View Pending Requests</button>
-<button (click)="manageApprovals()">Manage Approvals</button>
-<button (click)="viewAllRequests()">View All Requests</button> <!-- Ensure this button calls the correct function -->
+<!-- <button (click)="addLeaveRequest()">Create New Swap Request</button> -->
+<button class="btn btn-primary" (click)="viewRequests()">View Pending Requests</button>
+<button class="btn btn-primary" (click)="manageApprovals()">Manage Approvals</button>
+<button class="btn btn-primary" (click)="viewAllRequests()">View All Requests</button> <!-- Ensure this button calls the correct function -->
 
-<table border="1">
+<div *ngIf="leaveRequests.length > 0" class="table-responsive"> 
+<table class="table table-hover leave-balance-table">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Requester Employee ID</th>
+      <th>Employee ID</th>
+      <th>Employee Name</th>
       <th>Leave Type</th>
       <th>Leave reason</th>
       <th>Start Date</th>
@@ -28,8 +29,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let request of leaveRequests">
-      <td>{{ request.leaveRequestId }}</td>
       <td>{{ request.employeeId }}</td>
+      <td>{{ request.name }}</td>
       <td>{{ request.leaveType }}</td>
       <td>{{ request.reason }}</td>
       <td>{{ request.startDate }}</td>
@@ -37,9 +38,11 @@
       <td>{{ request.requestDate }}</td>
       <td>{{ request.status }}</td>
       <td>
-          <button (click)="viewRequestDetails(request.leaveRequestId)">View</button>
-          <button (click)="edit(request.leaveRequestId)">Edit</button>
-          <button (click)="delete(request.leaveRequestId)">Delete</button>
+        <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-success" (click)="viewRequestDetails(request.leaveRequestId)">View</button>
+          <button class="btn btn-sm btn-primary" (click)="edit(request.leaveRequestId)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(request.leaveRequestId)">Delete</button>
+        </div>
       </td>
     </tr>
     <tr *ngIf="leaveRequests.length === 0">
@@ -47,3 +50,4 @@
     </tr>
   </tbody>
 </table>
+</div>

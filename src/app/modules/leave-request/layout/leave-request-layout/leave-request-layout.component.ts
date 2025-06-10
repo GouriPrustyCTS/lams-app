@@ -61,6 +61,7 @@ export class LeaveRequestLayoutComponent implements OnInit, OnDestroy {
     if (window.innerWidth <= 768) {
       this.isSidebarOpenMobile = !this.isSidebarOpenMobile;
     }
+    
   }
 
   // Handle desktop hover state

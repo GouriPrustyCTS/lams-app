@@ -4,7 +4,7 @@
             <button class="menu-toggle" (click)="toggleSidebar()">
                 <i class="fas fa-bars"></i> </button>
         </ng-container>
-        <h1 class="app-title">LAMS - Leave Management</h1>
+        <h1 class="app-title">LAMS - Leave and Attendance Management System</h1>
         </header>
 
     <div class="page-content-wrapper">
@@ -15,7 +15,8 @@
                (mouseleave)="onSidebarHover(false)">
             <div class="sidebar-top-section">
                 <button class="menu-toggle" (click)="toggleSidebar()">
-                    <i class="fas fa-bars"></i> </button>
+                    <a routerLink="/dashboard">
+                    <i class="fas fa-bars"></i> </a></button>
                 <span class="lm-text">LAMS</span>
             </div>
             <ul class="sidebar-menu">

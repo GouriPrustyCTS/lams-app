@@ -7,6 +7,7 @@ export interface LeaveRequest {
   employeeId: number;
   leaveType:string;
   requestDate:string;
+  name?: string;
 
 }
 
