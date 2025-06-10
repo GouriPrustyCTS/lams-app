@@ -9,7 +9,7 @@ import { routes } from './leave-request.routes';
 @NgModule({
   declarations: [LeaveRequestComponent],
   imports: [
-    CommonModule,
+    CommonModule, 
     LeaveRequestRoutingModule,
     RouterModule.forChild([
       {
@@ -20,4 +20,4 @@ import { routes } from './leave-request.routes';
     ]),
   ],
 })
-export class LeaveRequestModule {}
+export class LeaveRequestModule {} 

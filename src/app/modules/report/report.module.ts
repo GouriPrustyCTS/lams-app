@@ -35,8 +35,8 @@ const appRoutes: Routes = [
   { path: 'year-wise-leave-chart', component: YearWiseLeaveChartPageComponent },
   { path: 'tru-time-chart', component: TruTimeChartPageComponent },
   { path: 'my-leave-records/:empId', component: MyLeaveRecordsPageComponent }, // Added route for specific employee records
-  { path: '', redirectTo: '/leave-chart', pathMatch: 'full' },
-  { path: '**', redirectTo: '/leave-chart' },
+  // { path: '', redirectTo: '/leave-chart', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/leave-chart' },
 ];
 
 @NgModule({

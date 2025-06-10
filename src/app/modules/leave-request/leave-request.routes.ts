@@ -17,4 +17,4 @@ export const routes: Routes = [
   // Default redirect: go to the shifts list when the app starts
   { path: '', redirectTo: '/leaveRequests', pathMatch: 'full' },
 ];
-   
+    

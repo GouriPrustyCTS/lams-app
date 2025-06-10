@@ -1,41 +1,59 @@
 <div class="dashboard-container">
-    <h2>Dashboard</h2>
+  <h2>Dashboard</h2>
 
-    <ng-container *ngIf="userDetails">
-        <h1>Welcome, {{ userDetails.name }}!</h1>
-        <p>Your Email: {{ userDetails.email }}</p>
-        <p>Your Title: {{ userDetails.title }}</p>
-        <p>Your Roles: {{ userDetails.roles.join(', ') }}</p>
-    </ng-container>
+  <ng-container *ngIf="userDetails">
+    <h1>Welcome, {{ userDetails.name }}!</h1>
+    <p>Your Email: {{ userDetails.email }}</p>
+    <p>Your Title: {{ userDetails.title }}</p>
+    <p>Your Roles: {{ userDetails.roles.join(", ") }}</p>
+  </ng-container>
 
-    <div *ngIf="!userDetails" class="loading-message">Loading user details...</div>
-    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="!userDetails" class="loading-message">
+    Loading user details...
+  </div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 
-    <button (click)="logout()" class="logout-button">Logout</button>
+  <button (click)="logout()" class="logout-button">Logout</button>
 
+  <div class="actions-section">
+    <hr />
+    <h3>Common Actions</h3>
+    <button (click)="viewAttendanceEmployee()">Attendance-Employee UI</button>
+    <button (click)="viewLeaveBalance()">Leave Balance UI</button>
+    <button (click)="viewLeaveRequest()">Leave Request UI</button>
+    <button (click)="viewShift()">Shift UI</button>
+    <button (click)="viewShiftSwap()">Shift Swaps UI</button>
+    <button (click)="viewLeaveCharts()">Reports UI</button>
+  </div>
+
+  <ng-container *ngIf="hasRole('USER')">
     <div class="actions-section">
-        <h3>Common Actions</h3>
-        <button (click)="viewMyLeaveRequests()">View My Leave Requests</button>
-        <button (click)="applyForLeave()">Apply for Leave</button>
-        <button (click)="viewMyLeaveBalance()">View My Leave Balance</button>
-        <button (click)="requestShiftSwap()">Request Shift Swap</button>
-        <button (click)="viewAllShifts()">View All Shifts</button>
-        <button (click)="viewMyAttendance()">View My Attendance</button>
-        <button (click)="calculateMyWorkHours()">Calculate My Work Hours</button>
+      <hr />
+      <h3>Common Actions</h3>
+      <button (click)="viewMyLeaveRequests()">View My Leave Requests</button>
+      <button (click)="applyForLeave()">Apply for Leave</button>
+      <button (click)="viewMyLeaveBalance()">View My Leave Balance</button>
+      <button (click)="requestShiftSwap()">Request Shift Swap</button>
+      <button (click)="viewAllShifts()">View All Shifts</button>
+      <button (click)="viewMyAttendance()">View My Attendance</button>
+      <button (click)="calculateMyWorkHours()">Calculate My Work Hours</button>
     </div>
+  </ng-container>
 
-    <!-- Admin Section (visible if user has ADMIN role) -->
-    <ng-container *ngIf="hasRole('ADMIN')">
-        <hr>
-        <div class="admin-actions-section">
-            <h3>Admin Actions</h3>
-            <button (click)="manageEmployees()">Manage Employees</button>
-            <button (click)="reviewLeaveRequests()">Review Leave Requests</button>
-            <button (click)="manageLeaveBalances()">Manage Leave Balances</button>
-            <button (click)="manageShifts()">Manage Shifts</button>
-            <button (click)="manageShiftSwapRequests()">Manage Shift Swap Requests</button>
-            <button (click)="manageAttendance()">Manage Attendance</button>
-            <button (click)="generateReports()">Generate Reports</button>
-        </div>
-    </ng-container>
+  <!-- Admin Section (visible if user has ADMIN role) -->
+  <ng-container *ngIf="hasRole('ADMIN')">
+    <hr />
+    <div class="admin-actions-section">
+      <h3>Admin Actions</h3>
+      <button (click)="manageEmployees()">Manage Employees</button>
+      <button (click)="reviewLeaveRequests()">Review Leave Requests</button>
+      <button (click)="manageLeaveBalances()">Manage Leave Balances</button>
+      <button (click)="manageShifts()">Manage Shifts</button>
+      <button (click)="manageShiftSwapRequests()">
+        Manage Shift Swap Requests
+      </button>
+      <button (click)="manageAttendance()">Manage Attendance</button>
+      <button (click)="generateReports()">Generate Reports</button>
+    </div>
+  </ng-container>
 </div>

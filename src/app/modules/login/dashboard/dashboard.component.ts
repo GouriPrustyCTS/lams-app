@@ -13,6 +13,25 @@ import { HttpErrorResponse } from '@angular/common/http';
   imports: [CommonModule],
 })
 export class DashboardComponent implements OnInit {
+  viewLeaveCharts() {
+    this.router.navigate(['/leave-charts']);
+  }
+  viewShiftSwap() {
+    this.router.navigate(['/swap-requests']);
+  }
+  viewShift() {
+    this.router.navigate(['/shifts']);
+  }
+  viewLeaveRequest() {
+    this.router.navigate(['/leaveRequests']);
+  }
+  viewLeaveBalance() { 
+    this.router.navigate(['/leave-balances']);
+  }
+  viewAttendanceEmployee() {
+    this.router.navigate(['/attendance-employee']);
+  }
+
   userDetails: UserDetails | null = null;
   errorMessage: string | null = null;
   isBrowser: boolean;
