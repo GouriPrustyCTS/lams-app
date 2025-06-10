@@ -7,7 +7,7 @@ import { ShiftSwapRequest } from '../models/shift-swap-request';
   providedIn: 'root'
 })
 export class ShiftSwapRequestService {
-  private apiUrl = 'http://localhost:8080/swap'; // Base URL for swap requests
+  private apiUrl = 'http://localhost:8888/swap'; // Base URL for swap requests
 
   constructor(private http: HttpClient) { }
 
