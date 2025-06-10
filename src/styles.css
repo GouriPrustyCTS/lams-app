@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --header-height: 60px;
+    --sidebar-collapsed-width: 80px;
+    --header-height: 60px;
+    --sidebar-collapsed-width: 80px;
+    --sidebar-expanded-width: 250px; /* Width when fully expanded/hovered */
+
+    /* Light Color Palette */
+    --primary-light-blue: #e0f2f7; /* Very light blue for subtle accents */
+    --accent-blue: #007bff; /* Standard Bootstrap blue for primary actions/active states */
+    --text-dark: #343a40; /* Dark gray for main text */
+    --text-light: #6c757d; /* Medium gray for secondary text */
+    --bg-light: #f8f9fa; /* Off-white for general backgrounds */
+    --bg-lighter: #ffffff; /* Pure white for cards/elements */
+    --border-light: #dee2e6; /* Light gray for borders */
+
+    /* Sidebar Colors */
+    --sidebar-bg-color: #f0f2f5; /* A slightly darker light gray for sidebar when collapsed */
+    --sidebar-text-inactive: #5a6268;
+    --sidebar-text-hover: #0056b3;
+    --sidebar-active-bg: #e0f2f7;
+    --sidebar-active-text: #007bff;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scrollbar during transitions */
+    color: var(--text-dark);
+}

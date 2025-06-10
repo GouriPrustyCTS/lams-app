@@ -7,7 +7,7 @@ import { Shift } from '../models/shift';
   providedIn: 'root'
 })
 export class ShiftService { // Ensure 'export' is present here
-  private baseUrl = 'http://localhost:8080/shift'; // Adjust if your backend runs on a different port/context
+  private baseUrl = 'http://localhost:2694/shift'; // Adjust if your backend runs on a different port/context
 
   constructor(private http: HttpClient) { }
 

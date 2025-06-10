@@ -16,7 +16,7 @@ export interface Attendance {
   providedIn: 'root'
 })
 export class AttendanceService {
-  private baseUrl = 'http://localhost:8080/attendance'; // Update with your backend API URL
+  private baseUrl = 'http://localhost:2694/attendance'; // Update with your backend API URL
 
   constructor(private http: HttpClient) {}
 

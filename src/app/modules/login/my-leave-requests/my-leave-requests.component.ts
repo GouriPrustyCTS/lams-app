@@ -26,7 +26,7 @@ export class MyLeaveRequestsComponent implements OnInit {
   leaveRequests: LeaveRequestDTO[] = [];
   isLoading: boolean = true;
   error: string | null = null;
-  private baseUrl = 'http://localhost:8080'; // Your Spring Boot backend URL
+  private baseUrl = 'http://localhost:2694'; // Your Spring Boot backend URL
 
   constructor(private http: HttpClient, private router: Router) { }
 
