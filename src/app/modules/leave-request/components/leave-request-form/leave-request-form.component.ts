@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LeaveRequestService } from '../../service/leave-request.service';
 import { LeaveRequest } from '../../models/leave-request.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../../../login/services/auth.service';
 
 @Component({
   selector: 'app-leave-request-form',
@@ -28,17 +29,18 @@ export class LeaveRequestFormComponent {
   constructor(
     private leaveRequestService: LeaveRequestService,
     public router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService : AuthService
   ) { }
 
   ngOnInit(): void {
     // In a real app, populate requesterEmployeeId here if not done by an interceptor or auth guard
     // Example: this.shiftSwapRequest.requesterEmployeeId = this.authService.getCurrentUserId();
-    const employeeId = Number(localStorage.getItem('employeeId')); // Assuming you store employeeId on login
+    const employeeId = Number(this.authService.getDetailsFromToken(this.authService.getToken()).employeeId); // Assuming you store employeeId on login
     this.leaveRequest.employeeId = employeeId;
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
-      if (idParam) {
+      if (idParam) { 
         this.requestId = +idParam;
         this.isEditMode = true;
         this.loadLeaveRequest();

@@ -6,6 +6,10 @@ import { jwtDecode } from 'jwt-decode';
 import { AuthResponse } from '../models/auth-response.model';
 import { UserDetails } from '../models/user-details.model';
 
+export interface Details{
+  username:string;
+  employeeId:string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +39,6 @@ login(username: string, password: string): Observable<AuthResponse> {
       tap((response) => {
         if (this.isBrowser && response && response.token) {
           localStorage.setItem('jwtToken', response.token);
-          localStorage.setItem('employeeId', response.employeeId.toString()); // 👈 Add this
           this.storeDecodedTokenDetails(response.token);
         }
       })
@@ -47,8 +50,8 @@ login(username: string, password: string): Observable<AuthResponse> {
    * Stores relevant decoded token details (username, roles) in local storage.
    * @param token The JWT to decode.
    */
-  private storeDecodedTokenDetails(token: string): void {
-    if (this.isBrowser) {
+  private storeDecodedTokenDetails(token: string|null): void {
+    if (this.isBrowser && token != null) {
       // Guard localStorage access
       const decodedToken = this.decodeToken(token);
       if (decodedToken) {
@@ -57,8 +60,22 @@ login(username: string, password: string): Observable<AuthResponse> {
           'userRoles',
           JSON.stringify(decodedToken.roles || [])
         );
+        localStorage.setItem('employeeId',decodedToken.employeeId.toString());
       }
     }
+  }
+
+  getDetailsFromToken(token: string|null):Details{
+    this.storeDecodedTokenDetails(token);
+    let details :Details={username:"",employeeId:""};
+    if (this.isBrowser && token != null) {
+      const decodedToken = this.decodeToken(token);
+      if (decodedToken) {
+        details.username = decodedToken.sub || '';
+        details.employeeId = decodedToken.employeeId.toString();
+      }
+    }
+    return details;
   }
 
   /**
