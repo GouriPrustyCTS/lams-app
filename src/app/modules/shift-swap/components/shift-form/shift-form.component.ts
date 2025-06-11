@@ -13,22 +13,24 @@ import { ShiftService } from '../../services/shift.service';
   styleUrls: ['./shift-form.component.css']
 })
 export class ShiftFormComponent implements OnInit {
-  // Initialize the shift object with ALL properties as expected by the backend DTO
   shift: Shift = {
     shiftName: '',
-    shiftDate: '',      // Initialize shiftDate
+    shiftDate: '',
     employeeId: 0,
-    shiftStartTime: '', // Initialize shiftStartTime
-    shiftEndTime: ''    // Initialize shiftEndTime
+    shiftStartTime: '',
+    shiftEndTime: ''
   };
-  isEditMode: boolean = false;
+  isEditMode = false;
   shiftId: number | null = null;
+
+  dateValidationError = false;
+  timeValidationError = false;
 
   constructor(
     private shiftService: ShiftService,
     public router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -44,9 +46,7 @@ export class ShiftFormComponent implements OnInit {
   loadShift(): void {
     if (this.shiftId) {
       this.shiftService.getShiftById(this.shiftId).subscribe(
-        (data) => {
-          this.shift = data;
-        },
+        (data) => this.shift = data,
         (error) => {
           console.error('Error loading shift:', error);
           this.router.navigate(['/shifts']);
@@ -56,8 +56,34 @@ export class ShiftFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('Attempting to send Shift data:', this.shift);
+    this.dateValidationError = false;
+    this.timeValidationError = false;
 
+    // Validate shift date (at least 24 hrs from now)
+    const now = new Date();
+    const shiftDateTime = new Date(this.shift.shiftDate);
+    shiftDateTime.setHours(0, 0, 0, 0);  // just date comparison
+    const minValidDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // now + 24h
+    minValidDate.setHours(0, 0, 0, 0);
+
+    if (shiftDateTime < minValidDate) {
+      this.dateValidationError = true;
+      return;
+    }
+
+    // Validate shift time difference (≥ 4 hours)
+    const [startHour, startMin] = this.shift.shiftStartTime.split(':').map(Number);
+    const [endHour, endMin] = this.shift.shiftEndTime.split(':').map(Number);
+    const startTime = startHour * 60 + startMin;
+    const endTime = endHour * 60 + endMin;
+
+    const diff = endTime - startTime;
+    if (diff < 240) { // 4 hours = 240 minutes
+      this.timeValidationError = true;
+      return;
+    }
+
+    // Submit the shift data
     if (this.isEditMode && this.shiftId) {
       this.shiftService.updateShift(this.shiftId, this.shift).subscribe(
         () => {
@@ -66,13 +92,9 @@ export class ShiftFormComponent implements OnInit {
         },
         (error) => {
           console.error('Error updating shift:', error);
-          if (error.error) {
-            console.error('Backend Validation Errors:', error.error);
-          }
         }
       );
     } else {
-      this.shift.shiftDate = new Date().toISOString().split('.')[0];
       this.shiftService.createShift(this.shift).subscribe(
         () => {
           console.log('Shift created successfully');
@@ -80,9 +102,6 @@ export class ShiftFormComponent implements OnInit {
         },
         (error) => {
           console.error('Error creating shift:', error);
-          if (error.error) {
-            console.error('Backend Validation Errors:', error.error);
-          }
         }
       );
     }

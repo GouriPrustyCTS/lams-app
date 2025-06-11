@@ -1,30 +1,107 @@
-<h2>{{ isEditMode ? 'Edit Leave Request' : 'Create New Leave Request' }}</h2>
 
-<form (ngSubmit)="onSubmit()">
-  <div class="mb-3"> 
+
+<form (ngSubmit)="onSubmit()" #leaveForm="ngForm">
+  <!-- Leave Type -->
+  <div class="mb-3">
     <label for="leaveType" class="form-label">Your Leave Type:</label>
-    <input type="text" class="form-control" id="leaveType" [(ngModel)]="leaveRequest.leaveType" name="leaveType" required>
+    <input
+      type="text" 
+      class="form-control"
+      id="leaveType"
+      [(ngModel)]="leaveRequest.leaveType"
+      name="leaveType"
+      required
+      minlength="4"
+      #leaveType="ngModel"
+    />
+    <div *ngIf="leaveType.invalid && leaveType.touched" class="text-danger">
+      Leave type must be at least 4 characters long.
+    </div>
   </div>
-  <div class="mb-3"> 
+
+  <!-- Reason -->
+  <div class="mb-3">
     <label for="reason" class="form-label">Your Reason for the Leave:</label>
-    <input type="text" class="form-control" id="reason" [(ngModel)]="leaveRequest.reason" name="reason" required>
+    <input
+      type="text"
+      class="form-control"
+      id="reason"
+      [(ngModel)]="leaveRequest.reason"
+      name="reason"
+      required
+      minlength="4"
+      #reason="ngModel"
+    />
+    <div *ngIf="reason.invalid && reason.touched" class="text-danger">
+      Reason must be at least 4 characters long.
+    </div>
   </div>
+
+  <!-- Start Date -->
   <div class="mb-3">
     <label for="startDate" class="form-label">Start Date:</label>
-    <input type="date" class="form-control" id="startDate" [(ngModel)]="leaveRequest.startDate" name="startDate" required>
+    <input
+      type="date"
+      class="form-control"
+      id="startDate"
+      [(ngModel)]="leaveRequest.startDate"
+      name="startDate"
+      required
+      #startDate="ngModel"
+    />
+    <div *ngIf="timeValidationError" class="text-danger">
+      Start date must be at least 24 hours from now.
+    </div>
   </div>
+
+  <!-- End Date -->
   <div class="mb-3">
     <label for="endDate" class="form-label">End Date:</label>
-    <input type="date" class="form-control" id="endDate" [(ngModel)]="leaveRequest.endDate" name="endDate" required>
+    <input
+      type="date"
+      class="form-control"
+      id="endDate"
+      [(ngModel)]="leaveRequest.endDate"
+      name="endDate"
+      required
+      #endDate="ngModel"
+    />
   </div>
+
+  <!-- Status (Only in Edit Mode) -->
   <div class="mb-3" *ngIf="isEditMode">
     <label for="status" class="form-label">Status:</label>
-    <select class="form-select" id="status" [(ngModel)]="leaveRequest.status" name="status" required>
+    <select
+      class="form-select"
+      id="status"
+      [(ngModel)]="leaveRequest.status"
+      name="status"
+      required
+    >
       <option value="PENDING">PENDING</option>
       <option value="APPROVED">APPROVED</option>
       <option value="REJECTED">REJECTED</option>
     </select>
   </div>
-  <button type="submit" class="btn btn-primary me-2">{{ isEditMode ? 'Update Request' : 'Create Request' }}</button>
-  <button type="button" class="btn btn-secondary" (click)="router.navigate(['/leaveRequests'])">Cancel</button>
+
+  <!-- Submit Button -->
+  <button
+    type="submit"
+    class="btn btn-primary me-2"
+    [disabled]="leaveForm.invalid"
+  >
+    {{ isEditMode ? 'Update Request' : 'Create Request' }}
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    (click)="router.navigate(['/leaveRequests'])"
+  >
+    Cancel
+  </button>
+
+  <!-- Custom validation message -->
+  <div *ngIf="dateValidationError" class="text-danger mt-2">
+    Start date must be before end date.
+  </div>
 </form>

@@ -1,29 +1,45 @@
- 
 
 
-<h2>{{ isEditMode ? 'Edit Shift' : 'Add New Shift' }}</h2>
 
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" #shiftForm="ngForm">
   <div class="mb-3">
     <label class="form-label" for="shiftName">Shift Name:</label>
-    <input class="form-control" type="text" id="shiftName" [(ngModel)]="shift.shiftName" name="shiftName" required>
+    <input class="form-control" type="text" id="shiftName" [(ngModel)]="shift.shiftName" name="shiftName" required #shiftName="ngModel">
+    <div *ngIf="shiftName.invalid && shiftName.touched" class="text-danger">
+      Shift name is required.
+    </div>
   </div>
+
   <div class="mb-3">
     <label class="form-label" for="shiftDate">Shift Date:</label>
-    <input class="form-control" type="date" id="shiftDate" [(ngModel)]="shift.shiftDate" name="shiftDate" required>
+    <input class="form-control" type="date" id="shiftDate" [(ngModel)]="shift.shiftDate" name="shiftDate" required #shiftDate="ngModel">
+    <div *ngIf="dateValidationError" class="text-danger">
+      Shift date must be at least 24 hours from now.
+    </div>
   </div>
+
   <div class="mb-3">
     <label class="form-label" for="employeeId">Employee ID:</label>
-    <input class="form-control" type="number" id="employeeId" [(ngModel)]="shift.employeeId" name="employeeId" required>
+    <input class="form-control" type="number" id="employeeId" [(ngModel)]="shift.employeeId" name="employeeId" required #employeeId="ngModel">
   </div>
+
   <div class="mb-3">
     <label class="form-label" for="shiftStartTime">Start Time:</label>
-    <input class="form-control" type="time" id="shiftStartTime" [(ngModel)]="shift.shiftStartTime" name="shiftStartTime" placeholder="HH:MM" required>
+    <input class="form-control" type="time" id="shiftStartTime" [(ngModel)]="shift.shiftStartTime" name="shiftStartTime" required #shiftStartTime="ngModel">
   </div>
+
   <div class="mb-3">
     <label class="form-label" for="shiftEndTime">End Time:</label>
-    <input class="form-control" type="time" id="shiftEndTime" [(ngModel)]="shift.shiftEndTime" name="shiftEndTime" placeholder="HH:MM" required>
+    <input class="form-control" type="time" id="shiftEndTime" [(ngModel)]="shift.shiftEndTime" name="shiftEndTime" required #shiftEndTime="ngModel">
+    <div *ngIf="timeValidationError" class="text-danger">
+      Shift duration must be at least 4 hours.
+    </div>
   </div>
-  <button class="btn btn-primary me-2" type="submit">{{ isEditMode ? 'Update Shift' : 'Create Shift' }}</button>
+
+  <button class="btn btn-primary me-2" type="submit" [disabled]="shiftForm.invalid">
+    {{ isEditMode ? 'Update Shift' : 'Create Shift' }}
+  </button>
   <button class="btn btn-secondary" type="button" (click)="router.navigate(['/shifts'])">Cancel</button>
 </form>
+
+

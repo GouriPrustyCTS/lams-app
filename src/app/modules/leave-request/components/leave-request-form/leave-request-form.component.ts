@@ -62,45 +62,84 @@ export class LeaveRequestFormComponent {
     }
   }
 
+  // onSubmit(): void {
+  //   // IMPORTANT: Ensure shiftSwapRequest.requesterEmployeeId is set before submitting!
+  //   // Example: this.shiftSwapRequest.requesterEmployeeId = this.authService.getCurrentUserId();
+  //   if (this.leaveRequest.employeeId === 0 && !this.isEditMode) {
+  //     console.error("Requester Employee ID is not set. Cannot leave request.");
+  //     alert("Please ensure you are logged in. Could not determine your Employee ID.");
+  //     return;
+  //   }
+
+ 
+  //   console.log('Attempting to send Leave Request data:', this.leaveRequest);
+
+  //   if (this.isEditMode && this.requestId) {
+  //     this.leaveRequestService.updateStatus(this.requestId, this.leaveRequest.status).subscribe(
+  //       () => {
+  //         console.log('Leave request updated successfully');
+  //         this.router.navigate(['/leaveRequests']);
+  //       },
+  //       (error: HttpErrorResponse) => {
+  //         console.error('Error updating leave request:', error);
+  //         if (error.error) {
+  //             console.error('Backend Validation Errors:', error.error);
+  //         }
+  //       }
+  //     );
+  //   } else {
+  //     this.leaveRequest.requestDate = new Date().toISOString().split('T')[0]; 
+  //     this.leaveRequestService.add(this.leaveRequest).subscribe(
+  //       () => {
+  //         console.log('Leave request created successfully',this.leaveRequest);
+  //         this.router.navigate(['/leaveRequests']);
+  //       },
+  //       (error: HttpErrorResponse) => {
+  //         console.error('Error creating leave request:', error);
+  //         if (error.error) {
+  //           console.error('Backend Validation Errors:', error.error);
+  //         }
+  //       }
+  //     );
+  //   }
+  // }
+  timeValidationError = false;
+  dateValidationError = false;
   onSubmit(): void {
-    // IMPORTANT: Ensure shiftSwapRequest.requesterEmployeeId is set before submitting!
-    // Example: this.shiftSwapRequest.requesterEmployeeId = this.authService.getCurrentUserId();
-    if (this.leaveRequest.employeeId === 0 && !this.isEditMode) {
-      console.error("Requester Employee ID is not set. Cannot leave request.");
-      alert("Please ensure you are logged in. Could not determine your Employee ID.");
+    this.dateValidationError = false;
+    const start = new Date(this.leaveRequest.startDate);
+    const end = new Date(this.leaveRequest.endDate);
+    if (start >= end) {
+      this.dateValidationError = true;
       return;
     }
 
- 
-    console.log('Attempting to send Leave Request data:', this.leaveRequest);
+    const now = new Date();
+    const shiftDateTime = new Date(this.leaveRequest.startDate);
+    shiftDateTime.setHours(0, 0, 0, 0);  // just date comparison
+    const minValidDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // now + 24h
+    minValidDate.setHours(0, 0, 0, 0);
 
+    if (shiftDateTime < minValidDate) {
+      this.timeValidationError = true;
+      return;
+    }
+
+    // Existing submission logic
     if (this.isEditMode && this.requestId) {
-      this.leaveRequestService.updateStatus(this.requestId, this.leaveRequest.status).subscribe(
-        () => {
-          console.log('Leave request updated successfully');
-          this.router.navigate(['/leaveRequests']);
-        },
-        (error: HttpErrorResponse) => {
-          console.error('Error updating leave request:', error);
-          if (error.error) {
-              console.error('Backend Validation Errors:', error.error);
-          }
-        }
-      );
+      // Update logic
     } else {
-      this.leaveRequest.requestDate = new Date().toISOString().split('T')[0]; 
+      this.leaveRequest.requestDate = new Date().toISOString().split('T')[0];
       this.leaveRequestService.add(this.leaveRequest).subscribe(
         () => {
-          console.log('Leave request created successfully',this.leaveRequest);
+          console.log('Leave request created successfully', this.leaveRequest);
           this.router.navigate(['/leaveRequests']);
         },
         (error: HttpErrorResponse) => {
           console.error('Error creating leave request:', error);
-          if (error.error) {
-            console.error('Backend Validation Errors:', error.error);
-          }
         }
       );
     }
   }
+
 }
