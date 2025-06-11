@@ -15,6 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ShiftSwapRequestListComponent implements OnInit {
   swapRequests: ShiftSwapRequest[] = [];
   currentFilter: string = 'all'; // To keep track of the current filter (e.g., 'all', 'PENDING')
+errorMessage: any;
 
   constructor(
     private swapRequestService: ShiftSwapRequestService,
@@ -60,7 +61,7 @@ export class ShiftSwapRequestListComponent implements OnInit {
 
   // Action for "Manage Approvals" button - Navigates to the approval component
   manageApprovals(): void {
-    this.router.navigate(['/manage-approvals']); // This path should now work with the updated app.routes.ts
+    this.router.navigate(['/manage-approvals-swaps']); // This path should now work with the updated app.routes.ts
   }
 
   // Action for "View All Requests" button (already implicitly covered by fetchSwapRequests() without args)

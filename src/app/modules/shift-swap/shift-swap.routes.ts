@@ -21,7 +21,7 @@ export const routes: Routes = [
   
   // Route for Managing Approvals (which you have in shift-swap-request-approval)
   // Removed guards as per your file list constraint
-  { path: 'manage-approvals', component: ShiftSwapRequestApprovalComponent },
+  { path: 'manage-approvals-swaps', component: ShiftSwapRequestApprovalComponent },
 
   // Default redirect: go to the shifts list when the app starts
   { path: '', redirectTo: '/shifts', pathMatch: 'full' }
