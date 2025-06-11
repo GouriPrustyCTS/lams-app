@@ -2,9 +2,7 @@
 :root {
     --header-height: 60px;
     --sidebar-collapsed-width: 80px;
-    --header-height: 60px;
-    --sidebar-collapsed-width: 80px;
-    --sidebar-expanded-width: 250px; /* Width when fully expanded/hovered */
+    --sidebar-expanded-width: 250px; 
 
     /* Light Color Palette */
     --primary-light-blue: #e0f2f7; /* Very light blue for subtle accents */
@@ -22,6 +20,7 @@
     --sidebar-active-bg: #e0f2f7;
     --sidebar-active-text: #007bff;
 }
+
 
 body {
     font-family: 'Poppins', sans-serif;
