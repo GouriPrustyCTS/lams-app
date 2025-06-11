@@ -13,6 +13,12 @@ import { HttpErrorResponse } from '@angular/common/http';
   imports: [CommonModule],
 })
 export class DashboardComponent implements OnInit {
+viewEmployee() {
+  this.router.navigate(['/employee/employees']);
+}
+viewAttendance() {
+  this.router.navigate(['/attendance']);
+}
   viewLeaveCharts() {
     this.router.navigate(['/leave-charts']);
   }

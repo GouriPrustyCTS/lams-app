@@ -13,7 +13,7 @@ import { routes } from './leave-balance.routes';
   ],
   imports: [
     CommonModule,
-    LeaveBalanceRoutingModule,
+    LeaveBalanceRoutingModule, 
     RouterModule.forChild([
       {
         path: '',

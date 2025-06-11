@@ -1,13 +1,13 @@
 <div class="p-4">
     <h2 class="text-2xl font-bold mb-4">Manage Shift Swap Approvals</h2>
-  
-    <button (click)="goBackToSwapRequests()" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 mb-4">
+   
+    <button (click)="goBackToSwapRequests()" class="btn btn-primary">
       Back to All Swap Requests
     </button>
   
     <h3 class="text-xl font-semibold mb-3">Pending Requests</h3>
   
-    <table border="1" class="w-full text-left table-auto">
+    <table class="table table-hover leave-balance-table">
       <thead>
         <tr class="bg-gray-200">
           <th class="p-2 border">ID</th>
@@ -26,8 +26,8 @@
           <td class="p-2 border">{{ request.targetEmployeeId }}</td>
           <td class="p-2 border">{{ request.targetShiftId }}</td>
           <td class="p-2 border">
-            <button (click)="approveRequest(request.id)" class="px-3 py-1 bg-green-500 text-white rounded mr-2 hover:bg-green-600">Approve</button>
-            <button (click)="rejectRequest(request.id)" class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">Reject</button>
+            <button (click)="approveRequest(request.id)" class="btn btn-success">Approve</button>
+            <button (click)="rejectRequest(request.id)" class="btn btn-danger">Reject</button>
           </td>
         </tr>
         <tr *ngIf="pendingRequests.length === 0">

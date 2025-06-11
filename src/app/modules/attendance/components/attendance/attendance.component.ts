@@ -43,7 +43,7 @@ export class AttendanceComponent implements OnInit {
   constructor(private attendanceService: AttendanceService) {}
 
   ngOnInit(): void {
-    //this.getAllAttendances();
+    this.getAllAttendances();
   }
 
   // Get all attendance records

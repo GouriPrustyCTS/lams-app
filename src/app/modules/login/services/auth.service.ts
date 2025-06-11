@@ -6,6 +6,11 @@ import { jwtDecode } from 'jwt-decode';
 import { AuthResponse } from '../models/auth-response.model';
 import { UserDetails } from '../models/user-details.model';
 
+export interface Details{
+  username:string;
+  employeeId:string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,26 +31,27 @@ export class AuthService {
    * @param password The user's password.
    * @returns An Observable of AuthResponse containing the JWT.
    */
-  login(username: string, password: string): Observable<AuthResponse> {
-    return this.http
-      .post<AuthResponse>(`${this.baseUrl}/login`, { username, password })
-      .pipe(
-        tap((response) => {
-          if (this.isBrowser && response && response.token) {
-            // Guard localStorage access
-            localStorage.setItem('jwtToken', response.token);
-            this.storeDecodedTokenDetails(response.token);
-          }
-        })
-      );
-  }
+  
+login(username: string, password: string): Observable<AuthResponse> {
+  return this.http
+    .post<AuthResponse>(`${this.baseUrl}/login`, { username, password })
+    .pipe(
+      tap((response) => {
+        if (this.isBrowser && response && response.token) {
+          localStorage.setItem('jwtToken', response.token);
+          this.storeDecodedTokenDetails(response.token);
+        }
+      })
+    );
+}
+
 
   /**
    * Stores relevant decoded token details (username, roles) in local storage.
    * @param token The JWT to decode.
    */
-  private storeDecodedTokenDetails(token: string): void {
-    if (this.isBrowser) {
+  private storeDecodedTokenDetails(token: string|null): void {
+    if (this.isBrowser && token != null) {
       // Guard localStorage access
       const decodedToken = this.decodeToken(token);
       if (decodedToken) {
@@ -54,8 +60,22 @@ export class AuthService {
           'userRoles',
           JSON.stringify(decodedToken.roles || [])
         );
+        localStorage.setItem('employeeId',decodedToken.employeeId.toString());
       }
     }
+  }
+
+  getDetailsFromToken(token: string|null):Details{
+    this.storeDecodedTokenDetails(token);
+    let details :Details={username:"",employeeId:""};
+    if (this.isBrowser && token != null) {
+      const decodedToken = this.decodeToken(token);
+      if (decodedToken) {
+        details.username = decodedToken.sub || '';
+        details.employeeId = decodedToken.employeeId.toString();
+      }
+    }
+    return details;
   }
 
   /**

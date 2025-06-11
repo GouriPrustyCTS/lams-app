@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router'; // Keep this import for RouterModule
 
 import { LeaveRequestRoutingModule } from './leave-request-routing.module';
 import { LeaveRequestComponent } from './leave-request.component';
-import { RouterModule } from '@angular/router';
 import { routes } from './leave-request.routes';
+import { LeaveRequestLayoutComponent } from './layout/leave-request-layout/leave-request-layout.component'; // Keep this import
 
 @NgModule({
-  declarations: [LeaveRequestComponent],
+  declarations: [
+    LeaveRequestComponent // ONLY declare components that are NOT standalone here
+  ],
   imports: [
-    CommonModule, 
+    CommonModule,
     LeaveRequestRoutingModule,
     RouterModule.forChild([
       {
@@ -18,6 +21,7 @@ import { routes } from './leave-request.routes';
         children: routes,
       },
     ]),
+    LeaveRequestLayoutComponent // <-- IMPORT the standalone component here
   ],
 })
-export class LeaveRequestModule {} 
+export class LeaveRequestModule {}

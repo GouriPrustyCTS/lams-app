@@ -14,13 +14,14 @@ import { ShiftSwapRequestFormComponent } from './components/shift-swap-request-f
 import { ShiftSwapRequestDetailComponent } from './components/shift-swap-request-detail/shift-swap-request-detail.component';
 import { ShiftSwapRequestApprovalComponent } from './components/shift-swap-request-approval/shift-swap-request-approval.component';
 import { CommonModule } from '@angular/common';
-import { routes } from './shift-swap.routes';
+import { routes } from './shift-swap.routes'; 
 
 @NgModule({
   declarations: [ShiftSwapComponent],
   imports: [
     CommonModule,
     ShiftSwapRoutingModule,
+    ShiftListComponent,
     RouterModule.forChild([
       {
         path: '',
@@ -29,5 +30,6 @@ import { routes } from './shift-swap.routes';
       },
     ]),
   ],
+  exports:[ShiftListComponent]
 })
 export class ShiftSwapModule { }
