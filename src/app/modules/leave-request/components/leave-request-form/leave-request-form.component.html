@@ -1,7 +1,7 @@
 <h2>{{ isEditMode ? 'Edit Leave Request' : 'Create New Leave Request' }}</h2>
 
 <form (ngSubmit)="onSubmit()">
-  <div class="mb-3">
+  <div class="mb-3"> 
     <label for="leaveType" class="form-label">Your Leave Type:</label>
     <input type="text" class="form-control" id="leaveType" [(ngModel)]="leaveRequest.leaveType" name="leaveType" required>
   </div>

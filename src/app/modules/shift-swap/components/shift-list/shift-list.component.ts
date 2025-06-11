@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Shift } from '../../models/shift';
 import { ShiftService } from '../../services/shift.service';
 import { HttpErrorResponse } from '@angular/common/http'; // Import HttpErrorResponse
@@ -8,12 +8,16 @@ import { HttpErrorResponse } from '@angular/common/http'; // Import HttpErrorRes
 @Component({
   selector: 'app-shift-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './shift-list.component.html',
   styleUrls: ['./shift-list.component.css']
 })
 export class ShiftListComponent implements OnInit {
+deleteLeaveBalance(arg0: number|undefined) {
+throw new Error('Method not implemented.');
+}
   shifts: Shift[] = [];
+errorMessage: any;
 
   constructor(
     private shiftService: ShiftService,

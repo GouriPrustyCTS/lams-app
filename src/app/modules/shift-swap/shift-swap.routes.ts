@@ -8,7 +8,7 @@ import { ShiftSwapRequestDetailComponent } from './components/shift-swap-request
 import { ShiftSwapRequestApprovalComponent } from './components/shift-swap-request-approval/shift-swap-request-approval.component';
 
 export const routes: Routes = [
-  // Shift Routes
+  // Shift Routes 
   { path: 'shifts', component: ShiftListComponent },
   { path: 'shifts/new', component: ShiftFormComponent }, // Route for adding new shifts
   { path: 'shifts/edit/:id', component: ShiftFormComponent }, // Route for editing existing shifts
@@ -26,3 +26,17 @@ export const routes: Routes = [
   // Default redirect: go to the shifts list when the app starts
   { path: '', redirectTo: '/shifts', pathMatch: 'full' }
 ];
+
+
+  // { path: 'shifts', component: ShiftListComponent },
+  // { path: 'shifts/add', component: ShiftFormComponent },
+  // { path: 'shifts/edit/:id', component: ShiftFormComponent },
+  // { path: 'shifts/:id', component: ShiftDetailComponent },
+
+  // { path: 'swap-requests', component: ShiftSwapRequestListComponent },
+  // { path: 'swap-requests/add', component: ShiftSwapRequestFormComponent },
+  // { path: 'swap-requests/:id', component: ShiftSwapRequestDetailComponent },
+  
+  // { path: 'swap-requests/pending', component: ShiftSwapRequestListComponent }, // Re-use list for pending, or create a specific one if UI differs
+  // { path: 'swap-requests/approve', component: ShiftSwapRequestApprovalComponent },
+  // { path: '', redirectTo: '/shifts', pathMatch: 'full' } // Default route

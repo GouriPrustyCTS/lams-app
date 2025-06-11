@@ -72,6 +72,7 @@ export class ShiftFormComponent implements OnInit {
         }
       );
     } else {
+      this.shift.shiftDate = new Date().toISOString().split('.')[0];
       this.shiftService.createShift(this.shift).subscribe(
         () => {
           console.log('Shift created successfully');

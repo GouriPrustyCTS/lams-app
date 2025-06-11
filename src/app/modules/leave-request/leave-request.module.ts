@@ -7,7 +7,6 @@ import { LeaveRequestComponent } from './leave-request.component';
 import { routes } from './leave-request.routes';
 import { LeaveRequestLayoutComponent } from './layout/leave-request-layout/leave-request-layout.component'; // Keep this import
 
-
 @NgModule({
   declarations: [
     LeaveRequestComponent // ONLY declare components that are NOT standalone here

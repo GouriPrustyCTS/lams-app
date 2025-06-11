@@ -71,7 +71,7 @@ export class LeaveRequestFormComponent {
       return;
     }
 
-
+ 
     console.log('Attempting to send Leave Request data:', this.leaveRequest);
 
     if (this.isEditMode && this.requestId) {
@@ -88,7 +88,7 @@ export class LeaveRequestFormComponent {
         }
       );
     } else {
-      this.leaveRequest.requestDate = new Date().toISOString().split('.')[0]; 
+      this.leaveRequest.requestDate = new Date().toISOString().split('T')[0]; 
       this.leaveRequestService.add(this.leaveRequest).subscribe(
         () => {
           console.log('Leave request created successfully',this.leaveRequest);
