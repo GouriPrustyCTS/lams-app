@@ -8,12 +8,10 @@ import { ReportModule } from './report.module';
 const routes: Routes = reportRoutes;
 
 @NgModule({
-  declarations: [
-    ReportRoutingModule
-  ],
+  declarations: [],
   imports: [
     CommonModule,
-    ReportRoutingModule,
+    // ReportRoutingModule, // Removed to avoid circular dependency
     RouterModule.forChild([
       {
         path: '',
@@ -24,13 +22,13 @@ const routes: Routes = reportRoutes;
     ])
   ]
 })
-@NgModule({
-  imports: [
-    CommonModule,
-    ReportRoutingModule,
-  RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
+// @NgModule({
+//   imports: [
+//     CommonModule,
+//     ReportRoutingModule,
+//   RouterModule.forChild(routes)],
+//   exports: [RouterModule]
+// })
 export class ReportRoutingModule { }
 // src/app/report-routing.module.ts
 // import { NgModule } from '@angular/core';

@@ -109,15 +109,15 @@
                                 <td>{{ employee.email }}</td>
                                 <td>{{ employee.department }}</td>
                                 <td>{{ employee.jobTitle }}</td>
-                                <td>{{ employee.hireDate | date: 'yyyy-MM-dd' }}</td>
+                                <td>{{ employee.hireDate | date: 'dd-MM-YYYY' }}</td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-10">
                                         <!-- Edit button - assuming a route like /edit-employee/:id -->
-                                        <button class="btn btn-sm btn-outline-primary" (click)="edit(employee.employeeId)"  data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Employee">
+                                        <button class="btn btn-sm btn-outline-primary m-2" (click)="edit(employee.employeeId)"  data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Employee">
                                             <i class="bi bi-pencil-square"></i> <span class="d-none d-md-inline">Edit</span>
                                         </button>
                                         <!-- Delete button -->
-                                        <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteEmployee(employee.employeeId)" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Employee">
+                                        <button type="button" class="btn btn-sm btn-outline-danger m-2" (click)="deleteEmployee(employee.employeeId)" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Employee">
                                             <i class="bi bi-trash"></i> <span class="d-none d-md-inline">Delete</span>
                                         </button>
                                     </div>

@@ -20,7 +20,7 @@ viewAttendance() {
   this.router.navigate(['/attendance']);
 }
   viewLeaveCharts() {
-    this.router.navigate(['/leave-charts']);
+    this.router.navigate(['/leave-chart']);
   }
   viewShiftSwap() {
     this.router.navigate(['/swap-requests']);

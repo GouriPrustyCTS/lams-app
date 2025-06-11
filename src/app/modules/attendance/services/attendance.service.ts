@@ -7,7 +7,7 @@ export interface Attendance {
   clockInTime: Date;
   clockOutTime: Date;
   attendanceDate: Date;
-  employeeId: number;
+  employeeId: number; 
   workHours: number;
   name?: string;
 }

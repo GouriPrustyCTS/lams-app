@@ -51,7 +51,7 @@ const appRoutes: Routes = [
     FormsModule,
     LeaveChartPageComponent,
     RouterOutlet,
-    RouterLink, 
+    RouterLink,  
     RouterLinkActive,
     CommonModule,
     LeaveReportPageComponent,
