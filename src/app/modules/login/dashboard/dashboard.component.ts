@@ -13,12 +13,17 @@ import { HttpErrorResponse } from '@angular/common/http';
   imports: [CommonModule],
 })
 export class DashboardComponent implements OnInit {
-viewEmployee() {
-  this.router.navigate(['/employee/employees']);
-}
-viewAttendance() {
-  this.router.navigate(['/attendance']);
-}
+  showUserMenu = false;
+
+  toggleUserMenu() {
+    this.showUserMenu = !this.showUserMenu;
+  }
+  viewEmployee() {
+    this.router.navigate(['/employee/employees']);
+  }
+  viewAttendance() {
+    this.router.navigate(['/attendance']);
+  }
   viewLeaveCharts() {
     this.router.navigate(['/leave-chart']);
   }
@@ -31,7 +36,7 @@ viewAttendance() {
   viewLeaveRequest() {
     this.router.navigate(['/leaveRequests']);
   }
-  viewLeaveBalance() { 
+  viewLeaveBalance() {
     this.router.navigate(['/leave-balances']);
   }
   viewAttendanceEmployee() {
@@ -52,8 +57,6 @@ viewAttendance() {
 
   ngOnInit(): void {
     this.fetchUserDetails();
-    console.log(this.userDetails);
-    
   }
 
   fetchUserDetails(): void {

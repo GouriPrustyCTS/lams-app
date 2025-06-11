@@ -2,18 +2,33 @@
 
 <div class="dashboard-container">
   <div class="header">
-    <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+    <h2><i class="fas fa-tachometer-alt"></i> Leave and Attendance Management System</h2>
   </div>
 
-  <ng-container *ngIf="userDetails">
 
-    <h1 >
-      👋 Welcome, {{ userDetails.name === "Unknown User" ? "Admin User" : userDetails.name }}!
-    </h1>
-    <p><i class="fas fa-envelope"></i> {{ userDetails.email }}</p>
-    <p><i class="fas fa-briefcase"></i> {{ userDetails.title === "N/A" ? "HR Manager" : userDetails.name  }}</p>
-    <p><i class="fas fa-user-tag"></i> {{ userDetails.roles.join(", ") }}</p>
-  </ng-container>
+<!-- Top Navigation Bar -->
+<div class="navbar mx-3">
+  <div class="navbar-left">
+    <h3>Welcome, {{ userDetails?.name === "Unknown User" ? "Admin User" : userDetails?.name }}</h3>
+  </div>
+  <div class="navbar-right">
+    <div class="user-menu" (click)="toggleUserMenu()">
+      <i class="fas fa-user-circle"></i>
+      <span></span>
+    </div>
+
+    <div class="user-dropdown" *ngIf="showUserMenu">
+      <p><i class="fas fa-envelope"></i> {{ userDetails?.email }}</p>
+      <p><i class="fas fa-briefcase"></i> {{ userDetails?.title === "N/A" ? "HR Manager" : userDetails?.title }}</p>
+      <p><i class="fas fa-user-tag"></i> {{ userDetails?.roles?.join(', ') || 'No roles assigned' }}</p>
+    </div>
+    <button (click)="logout()" class="m-1 logout-button">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+
+  </div>
+</div>
+
   
   
 
@@ -24,7 +39,7 @@
     <i class="fas fa-exclamation-triangle"></i> {{ errorMessage }}
   </div>
 
-  <div class="cards-section">
+  <div class="cards-section margin-custom">
     <div class="card" (click)="viewAttendance()">
       <i class="fas fa-calendar-check"></i>
       <span>Attendance UI</span>
@@ -117,7 +132,5 @@
     </div>
   </div>
 
-  <button (click)="logout()" class="logout-button">
-    <i class="fas fa-sign-out-alt"></i> Logout
-  </button>
+
 </div>

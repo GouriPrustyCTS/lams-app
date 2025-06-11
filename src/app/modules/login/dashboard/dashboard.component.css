@@ -102,3 +102,78 @@
     transform: scale(1);
   }
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff;
+  padding: 1rem 2rem;
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.navbar-left h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.user-menu {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.user-menu i {
+  font-size: 1.5rem;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: white;
+  color: #333;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  text-align: left;
+  z-index: 10;
+  min-width: 220px;
+}
+
+.user-dropdown p {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+}
+
+.logout-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+.margin-custom{
+margin-top: 15.5vh;
+}
+
