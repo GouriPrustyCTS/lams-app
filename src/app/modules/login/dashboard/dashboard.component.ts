@@ -52,6 +52,8 @@ viewAttendance() {
 
   ngOnInit(): void {
     this.fetchUserDetails();
+    console.log(this.userDetails);
+    
   }
 
   fetchUserDetails(): void {
