@@ -9,7 +9,7 @@ import { Employee } from '../../models/employee'; // Ensure this path is correct
   selector: 'app-add-employee',
   standalone: true,
   imports:[CommonModule, ReactiveFormsModule],
-  templateUrl: './add-employee.component.html',
+  templateUrl: './add-employee.component.html', // Ensure this path is correct for your HTML template
   styleUrl: './add-employee.component.css', // Keep this if you have specific component CSS, otherwise remove
 })
 export class AddEmployeeComponent {
