@@ -9,7 +9,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'attendance-employee',
+    path: 'employee',
+    loadChildren: () =>
+      import('./modules/employee/employee.module').then(
+        (m) => m.EmployeeModule
+      ),
+  },
+  {
+    path: 'attendance',
     loadChildren: () =>
       import('./modules/attendance/attendance-app.module').then(
         (m) => m.AttendanceModule

@@ -1,0 +1,52 @@
+<div class="app-container" id="appContainer">
+  <header class="app-header" id="appHeader">
+    <div class="app-title">Employee Management System</div>
+  </header>
+
+  <div class="page-content-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top-section">
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-controls="sidebar"
+          aria-expanded="false"
+        >
+          <a routerLink="/dashboard">
+            <i class="bi bi-list"></i>
+          </a>
+        </button>
+
+        <span class="lm-text">LAMS</span>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="nav-item">
+          <a
+            class="nav-link active-link"
+            routerLink="/employee/employees"
+            routerLinkActive="active-link"
+            ariaCurrentWhenActive="page"
+          >
+            <i class="bi bi-calendar-check"></i> <span>Employee List</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/employee/addEmployee"
+            routerLinkActive="active-link"
+            ariaCurrentWhenActive="page"
+          >
+            <i class="bi bi-plus-circle"></i> <span>Add Employee</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="content-card">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>

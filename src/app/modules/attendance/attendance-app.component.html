@@ -1,5 +1,45 @@
-<h1 class="text-center">{{ title }}</h1>
-<div class="container">
-  <router-outlet />
-</div>
- 
+<div class="app-container" id="appContainer">
+  <header class="app-header" id="appHeader">
+      <div class="app-title">Attendance Management System</div>
+  </header>
+
+  <div class="page-content-wrapper">
+      <aside class="sidebar" id="sidebar">
+          <div class="sidebar-top-section">
+              <button class="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">
+                <a routerLink="/dashboard">
+                    <i class="bi bi-list"></i>
+                </a>
+              </button>
+              <span class="lm-text">LAMS</span>
+          </div>
+          <ul class="sidebar-menu">
+              <li class="nav-item">
+                  <a class="nav-link active-link" routerLink="/attendance" routerLinkActive="active-link" ariaCurrentWhenActive="page">
+                      <i class="bi bi-calendar-check"></i> <span>Attendance List</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active-link" routerLink="/attendance/search-attendance" routerLinkActive="active-link" ariaCurrentWhenActive="page">
+                    <i class="bi bi-calendar-check"></i> <span>Search Attendance</span>
+                </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active-link" routerLink="/attendance/clock-in-out" routerLinkActive="active-link" ariaCurrentWhenActive="page">
+                  <i class="bi bi-calendar-check"></i> <span>Clock-in-out</span>
+              </a>
+          </li>
+              <li class="nav-item">
+                  <a class="nav-link" routerLink="/attendance/delete-attendance" routerLinkActive="active-link" ariaCurrentWhenActive="page">
+                      <i class="bi bi-plus-circle"></i> <span>Delete Attendance</span>
+                  </a>
+              </li>
+            
+          </ul>
+      </aside>
+
+      <main class="main-content">
+          <div class="content-card">
+              <router-outlet></router-outlet>
+             
+          </div>

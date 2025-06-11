@@ -1,0 +1,153 @@
+/* Styles for the main employee table */
+.table-hover tr:hover {
+    background-color: #f5f5f5;
+}
+
+.employee-table th, .employee-table td {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.gap-3 {
+    gap: 1rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.alert {
+    margin-bottom: 1rem;
+}
+.employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+/* Styles for table headers and data cells */
+.employee-table th, 
+.employee-table td {
+    border: 1px solid #e0e0e0; /* Light grey borders */
+    padding: 12px 15px; /* Comfortable padding inside cells */
+    text-align: left; /* Align text to the left */
+}
+
+/* Styles for table headers */
+.employee-table th {
+    background-color: #f8f8f8; /* Very light grey background for headers */
+    color: #333; /* Darker text color for headers */
+    font-weight: bold; /* Bold text for headers */
+    text-transform: uppercase; /* Uppercase text for headers */
+    font-size: 0.9em; /* Slightly smaller font size */
+}
+
+/* Alternating row colors for better readability */
+.employee-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Lighter background for even rows */
+}
+
+/* Hover effect for table rows */
+.employee-table tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+    /* cursor: pointer; */ /* Enable if rows are clickable for navigation/selection */
+}
+
+/* Styles for buttons within the table cells */
+.employee-table td button {
+    padding: 6px 10px; /* Smaller padding for buttons inside cells */
+    margin-right: 5px; /* Space between buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    border: none; /* No default border */
+    border-radius: 4px; /* Slightly rounded corners */
+    font-size: 0.85em; /* Smaller font size for button text */
+    transition: background-color 0.2s ease; /* Smooth transition for hover effect */
+}
+
+/* Specific styles for 'View' button */
+.employee-table td button.btn-primary {
+    background-color: #007bff; /* Bootstrap-like blue */
+    color: white; /* White text */
+}
+
+.employee-table td button.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Specific styles for 'Delete' button */
+.employee-table td button.btn-danger {
+    background-color: #dc3545; /* Bootstrap-like red */
+    color: white; /* White text */
+}
+
+.employee-table td button.btn-danger:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+/* Popup Overlay Styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other content */
+}
+
+.popup-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 500px; /* Limit popup width */
+    width: 90%; /* Responsive width */
+    text-align: left;
+    position: relative; /* Needed for positioning close button */
+}
+
+.popup-content h3 {
+    margin-top: 0;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.popup-content p {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.popup-content strong {
+    color: #222;
+}
+
+.popup-content button {
+    margin-top: 20px;
+    display: block; /* Make the button take full width if desired */
+    width: auto; /* Or set a specific width like 100% */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.popup-content button:hover {
+    background-color: #0056b3;
+}

@@ -1,8 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { EmployeeService } from './employee.service';
-import { Employee } from '../employee-list/employee'; // Ensure this path is correct for your Employee class
-
+import { Employee } from '../models/employee'; // Ensure this path is correct for your Employee class
 describe('EmployeeService', () => {
   let service: EmployeeService;
   let httpMock: HttpTestingController;
