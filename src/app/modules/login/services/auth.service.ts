@@ -6,6 +6,7 @@ import { jwtDecode } from 'jwt-decode';
 import { AuthResponse } from '../models/auth-response.model';
 import { UserDetails } from '../models/user-details.model';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,19 +27,21 @@ export class AuthService {
    * @param password The user's password.
    * @returns An Observable of AuthResponse containing the JWT.
    */
-  login(username: string, password: string): Observable<AuthResponse> {
-    return this.http
-      .post<AuthResponse>(`${this.baseUrl}/login`, { username, password })
-      .pipe(
-        tap((response) => {
-          if (this.isBrowser && response && response.token) {
-            // Guard localStorage access
-            localStorage.setItem('jwtToken', response.token);
-            this.storeDecodedTokenDetails(response.token);
-          }
-        })
-      );
-  }
+  
+login(username: string, password: string): Observable<AuthResponse> {
+  return this.http
+    .post<AuthResponse>(`${this.baseUrl}/login`, { username, password })
+    .pipe(
+      tap((response) => {
+        if (this.isBrowser && response && response.token) {
+          localStorage.setItem('jwtToken', response.token);
+          localStorage.setItem('employeeId', response.employeeId.toString()); // 👈 Add this
+          this.storeDecodedTokenDetails(response.token);
+        }
+      })
+    );
+}
+
 
   /**
    * Stores relevant decoded token details (username, roles) in local storage.

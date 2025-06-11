@@ -34,7 +34,8 @@ export class LeaveRequestFormComponent {
   ngOnInit(): void {
     // In a real app, populate requesterEmployeeId here if not done by an interceptor or auth guard
     // Example: this.shiftSwapRequest.requesterEmployeeId = this.authService.getCurrentUserId();
-
+    const employeeId = Number(localStorage.getItem('employeeId')); // Assuming you store employeeId on login
+    this.leaveRequest.employeeId = employeeId;
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
       if (idParam) {
