@@ -25,8 +25,8 @@ import { CommonModule } from '@angular/common';
 
 // Define your routes
 const appRoutes: Routes = [
-  { path: 'leave-chart', component: LeaveChartPageComponent },
   { path: 'leave-charts', component: ReportComponent },
+  { path: 'leave-chart', component: LeaveChartPageComponent },
   { path: 'leave-report', component: LeaveReportPageComponent },
   {
     path: 'month-wise-leave-chart',
@@ -59,11 +59,73 @@ const appRoutes: Routes = [
     YearWiseLeaveChartPageComponent,
     TruTimeChartPageComponent,
     MyLeaveRecordsPageComponent,
-    RouterModule.forChild(appRoutes),
+    RouterModule.forChild([
+      {
+        path:'',
+        component: ReportComponent,
+        children: appRoutes // Use the defined routes here
+      }
+  ]),
   ],
-  providers: [],
-  bootstrap: [ReportComponent],
+  providers: []
 })
 export class ReportModule {}
 
-// imports: [],
+// // imports: [],
+// src/app/report.module.ts
+// import { NgModule } from '@angular/core';
+// import { CommonModule } from '@angular/common'; // Important for ngIf, ngFor etc.
+// import { HttpClientModule } from '@angular/common/http';
+// import { FormsModule } from '@angular/forms';
+// // Ensure RouterLink, RouterLinkActive, RouterOutlet are imported if used directly in ReportComponent's template
+// import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+
+// import { ReportComponent } from './report.component';
+// import { ReportRoutingModule } from './report-routing.module'; // Import your routing module here
+
+// // Import all your standalone components here if they are not part of other modules
+// // or declared in this module.
+// // Assuming these are standalone components, they are correctly imported here.
+// import { LeaveChartPageComponent } from './components/leave-chart-page/leave-chart-page.component';
+// import { LeaveReportPageComponent } from './components/leave-report-page/leave-report-page.component';
+// import { MonthWiseLeaveChartPageComponent } from './components/month-wise-leave-chart-page/month-wise-leave-chart-page.component';
+// import { YearWiseLeaveChartPageComponent } from './components/year-wise-leave-chart-page/year-wise-leave-chart-page.component';
+// import { TruTimeChartPageComponent } from './components/tru-time-chart-page/tru-time-chart-page.component';
+// import { MyLeaveRecordsPageComponent } from './components/my-leave-records/my-leave-records.component';
+
+
+// @NgModule({
+//   declarations: [
+//     ReportComponent,
+//     // If your page components (LeaveChartPageComponent, etc.) are NOT standalone,
+//     // they MUST be declared here or in a module imported by ReportModule.
+//     // Given your original 'imports' array, they are likely standalone, so no changes needed here for them.
+//   ],
+//   imports: [
+//     CommonModule, // Provides common Angular directives
+//     HttpClientModule,
+//     FormsModule,
+
+//     // Include Router modules for directives used in ReportComponent's HTML
+//     RouterOutlet,
+//     RouterLink,
+//     RouterLinkActive,
+
+//     ReportRoutingModule, // Your feature routing module
+
+//     // Import your standalone components here. Since they are routed *into* ReportComponent,
+//     // they don't strictly *need* to be imported here if they are only rendered via router-outlet
+//     // and are standalone, but it doesn't hurt and clarifies dependencies for standalone components.
+//     LeaveChartPageComponent,
+//     LeaveReportPageComponent,
+//     MonthWiseLeaveChartPageComponent,
+//     YearWiseLeaveChartPageComponent,
+//     TruTimeChartPageComponent,
+//     MyLeaveRecordsPageComponent,
+//   ],
+//   providers: [],
+//   // This 'bootstrap' is typical for the root application module.
+//   // If ReportModule is a lazy-loaded feature module, it typically won't have a bootstrap array.
+//   bootstrap: [ReportComponent], // Keep this if ReportComponent is the root of your application
+// })
+// export class ReportModule {}

@@ -1,13 +1,310 @@
-<nav>
-    <ul>
-      <li><a routerLink="/leave-chart" routerLinkActive="active">Leave Pie Chart</a></li>
-      <li><a routerLink="/tru-time-chart" routerLinkActive="active">Tru-Time Bar Chart</a></li>
-      <li><a routerLink="/month-wise-leave-chart" routerLinkActive="active">Month-Wise Leave Chart</a></li>
-      <li><a routerLink="/year-wise-leave-chart" routerLinkActive="active">Year-Wise Leave Chart</a></li>
-      <li><a routerLink="/leave-report" routerLinkActive="active">Leave Report (Table & Downloads)</a></li>
-      </ul>
-  </nav>
-  
-  <hr>
-  
-  <router-outlet></router-outlet>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LamsApp Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic styling for the body to provide some context */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f2f5; /* Light grey background for the whole page */
+        }
+
+        .app-container {
+            display: flex; /* This is the key to place sidebar and content side-by-side */
+            min-height: 100vh; /* Ensures the container takes full viewport height */
+            margin: 0px; /* You can adjust this to your liking */
+        }
+
+        /* Styling for the sidebar navigation */
+        nav {
+            width: 250px; /* Fixed width for the sidebar */
+            background-color: #ffffff; /* White background for the sidebar */
+            padding: 20px 0; /* Vertical padding, no horizontal padding */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow on the right */
+            height: 100vh; /* Make the sidebar take full viewport height */
+            position: sticky; /* Makes the sidebar sticky */
+            top: 0; /* Sticks to the top */
+            left: 0;
+            overflow-y: auto; /* Adds scroll if content overflows */
+        }
+
+        nav ul {
+            list-style: none; /* Remove bullet points from list items */
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin-bottom: 5px; /* Space between list items */
+        }
+
+        nav ul li a {
+            display: flex; /* Use flexbox to align icon and text */
+            align-items: center; /* Vertically center icon and text */
+            padding: 12px 20px; /* Padding inside each link */
+            text-decoration: none; /* Remove underline from links */
+            color: #333; /* Dark grey text color */
+            font-weight: 500; /* Slightly bolder text */
+            transition: background-color 0.2s, color 0.2s; /* Smooth transition for hover effects */
+            border-radius: 4px; /* Slightly rounded corners for links */
+            margin: 0 10px; /* Horizontal margin to create space from the sidebar edges */
+        }
+
+        nav ul li a i { /* Styling for the icon */
+            margin-right: 10px; /* Space between icon and text */
+            width: 20px; /* Fixed width for icons to align text */
+            text-align: center;
+        }
+
+        nav ul li a:hover {
+            background-color: #e0f7fa; /* Light blue background on hover */
+            color: #007bff; /* Blue text color on hover */
+        }
+
+        /* Styling for the active link (if using routerLinkActive="active") */
+        nav ul li a.active {
+            background-color: #e0f7fa; /* Light blue background for active link */
+            color: #007bff; /* Blue text color for active link */
+            font-weight: 600; /* Bolder for active link */
+            border-left: 4px solid #007bff; /* A subtle blue line on the left for active link */
+            padding-left: 16px; /* Adjust padding to accommodate the border */
+        }
+         nav ul li a.active i {
+            color: #007bff; /* Active color for icon */
+        }
+
+
+        /* Styling for the main content area */
+        .main-content {
+            flex-grow: 1; /* Allows the main content to take up remaining space */
+            padding: 20px; /* Padding around the main content */
+            background-color: #ffffff; /* White background for the main content area */
+            border-radius: 8px; /* Rounded corners for the content area */
+            margin: 20px; /* Margin around the content area */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the content area */
+            display: flex; /* Use flexbox for content to center items if needed */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            flex-direction: column; /* Stack content vertically */
+        }
+
+        /* Hide the hr for a cleaner look if it's not needed for visual separation within the sidebar */
+        hr {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <nav>
+            <ul>
+                <li>
+                    <a routerLink="/leave-chart" routerLinkActive="active">
+                        <i class="fas fa-chart-pie"></i> Leave Pie Chart
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/tru-time-chart" routerLinkActive="active">
+                        <i class="fas fa-chart-bar"></i> Tru-Time Bar Chart
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/month-wise-leave-chart" routerLinkActive="active">
+                        <i class="fas fa-calendar-alt"></i> Month-Wise Leave Chart
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/year-wise-leave-chart" routerLinkActive="active">
+                        <i class="fas fa-calendar-alt"></i> Year-Wise Leave Chart
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/leave-report" routerLinkActive="active">
+                        <i class="fas fa-table"></i> Leave Report (Table & Downloads)
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="main-content">
+            <router-outlet>
+                 <h2>Welcome to LamsApp Dashboard!</h2>
+                <p>Please select an option from the sidebar to view detailed charts and reports.</p>
+                <img src="https://via.placeholder.com/600x400?text=Your+Chart/Report+Content+Here" alt="Placeholder Chart" style="max-width: 100%; height: auto; margin-top: 20px; border-radius: 8px;"> 
+            </router-outlet>
+        </div>
+    </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="app-container" id="appContainer">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top-section">
+                <button class="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">
+                    <a routerLink="/dashboard">
+                    <i class="bi bi-list"></i></a>
+                </button><span>LAMS</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="nav-item">
+                    <a class="nav-link active-link" routerLink="/leave-chart" routerLinkActive="active-link" ariaCurrentWhenActive="page">
+                        <i class="bi bi-pie-chart"></i> <span>Leave Pie Chart</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/tru-time-chart" routerLinkActive="active-link" ariaCurrentWhenActive="page">
+                        <i class="bi bi-bar-chart"></i> <span>Tru-Time Bar Chart</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/month-wise-leave-chart" routerLinkActive="active-link" ariaCurrentWhenActive="page">
+                        <i class="bi bi-calendar-minus"></i> <span>Month-Wise Leave Chart</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/year-wise-leave-chart" routerLinkActive="active-link" ariaCurrentWhenActive="page">
+                        <i class="bi bi-calendar-event"></i> <span>Year-Wise Leave Chart</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/leave-report" routerLinkActive="active-link" ariaCurrentWhenActive="page">
+                        <i class="bi bi-file-earmark-bar-graph"></i> <span>Leave Report</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+ 
+        <div class="page-content-wrapper">
+            <header class="app-header" id="appHeader">
+                <div class="app-title">Analytics Dashboard</div>
+            </header>
+            <main class="main-content">
+                <div class="content-card">
+                    <router-outlet></router-outlet>
+                </div>
+            </main>
+        </div>
+    </div>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhyGkcIdslK1eP6MdfJ9b2eL" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const appContainer = document.getElementById('appContainer');
+            const sidebar = document.getElementById('sidebar');
+            // The menu toggle is now ONLY inside the sidebar-top-section
+            const menuToggle = sidebar.querySelector('.menu-toggle');
+            const navLinks = document.querySelectorAll('.sidebar-menu .nav-link');
+            const pageContentWrapper = document.querySelector('.page-content-wrapper');
+ 
+ 
+            // --- Active Link Logic (for demo without Angular) ---
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    navLinks.forEach(l => l.classList.remove('active-link'));
+                    this.classList.add('active-link');
+ 
+                    // If on mobile (offcanvas active), close sidebar after click
+                    if (window.innerWidth <= 768 && sidebar.classList.contains('offcanvas-open')) {
+                        sidebar.classList.remove('offcanvas-open');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+ 
+            // --- Sidebar Toggle/Pin Logic ---
+            let isSidebarPinned = false; // State to track if the sidebar is "pinned" open
+ 
+            function toggleSidebarPin() {
+                isSidebarPinned = !isSidebarPinned;
+                if (isSidebarPinned) {
+                    sidebar.classList.add('pinned');
+                    appContainer.classList.add('sidebar-open'); // Shift content
+                    menuToggle.setAttribute('aria-expanded', 'true');
+                } else {
+                    sidebar.classList.remove('pinned');
+                    appContainer.classList.remove('sidebar-open'); // Shift content back
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            }
+ 
+            function handleDesktopSidebarState() {
+                if (isSidebarPinned) {
+                    sidebar.classList.add('pinned');
+                    appContainer.classList.add('sidebar-open');
+                } else {
+                    sidebar.classList.remove('pinned');
+                    appContainer.classList.remove('sidebar-open');
+                }
+                sidebar.classList.remove('offcanvas-open'); // Ensure mobile class is off
+                menuToggle.setAttribute('aria-expanded', isSidebarPinned);
+            }
+ 
+            function handleMobileSidebarState() {
+                // On mobile, the sidebar always starts closed (offcanvas)
+                sidebar.classList.remove('pinned'); // Remove pinned state if coming from desktop
+                sidebar.classList.remove('offcanvas-open'); // Ensure it's hidden initially
+                appContainer.classList.remove('sidebar-open'); // Remove desktop-related shifts
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+ 
+            menuToggle.addEventListener('click', function() {
+                if (window.innerWidth > 768) { // Desktop behavior: Toggle pin state
+                    toggleSidebarPin();
+                } else { // Mobile behavior: Toggle offcanvas
+                    const isOffcanvasOpen = sidebar.classList.contains('offcanvas-open');
+                    sidebar.classList.toggle('offcanvas-open');
+                    menuToggle.setAttribute('aria-expanded', !isOffcanvasOpen); // Update aria-expanded
+                }
+            });
+ 
+            // Desktop-specific hover functionality (only if not pinned)
+            sidebar.addEventListener('mouseenter', function() {
+                if (window.innerWidth > 768 && !isSidebarPinned) {
+                    appContainer.classList.add('sidebar-open');
+                }
+            });
+ 
+            sidebar.addEventListener('mouseleave', function() {
+                if (window.innerWidth > 768 && !isSidebarPinned) {
+                    appContainer.classList.remove('sidebar-open');
+                }
+            });
+ 
+            // --- Handle window resize: Reset sidebar state ---
+            let currentWidth = window.innerWidth;
+            window.addEventListener('resize', function() {
+                if (window.innerWidth !== currentWidth) { // Only run if width actually changed
+                    if (window.innerWidth > 768) {
+                        handleDesktopSidebarState();
+                    } else {
+                        handleMobileSidebarState();
+                    }
+                    currentWidth = window.innerWidth;
+                }
+            });
+ 
+            // --- Initial state setup on load ---
+            if (window.innerWidth > 768) {
+                handleDesktopSidebarState();
+            } else {
+                handleMobileSidebarState();
+            }
+        });
+    </script>
+</body>
+</html>
+ 

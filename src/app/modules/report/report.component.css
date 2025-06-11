@@ -1,71 +1,331 @@
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    background-color: #f4f4f4;
-    overflow: hidden;
+ 
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-light);
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--text-dark);
+}
+ 
+/* --- Main App Container (Wraps Header and Page Content) --- */
+.app-container {
+  display: flex;
+  min-height: 100vh; /* Changed to flex row for main layout */
+}
+ 
+/* --- Top App Header (Now only for the main content area) --- */
+.app-header {
+  background-color: var(--bg-lighter); /* White header like LAMS */
+  color: var(--text-dark); /* Dark text for header like LAMS */
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  /* Removed fixed positioning as sidebar will handle it */
+  width: 100%; /* Will be set dynamically by JS or flexbox */
+  z-index: 1030;
+  padding-left: 1.5rem; /* Standard padding */
+  transition: padding-left 0.3s ease-in-out; /* Kept for consistency but less relevant here */
+}
+ 
+.app-header .app-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent-blue); /* Accent blue for title like LAMS */
+  margin: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+ 
+/* --- Main Page Content Wrapper (now only holds main content, header is part of it) --- */
+.page-content-wrapper {
+  display: flex;
+  flex-direction: column; /* Main content area flows vertically */
+  flex-grow: 1; /* Allows main content to take remaining space */
+  margin-left: var(--sidebar-collapsed-width); /* Initial shift for main content */
+  transition: margin-left 0.3s ease-in-out;
+  min-height: 100vh; /* Ensure it covers full height */
+}
+ 
+/* --- Sidebar Styling (Fixed, Toggleable) --- */
+.sidebar {
+  width: var(--sidebar-collapsed-width);
+  background-color: var(--sidebar-bg-color); /* Light gray for sidebar like LAMS */
+  position: fixed;
+  top: 0; /* Occupy header space */
+  bottom: 0;
+  left: 0;
+  z-index: 1040; /* Higher z-index to be above header */
+  overflow-y: auto;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+ 
+  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+ 
+/* Desktop: Hover to expand (only if not pinned) */
+@media (min-width: 769px) {
+  .sidebar:not(.pinned):hover {
+      width: var(--sidebar-expanded-width);
+      background-color: var(--bg-lighter); /* White background on hover/expand like LAMS */
   }
-  
-  nav li {
-    float: left;
+  .sidebar:not(.pinned):hover .sidebar-top-section {
+      justify-content: flex-start;
   }
-  
-  nav li a {
-    display: block;
-    color: #333;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+  .sidebar:not(.pinned):hover .sidebar-top-section .lm-text {
+      opacity: 1;
+      display: block;
   }
-  
-  nav li a:hover {
-    background-color: #ddd;
+  .sidebar:not(.pinned):hover .sidebar-menu .nav-link span {
+      display: inline;
   }
-  
-  nav li a.active {
-    background-color: #04AA6D;
-    color: white;
+  .sidebar:not(.pinned):hover .sidebar-menu .nav-link {
+      justify-content: flex-start;
+      padding: 0.85rem 1.5rem;
   }
-  
-  main {
-    padding: 20px;
+  /* Shift main content on hover */
+  .sidebar:not(.pinned):hover ~ .page-content-wrapper { /* Use general sibling selector */
+      margin-left: var(--sidebar-expanded-width);
   }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+}
+ 
+/* Desktop: Pinned state */
+.sidebar.pinned {
+  width: var(--sidebar-expanded-width);
+  background-color: var(--bg-lighter); /* White background when pinned like LAMS */
+}
+.sidebar.pinned .sidebar-top-section {
+  justify-content: flex-start;
+}
+.sidebar.pinned .sidebar-top-section .lm-text {
+  opacity: 1;
+  display: block;
+}
+.sidebar.pinned .sidebar-menu .nav-link span {
+  display: inline;
+}
+.sidebar.pinned .sidebar-menu .nav-link {
+  justify-content: flex-start;
+  padding: 0.85rem 1.5rem;
+}
+ 
+/* Adjust app-container based on pinned state for proper shifting */
+.app-container.sidebar-open .sidebar {
+  width: var(--sidebar-expanded-width);
+}
+ 
+/* --- Sidebar Top Section (holds the toggle button and Analytics text) --- */
+.sidebar-top-section {
+  height: var(--header-height); /* Match header height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-lighter); /* White background like LAMS */
+  position: sticky;
+  top: 0;
+  z-index: 1025;
+  padding: 0 1rem;
+  gap: 0.5rem;
+  transition: justify-content 0.3s ease-in-out;
+}
+ 
+/* --- Menu Toggle Button (3 horizontal lines) --- */
+.menu-toggle {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text-dark); /* Dark icon color like LAMS */
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out, transform 0.3s ease-in-out;
+}
+ 
+.menu-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Subtle hover effect like LAMS */
+}
+ 
+/* Optional: Rotate icon when sidebar is open or pinned */
+.sidebar.pinned .menu-toggle i,
+.sidebar.offcanvas-open .menu-toggle i {
+  transform: rotate(90deg);
+}
+ 
+/* "Charts & Reports" Text next to icon in expanded sidebar */
+.sidebar-top-section .lm-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-blue); /* Accent blue for title like LAMS */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  line-height: 1;
+  display: none;
+}
+ 
+/* --- Sidebar Navigation Menu --- */
+.sidebar-menu {
+  list-style: none;
+  padding: 1rem 0;
+  margin: 0;
+}
+ 
+.sidebar-menu .nav-item {
+  margin-bottom: 0.25rem;
+}
+ 
+.sidebar-menu .nav-link {
+  color: var(--sidebar-text-inactive);
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+.sidebar-menu .nav-link i {
+  min-width: 24px;
+  font-size: 1.2rem;
+  color: var(--text-light);
+  transition: color 0.2s ease-in-out;
+}
+ 
+.sidebar-menu .nav-link:hover {
+  background-color: var(--primary-light-blue); /* Light blue hover like LAMS */
+  color: var(--sidebar-text-hover);
+}
+.sidebar-menu .nav-link:hover i {
+  color: var(--sidebar-text-hover);
+}
+ 
+.sidebar-menu .nav-link.active-link {
+  background-color: var(--sidebar-active-bg); /* Light blue active background like LAMS */
+  color: var(--sidebar-active-text); /* Accent blue active text like LAMS */
+  font-weight: 500;
+  border-left: 4px solid var(--accent-blue); /* Accent blue border like LAMS */
+  padding-left: 1.25rem;
+}
+.sidebar-menu .nav-link.active-link i {
+  color: var(--sidebar-active-text);
+}
+ 
+/* Hide text in collapsed sidebar (default state and when not pinned/hovered) */
+.sidebar:not(.pinned) .sidebar-menu .nav-link span {
+  display: none;
+}
+.sidebar:not(.pinned) .sidebar-menu .nav-link {
+  justify-content: center;
+  padding: 0.85rem 0.5rem;
+}
+ 
+/* --- Main Content Area --- */
+.main-content {
+  flex-grow: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  background-color: var(--bg-light);
+  /* Removed margin-left as it's now handled by .page-content-wrapper */
+  min-height: calc(100vh - var(--header-height)); /* Adjusted to account for internal header */
+}
+ 
+/* Shift main content area when sidebar is open (pinned or hovered) */
+.app-container.sidebar-open .page-content-wrapper { /* Target the wrapper */
+  margin-left: var(--sidebar-expanded-width);
+}
+ 
+ 
+.content-card {
+  background-color: var(--bg-lighter);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  min-height: calc(100vh - var(--header-height) - 3rem); /* Adjusted for the header inside wrapper */
+}
+ 
+/* --- Responsive Adjustments (for mobile) --- */
+@media (max-width: 768px) {
+  .app-container {
+      flex-direction: column; /* Stack vertically on mobile */
   }
-  
-  table, th, td {
-    border: 1px solid #ddd;
+ 
+  .app-header {
+      padding-left: 15px;
+      justify-content: flex-start;
   }
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
+  .app-header .app-title {
+      font-size: 1.5rem;
+      margin-left: 15px;
   }
-  
-  th {
-    background-color: #f2f2f2;
+ 
+  .sidebar {
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: -250px;
+      height: 100vh;
+      transition: left 0.3s ease-in-out;
+      z-index: 1040;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+      background-color: var(--bg-lighter); /* White background for mobile offcanvas like LAMS */
   }
-  
-  .actions button {
-    padding: 10px 15px;
-    margin-right: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+ 
+  /* Offcanvas state (controlled by JS adding 'offcanvas-open' class) */
+  .sidebar.offcanvas-open {
+      left: 0;
+      width: var(--sidebar-expanded-width);
   }
-  
-  .actions button:hover {
-    background-color: #0056b3;
+ 
+  /* Mobile-specific adjustments for sidebar-top-section and menu-toggle */
+  .sidebar-top-section {
+      height: var(--header-height);
+      background-color: var(--bg-lighter); /* Match header background like LAMS */
+      position: relative;
+      justify-content: flex-start;
+      padding: 0 1rem;
   }
-  
-  .error-message {
-    color: red;
-    font-weight: bold;
-    margin-top: 10px;
+  .menu-toggle {
+      width: auto;
+      height: auto;
+      border-radius: 0;
+      background-color: transparent;
+      padding: 0;
   }
+  .menu-toggle:hover {
+      background-color: transparent;
+  }
+  .sidebar-top-section .lm-text {
+      display: block;
+      opacity: 1;
+  }
+ 
+  /* Ensure text is visible in sidebar menu when offcanvas is open */
+  .sidebar-menu .nav-link span {
+      display: inline;
+  }
+  .sidebar-menu .nav-link {
+      justify-content: flex-start;
+      padding: 0.85rem 1.5rem;
+  }
+ 
+  .page-content-wrapper {
+      margin-left: 0; /* No margin on mobile */
+      width: 100%; /* Take full width */
+      min-height: auto;
+  }
+ 
+  /* Ensure desktop-specific shifts are removed on mobile */
+  .app-container.sidebar-open .page-content-wrapper {
+      margin-left: 0;
+  }
+}
+ 

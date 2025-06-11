@@ -1,42 +1,44 @@
-<h2>Leave Report (Table)</h2>
+<h2 class="mb-4">Leave Report (Table)</h2>
 
-<div *ngIf="loading">Loading leave report data...</div>
-<div *ngIf="errorMessage" class="error-message">
-  <p>{{ errorMessage }}</p>
+<div *ngIf="loading" class="alert alert-info" role="alert">Loading leave report data...</div>
+<div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+
+<div *ngIf="!loading && leaveReportData.length > 0" class="table-responsive mt-3">
+    <h3>Leave Details</h3>
+    <table class="table table-hover leave-report-table">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+                <th>Reason</th>
+                <th>End Date</th>
+                <th>Leave Type</th>
+                <th>Start Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let leave of leaveReportData">
+                <td>{{ leave.employeeId }}</td>
+                <td>{{ leave.name }}</td>
+                <td>{{ leave.reason }}</td>
+                <td>{{ leave.endDate | date:'shortDate' }}</td> <td>{{ leave.leaveType }}</td>
+                <td>{{ leave.startDate | date:'shortDate' }}</td> <td>{{ leave.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="mt-4">Download Options</h3>
+    <div class="d-flex justify-content-start gap-3 mb-4">
+        <button class="btn btn-success" (click)="downloadExcelReport()">Download Excel</button>
+        <button class="btn btn-info text-white" (click)="downloadPdfReport()">Download PDF</button>
+    </div>
 </div>
 
-<div *ngIf="!loading && leaveReportData.length > 0">
-  <h3>Leave Details</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Employee ID</th>
-        <th>Employee Name</th>
-        <th>Reason</th>
-        <th>End Date</th>
-        <th>Leave Type</th>
-        <th>Start Date</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let leave of leaveReportData">
-        <td>{{ leave.employeeId }}</td>
-        <td>{{ leave.name }}</td>
-        <td>{{ leave.reason }}</td>
-        <td>{{ leave.endDate }}</td>
-        <td>{{ leave.leaveType }}</td>
-        <td>{{ leave.startDate }}</td>
-        <td>{{ leave.status }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div *ngIf="!loading && leaveReportData.length === 0 && !errorMessage" class="alert alert-info mt-3" role="alert">
+    <p class="mb-0">No leave report data available.</p>
+</div>
 
-  <h3>Download Options</h3>
-  <button (click)="downloadExcelReport()">Download Excel</button>
-  <button (click)="downloadPdfReport()">Download PDF</button>
+<div class="mt-4">
+    <button class="btn btn-primary" (click)="fetchLeaveReportData()">Refresh Table Data</button>
 </div>
-<div *ngIf="!loading && leaveReportData.length === 0 && !errorMessage">
-  <p>No leave report data available.</p>
-</div>
-<button (click)="fetchLeaveReportData()">Refresh Table Data</button>
