@@ -75,16 +75,20 @@
             <thead class="table-dark">
               <tr>
                 <th>Employee ID</th>
+                <th>Name </th>
+                <th>Date</th>
                 <th>Clock In</th>
                 <th>Clock Out</th>
-                <th>Work Hours</th>
+                <th>Work Hours</th> 
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let record of attendances">
                 <td><span class="fw-semibold text-primary">{{ record.employeeId }}</span></td>
-                <td>{{ record.clockInTime }}</td>
-                <td>{{ record.clockOutTime }}</td>
+                <td>{{ record.name }}</td>
+                <td>{{ record.attendanceDate | date:"dd-MM-YYYY" }}</td>
+                <td>{{ record.clockInTime | date:'h:mm a' }}</td>
+                <td>{{ record.clockOutTime | date:'h:mm a' }}</td>
                 <td><span class="text-balance">{{ record.workHours }}</span></td>
               </tr>
             </tbody>

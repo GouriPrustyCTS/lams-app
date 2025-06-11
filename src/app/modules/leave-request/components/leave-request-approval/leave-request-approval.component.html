@@ -28,9 +28,9 @@
           <td class="p-2 border">{{ request.name }}</td>
           <td class="p-2 border">{{ request.leaveType }}</td>
           <td class="p-2 border">{{ request.reason }}</td>
-          <td class="p-2 border">{{ request.startDate }}</td>
-          <td class="p-2 border">{{ request.endDate }}</td>
-          <td class="p-2 border">{{ request.requestDate }}</td>
+          <td class="p-2 border">{{ request.startDate | date:'dd MMM yyyy' }}</td>
+          <td class="p-2 border">{{ request.endDate | date:'dd MMM yyyy'}}</td>
+          <td class="p-2 border">{{ request.requestDate | date:'dd MMM yyyy'}}</td>
           <td class="p-2 border"> 
             <button class="btn btn-success" (click)="approveRequest(request.leaveRequestId)" >Approve</button>
             <button class="btn btn-danger" (click)="rejectRequest(request.leaveRequestId)" >Reject</button>

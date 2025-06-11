@@ -1,14 +1,14 @@
 import { Component, NgModule, OnInit, signal } from '@angular/core';
 import { AttendanceService, Attendance } from '../../services/attendance.service';
 import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-attendance',
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],
   standalone:true,
-  imports:[FormsModule,NgIf,NgFor]
+  imports:[FormsModule,NgIf,NgFor,CommonModule]
 })
 export class AttendanceComponent implements OnInit {
   showSearch: boolean = false;
@@ -29,7 +29,7 @@ export class AttendanceComponent implements OnInit {
   showDelete: boolean = false;
 
   toggleDelete() {
-    this.showDelete = !this.showDelete;
+    this.showDelete = !this.showDelete; 
   }
   attendances: Attendance[] = [];
   selectedAttendance?: Attendance ;
