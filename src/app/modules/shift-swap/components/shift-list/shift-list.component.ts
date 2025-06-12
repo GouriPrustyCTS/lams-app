@@ -4,36 +4,50 @@ import { Router, RouterModule } from '@angular/router';
 import { Shift } from '../../models/shift';
 import { ShiftService } from '../../services/shift.service';
 import { HttpErrorResponse } from '@angular/common/http'; // Import HttpErrorResponse
+import { AuthService } from '../../../login/services/auth.service';
 
 @Component({
   selector: 'app-shift-list',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './shift-list.component.html',
-  styleUrls: ['./shift-list.component.css']
+  styleUrls: ['./shift-list.component.css'],
 })
 export class ShiftListComponent implements OnInit {
-deleteLeaveBalance(arg0: number|undefined) {
-throw new Error('Method not implemented.');
-}
+  employeeId!: number;
+  fetch(): void {
+    const employeeId = Number(
+      this.authService.getDetailsFromToken(this.authService.getToken())
+        .employeeId
+    ); // Assuming you store employeeId on login
+    this.employeeId = employeeId;
+    console.log(employeeId);
+  }
+  deleteLeaveBalance(arg0: number | undefined) {
+    throw new Error('Method not implemented.');
+  }
   shifts: Shift[] = [];
-errorMessage: any;
+  errorMessage: any;
 
   constructor(
     private shiftService: ShiftService,
+    private authService: AuthService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getAllShifts();
+    this.fetch();
   }
 
   getAllShifts(): void {
     this.shiftService.getAllShifts().subscribe(
-      (data: Shift[]) => { // Explicitly type data
+      (data: Shift[]) => {
+        // Explicitly type data
         this.shifts = data;
       },
-      (error: HttpErrorResponse) => { // Explicitly type error
+      (error: HttpErrorResponse) => {
+        // Explicitly type error
         console.error('Error fetching shifts:', error);
         // You might want to display a user-friendly message
       }
@@ -62,13 +76,17 @@ errorMessage: any;
   }
 
   deleteShift(shiftId: number | undefined): void {
-    if (shiftId !== undefined && confirm('Are you sure you want to delete this shift?')) {
+    if (
+      shiftId !== undefined &&
+      confirm('Are you sure you want to delete this shift?')
+    ) {
       this.shiftService.deleteShift(shiftId).subscribe(
         () => {
           console.log('Shift deleted successfully');
           this.getAllShifts(); // Refresh the list
         },
-        (error: HttpErrorResponse) => { // Explicitly type error
+        (error: HttpErrorResponse) => {
+          // Explicitly type error
           console.error('Error deleting shift:', error);
           alert('Error deleting shift. Check console for details.');
         }

@@ -84,7 +84,7 @@
 
 <button class="btn btn-primary" (click)="addSwapRequest()">Create New Swap Request</button>
 <button class="btn btn-primary" (click)="viewPendingRequests()">View Pending Requests</button>
-<button class="btn btn-primary" (click)="manageApprovals()">Manage Approvals</button>
+<button *ngIf="employeeId===0" class="btn btn-primary" (click)="manageApprovals()">Manage Approvals</button>
 <button class="btn btn-primary" (click)="viewAllRequests()">View All Requests</button> <!-- Ensure this button calls the correct function -->
 <div *ngIf="swapRequests.length > 0" class="table-responsive animate__animated animate__fadeInUp">
 <table class="table table-striped table-hover align-middle leave-balance-table border">

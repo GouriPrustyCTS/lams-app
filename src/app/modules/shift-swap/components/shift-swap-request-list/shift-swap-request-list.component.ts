@@ -4,26 +4,38 @@ import { Router } from '@angular/router';
 import { ShiftSwapRequest } from '../../models/shift-swap-request';
 import { ShiftSwapRequestService } from '../../services/shift-swap-request.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../../../login/services/auth.service';
 
 @Component({
   selector: 'app-shift-swap-request-list',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './shift-swap-request-list.component.html',
-  styleUrls: ['./shift-swap-request-list.component.css']
+  styleUrls: ['./shift-swap-request-list.component.css'],
 })
 export class ShiftSwapRequestListComponent implements OnInit {
   swapRequests: ShiftSwapRequest[] = [];
   currentFilter: string = 'all'; // To keep track of the current filter (e.g., 'all', 'PENDING')
-errorMessage: any;
+  errorMessage: any;
+
+  employeeId!: number;
+  fetch(): void {
+    const employeeId = Number(
+      this.authService.getDetailsFromToken(this.authService.getToken())
+        .employeeId
+    ); // Assuming you store employeeId on login
+    this.employeeId = employeeId;
+    console.log(employeeId);
+  }
 
   constructor(
-    private swapRequestService: ShiftSwapRequestService,
+    private swapRequestService: ShiftSwapRequestService,private authService: AuthService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     // On component initialization, fetch all requests
+    this.fetch();
     this.fetchSwapRequests();
   }
 
@@ -34,15 +46,21 @@ errorMessage: any;
    */
   fetchSwapRequests(status?: string): void {
     this.currentFilter = status || 'all'; // Update current filter state
-    
+
     // Call the service method. The service handles appending query params or routing to specific endpoints.
     this.swapRequestService.getAllRequests(status).subscribe(
       (data: ShiftSwapRequest[]) => {
         this.swapRequests = data; // Assign the fetched data to the component's array
-        console.log(`Fetched ${data.length} requests for status: ${this.currentFilter}`, data);
+        console.log(
+          `Fetched ${data.length} requests for status: ${this.currentFilter}`,
+          data
+        );
       },
       (error: HttpErrorResponse) => {
-        console.error(`Error fetching swap requests for status ${this.currentFilter}:`, error);
+        console.error(
+          `Error fetching swap requests for status ${this.currentFilter}:`,
+          error
+        );
         // Display a user-friendly message if fetching fails
         this.swapRequests = []; // Clear the list on error
       }

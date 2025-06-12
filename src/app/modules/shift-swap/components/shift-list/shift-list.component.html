@@ -93,7 +93,7 @@
                 <th>Employee ID</th>
                 <th>Start Time</th>
                 <th>End Time</th>
-                <th class="text-center">Actions</th>
+                <th *ngIf="employeeId===0" class="text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -104,9 +104,9 @@
                 <td><span class="text-leave-type text-capitalize">{{ lb.employeeId }}</span></td>
                 <td><span class="text-balance fs-6">{{ lb.shiftStartTime }}</span></td>
                 <td><span class="text-balance fs-6">{{ lb.shiftEndTime }}</span></td>
-                <td class="text-center">
+                <td *ngIf="employeeId===0" class="text-center">
                   <div class="d-flex justify-content-center gap-2">
-                    <button class="btn btn-sm btn-outline-primary" (click)="editShift(lb.shiftId)" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Leave Balance">
+                    <button  class="btn btn-sm btn-outline-primary" (click)="editShift(lb.shiftId)" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Leave Balance">
                       <i class="bi bi-pencil-square"></i> <span class="d-none d-md-inline">Edit</span>
                     </button>
                     <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteShift(lb.shiftId)" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Leave Balance">
