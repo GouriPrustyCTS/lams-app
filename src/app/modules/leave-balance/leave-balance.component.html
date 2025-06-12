@@ -26,22 +26,22 @@
                         <span class="lm-text">LAMS</span>
                 </div>
                 <ul class="sidebar-menu">
-                    <li class="nav-item">
+                    <li *ngIf="employeeId===0" class="nav-item">
                         <a class="nav-link active-link" routerLink="/leave-balances" routerLinkActive="active-link" ariaCurrentWhenActive="page">
                             <i class="bi bi-calendar-check"></i> <span>All Leave Balances</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li *ngIf="employeeId===0" class="nav-item">
                         <a class="nav-link" routerLink="/add-leave-balance" routerLinkActive="active-link" ariaCurrentWhenActive="page">
                             <i class="bi bi-plus-circle"></i> <span>Add New Leave</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li  class="nav-item">
                         <a class="nav-link" routerLink="/search-leave-by-employee" routerLinkActive="active-link" ariaCurrentWhenActive="page">
                             <i class="bi bi-search"></i> <span>Leave By Employee ID</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li *ngIf="employeeId===0" class="nav-item">
                         <a class="nav-link" routerLink="/update-by-employee-id" routerLinkActive="active-link" ariaCurrentWhenActive="page">
                             <i class="bi bi-pencil-square"></i> <span>Update By Employee ID</span>
                         </a>

@@ -52,7 +52,11 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/leaveRequests']);
   }
   viewLeaveBalance() {
-    this.router.navigate(['/leave-balances']);
+    if(this.employeeId === 0){
+      this.router.navigate(['/leave-balances']);
+    }else{
+      this.router.navigate(['/search-leave-by-employee']); 
+    }
   }
   viewAttendanceEmployee() {
     this.router.navigate(['/attendance-employee']);

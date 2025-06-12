@@ -18,8 +18,8 @@
     </div>
 
     <div class="user-dropdown" *ngIf="showUserMenu">
-      <p><i class="fas fa-id-badge"></i> {{ userDetails?.employeeId }}</p>
-<p><i class="fas fa-user"></i> {{ userDetails?.name }}</p>
+      <p><i class="fas fa-id-badge"></i> ID: {{ userDetails?.employeeId }}</p>
+<p><i class="fas fa-user"></i> NAME : {{ userDetails?.name }}</p>
 <p><i class="fas fa-envelope"></i> {{ userDetails?.email }}</p>
 <p><i class="fas fa-briefcase"></i> {{ userDetails?.title === "N/A" ? "HR Manager" : userDetails?.title }}</p>
 <p><i class="fas fa-building"></i> {{ userDetails?.department }}</p>

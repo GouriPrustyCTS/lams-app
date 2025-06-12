@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { LeaveBalanceDTO } from '../../models/leave-balance.dto';
 import { LeaveBalanceService } from '../../services/leave-balance.service';
+import { AuthService } from '../../../login/services/auth.service';
 
 @Component({
   selector: 'app-leave-balance-by-employee',
@@ -23,13 +24,27 @@ export class LeaveBalanceByEmployeeIdComponent implements OnInit {
   loading: boolean = false;
   searchTriggered: boolean = false
 
+   employeeId!: number;
+    
+      fetch(): void {
+        const employeeId = Number(
+          this.authService.getDetailsFromToken(this.authService.getToken())
+            .employeeId
+        ); // Assuming you store employeeId on login
+        this.employeeId = employeeId;
+        console.log(employeeId);
+      }
+    
+
   constructor(
-    private leaveBalanceService: LeaveBalanceService,
+    private leaveBalanceService: LeaveBalanceService,private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.fetch();
+
     this.route.paramMap.subscribe(params => {
       const idFromUrl = params.get('employeeId');
       if (idFromUrl) {
@@ -40,6 +55,11 @@ export class LeaveBalanceByEmployeeIdComponent implements OnInit {
   }
 
   fetchLeaveBalances(): void {
+    if(this.employeeId!== 0 && this.employeeId!== parseInt(this.employeeIdInput)){
+      this.errorMessage = 'You can only search for your own leave balances.';
+      this.leaveBalances = [];
+      return;
+    }
     this.searchTriggered = true; 
     const idAsNumber = parseInt(this.employeeIdInput, 10);
 
@@ -92,6 +112,11 @@ export class LeaveBalanceByEmployeeIdComponent implements OnInit {
   }
 
   goToLeaveBalancesList(): void {
-    this.router.navigate(['/leave-balances']);
+    if(this.employeeId===0){
+      this.router.navigate(['/leave-balances']);
+    }else{
+      this.router.navigate(['/dashboard']);
+
+    }
   }
 }
