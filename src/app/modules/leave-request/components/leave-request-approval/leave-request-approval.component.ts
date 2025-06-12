@@ -13,7 +13,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LeaveRequestApprovalComponent {
   pendingRequests: LeaveRequest[] = [];
-
+  message: string | null = null; 
+  isSuccess: boolean = false;
   constructor(
     private leaveRequestService: LeaveRequestService,
     private router: Router

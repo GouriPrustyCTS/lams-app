@@ -22,7 +22,8 @@ export class ShiftFormComponent implements OnInit {
   };
   isEditMode = false;
   shiftId: number | null = null;
-
+  message: string | null = null; 
+  isSuccess: boolean = false;
   dateValidationError = false;
   timeValidationError = false;
 

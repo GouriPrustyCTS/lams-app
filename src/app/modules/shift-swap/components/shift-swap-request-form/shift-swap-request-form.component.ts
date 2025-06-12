@@ -28,7 +28,8 @@ export class ShiftSwapRequestFormComponent implements OnInit {
   };
   isEditMode: boolean = false;
   requestId: number | null = null;
-
+  message: string | null = null;
+  isSuccess: boolean = false;
   constructor(
     private swapRequestService: ShiftSwapRequestService,
     public router: Router,

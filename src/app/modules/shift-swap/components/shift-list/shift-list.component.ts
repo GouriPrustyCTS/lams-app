@@ -18,6 +18,8 @@ throw new Error('Method not implemented.');
 }
   shifts: Shift[] = [];
 errorMessage: any;
+  message: string | null = null; 
+  isSuccess: boolean = false;
 
   constructor(
     private shiftService: ShiftService,

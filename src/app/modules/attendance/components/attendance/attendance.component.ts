@@ -7,12 +7,13 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
   selector: 'app-attendance',
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],
-  standalone:true,
-  imports:[FormsModule,NgIf,NgFor,CommonModule]
+  standalone: true,
+  imports: [FormsModule, NgIf, NgFor, CommonModule]
 })
 export class AttendanceComponent implements OnInit {
   showSearch: boolean = false;
-
+  message: string | null = null;
+  isSuccess: boolean = false;
   toggleSearch() {
     this.showSearch = !this.showSearch;
   }
@@ -29,18 +30,18 @@ export class AttendanceComponent implements OnInit {
   showDelete: boolean = false;
 
   toggleDelete() {
-    this.showDelete = !this.showDelete; 
+    this.showDelete = !this.showDelete;
   }
   attendances: Attendance[] = [];
-  selectedAttendance?: Attendance ;
+  selectedAttendance?: Attendance;
   employeeId!: number;
   attendanceDate!: string;
   newAttendance: Attendance = {} as Attendance;
   attendanceId!: number;
   workHours!: number;
-  message: string = '';
+  
 
-  constructor(private attendanceService: AttendanceService) {}
+  constructor(private attendanceService: AttendanceService) { }
 
   ngOnInit(): void {
     this.getAllAttendances();
@@ -53,8 +54,8 @@ export class AttendanceComponent implements OnInit {
       (error) => console.error('Error fetching attendances:', error)
     );
   }
-  
-  
+
+
 
   // Get attendance by ID
   getAttendanceById(): void {
@@ -67,7 +68,7 @@ export class AttendanceComponent implements OnInit {
       );
     }
   }
-  
+
 
   // Add new attendance
   addAttendance(): void {
@@ -82,37 +83,37 @@ export class AttendanceComponent implements OnInit {
 
   // Update attendance
   // Fetch attendance details before updating
-fetchAttendance(): void {
-  if (!this.attendanceId) {
-    this.message = "Please enter a valid attendance ID.";
-    return;
+  fetchAttendance(): void {
+    if (!this.attendanceId) {
+      this.message = "Please enter a valid attendance ID.";
+      return;
+    }
+
+    this.attendanceService.getAttendanceById(this.attendanceId).subscribe(
+      (data) => {
+        this.selectedAttendance = { ...data }; // Clone to prevent binding issues
+      },
+      (error) => console.error('Error fetching attendance:', error)
+    );
   }
 
-  this.attendanceService.getAttendanceById(this.attendanceId).subscribe(
-    (data) => {
-      this.selectedAttendance = { ...data }; // Clone to prevent binding issues
-    },
-    (error) => console.error('Error fetching attendance:', error)
-  );
-}
+  // Update attendance details
+  updateAttendance(): void {
+    if (!this.selectedAttendance) {
+      this.message = "No attendance record selected for update.";
+      return;
+    }
 
-// Update attendance details
-updateAttendance(): void {
-  if (!this.selectedAttendance) {
-    this.message = "No attendance record selected for update.";
-    return;
+    this.attendanceService.updateAttendance(this.attendanceId, this.selectedAttendance).subscribe(
+      (data) => {
+        this.message = "Attendance updated successfully!";
+        this.attendances = this.attendances.map(att =>
+          att.attendanceId === this.attendanceId ? { ...data } : att
+        );
+      },
+      (error) => console.error('Error updating attendance:', error)
+    );
   }
-
-  this.attendanceService.updateAttendance(this.attendanceId, this.selectedAttendance).subscribe(
-    (data) => {
-      this.message = "Attendance updated successfully!";
-      this.attendances = this.attendances.map(att => 
-        att.attendanceId === this.attendanceId ? { ...data } : att
-      );
-    },
-    (error) => console.error('Error updating attendance:', error)
-  );
-}
 
 
   // Delete attendance
@@ -121,9 +122,9 @@ updateAttendance(): void {
       this.message = "Please enter an attendance ID.";
       return;
     }
-  
+
     console.log('Deleting attendance with ID:', this.attendanceId); // Debugging log
-  
+
     this.attendanceService.deleteAttendance(this.attendanceId).subscribe(
       () => {
         this.attendances = this.attendances.filter(att => att.attendanceId !== this.attendanceId);
@@ -132,14 +133,14 @@ updateAttendance(): void {
       (error) => console.error('Error deleting attendance:', error)
     );
   }
-  
+
 
   // Clock in an employee
   clockIn(): void {
     this.attendanceService.clockIn(this.employeeId).subscribe(
       (data) => {
         this.message = data;
-        console.log(data);  
+        console.log(data);
       },
       (error) => console.error('Error clocking in:', error)
     );
@@ -161,24 +162,24 @@ updateAttendance(): void {
     );
   }
 
-// Get attendance by date
-getAttendanceByDate(): void {
-  if (!this.attendanceDate) {
-    this.message = "Please select a date.";
-    return;
-  }
-
-  this.attendanceService.getAttendanceByDate(this.attendanceDate).subscribe(
-    (data) => {
-      this.attendances = data;
-      this.message = data.length ? "Attendance data loaded." : "No records found for selected date.";
-    },
-    (error) => {
-      console.error('Error fetching attendance by date:', error);
-      this.message = "Error occurred while fetching data.";
+  // Get attendance by date
+  getAttendanceByDate(): void {
+    if (!this.attendanceDate) {
+      this.message = "Please select a date.";
+      return;
     }
-  );
-}
+
+    this.attendanceService.getAttendanceByDate(this.attendanceDate).subscribe(
+      (data) => {
+        this.attendances = data;
+        this.message = data.length ? "Attendance data loaded." : "No records found for selected date.";
+      },
+      (error) => {
+        console.error('Error fetching attendance by date:', error);
+        this.message = "Error occurred while fetching data.";
+      }
+    );
+  }
 
 
   // Calculate work hours

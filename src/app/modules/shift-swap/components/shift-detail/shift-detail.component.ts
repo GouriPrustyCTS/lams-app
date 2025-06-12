@@ -15,7 +15,8 @@ import { HttpErrorResponse } from '@angular/common/http'; // Import HttpErrorRes
 export class ShiftDetailComponent implements OnInit {
   shift: Shift | undefined; // Allow shift to be undefined initially
   shiftId: number | null = null;
-
+  message: string | null = null; 
+  isSuccess: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private shiftService: ShiftService,

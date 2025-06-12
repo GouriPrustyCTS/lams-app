@@ -1,45 +1,47 @@
 <div class="p-4">
-    <h2 class="text-2xl font-bold mb-4">Manage Leave Approvals</h2>
-  
-    <button class="btn btn-primary" (click)="goBackToLeaveRequests()">
-      Back to All Leave Requests
-    </button> 
-  
-    <h3 class="text-xl font-semibold mb-3">Pending Requests</h3>
-  
-    <table class="table table-hover leave-balance-table">
-      <thead>
-        <tr class="bg-gray-200">
-          <th class="p-2 border">ID</th>
-          <th class="p-2 border">Employee ID</th>
-          <th class="p-2 border">Employee Name</th>
-          <th class="p-2 border">Leave Type</th>
-          <th class="p-2 border">Reason</th>
-          <th class="p-2 border">Start Date</th>
-          <th class="p-2 border">End Date</th>
-          <th class="p-2 border">Requested Date</th>
-          <th class="p-2 border">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let request of pendingRequests" class="hover:bg-gray-100">
-          <td class="p-2 border">{{ request.leaveRequestId }}</td>
-          <td class="p-2 border">{{ request.employeeId }}</td>
-          <td class="p-2 border">{{ request.name }}</td>
-          <td class="p-2 border">{{ request.leaveType }}</td>
-          <td class="p-2 border">{{ request.reason }}</td>
-          <td class="p-2 border">{{ request.startDate | date:'dd MMM yyyy' }}</td>
-          <td class="p-2 border">{{ request.endDate | date:'dd MMM yyyy'}}</td>
-          <td class="p-2 border">{{ request.requestDate | date:'dd MMM yyyy'}}</td>
-          <td class="p-2 border"> 
-            <button class="btn btn-success" (click)="approveRequest(request.leaveRequestId)" >Approve</button>
-            <button class="btn btn-danger" (click)="rejectRequest(request.leaveRequestId)" >Reject</button>
-          </td>
-        </tr>
-        <tr *ngIf="pendingRequests.length === 0">
-          <td colspan="6" class="p-2 border text-center">No pending leave requests found.</td>
-        </tr>
-      </tbody>
-    </table>
+  <h2 class="text-2xl font-bold mb-4">Manage Leave Approvals</h2>
+
+  <button class="btn btn-primary" (click)="goBackToLeaveRequests()">
+    Back to All Leave Requests
+  </button>
+  <!-- Success/Error Message -->
+  <div *ngIf="message" class="mt-4 alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
+    {{ message }}
   </div>
-  
+  <h3 class="text-xl font-semibold mb-3">Pending Requests</h3>
+
+  <table class="table table-hover leave-balance-table">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="p-2 border">ID</th>
+        <th class="p-2 border">Employee ID</th>
+        <th class="p-2 border">Employee Name</th>
+        <th class="p-2 border">Leave Type</th>
+        <th class="p-2 border">Reason</th>
+        <th class="p-2 border">Start Date</th>
+        <th class="p-2 border">End Date</th>
+        <th class="p-2 border">Requested Date</th>
+        <th class="p-2 border">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of pendingRequests" class="hover:bg-gray-100">
+        <td class="p-2 border">{{ request.leaveRequestId }}</td>
+        <td class="p-2 border">{{ request.employeeId }}</td>
+        <td class="p-2 border">{{ request.name }}</td>
+        <td class="p-2 border">{{ request.leaveType }}</td>
+        <td class="p-2 border">{{ request.reason }}</td>
+        <td class="p-2 border">{{ request.startDate | date:'dd MMM yyyy' }}</td>
+        <td class="p-2 border">{{ request.endDate | date:'dd MMM yyyy'}}</td>
+        <td class="p-2 border">{{ request.requestDate | date:'dd MMM yyyy'}}</td>
+        <td class="p-2 border">
+          <button class="btn btn-success" (click)="approveRequest(request.leaveRequestId)">Approve</button>
+          <button class="btn btn-danger" (click)="rejectRequest(request.leaveRequestId)">Reject</button>
+        </td>
+      </tr>
+      <tr *ngIf="pendingRequests.length === 0">
+        <td colspan="6" class="p-2 border text-center">No pending leave requests found.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

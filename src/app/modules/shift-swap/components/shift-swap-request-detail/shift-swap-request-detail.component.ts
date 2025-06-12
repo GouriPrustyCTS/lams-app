@@ -14,6 +14,8 @@ import { ShiftSwapRequestService } from '../../services/shift-swap-request.servi
 export class ShiftSwapRequestDetailComponent implements OnInit {
   swapRequest: ShiftSwapRequest | undefined;
   requestId: number | null = null;
+  message: string | null = null; 
+  isSuccess: boolean = false;
 
   constructor(
     private route: ActivatedRoute,

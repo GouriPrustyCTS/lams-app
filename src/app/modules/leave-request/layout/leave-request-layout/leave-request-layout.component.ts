@@ -20,7 +20,8 @@ export class LeaveRequestLayoutComponent implements OnInit, OnDestroy {
   isSidebarPinned: boolean = false; // For desktop: true if sidebar is explicitly pinned
   isSidebarOpen: boolean = false; // For desktop: true if sidebar is hovered or pinned
   isSidebarOpenMobile: boolean = false; // For mobile: true if offcanvas sidebar is open
-
+  message: string | null = null; 
+  isSuccess: boolean = false;
   // Added `window` property to make it accessible in the template for `window.innerWidth`
   // Make sure your template uses `this.window.innerWidth` or a getter if you prefer
   window: Window = window;

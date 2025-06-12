@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 export class LeaveRequestListComponent implements OnInit {
   leaveRequests: LeaveRequest[] = [];
   currentFilter: string = 'all';
+  message: string | null = null; 
+  isSuccess: boolean = false;
 
   constructor(
     private leaveRequestService: LeaveRequestService,

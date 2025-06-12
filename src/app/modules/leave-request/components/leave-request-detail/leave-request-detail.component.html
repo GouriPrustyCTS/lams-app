@@ -1,17 +1,20 @@
 <div *ngIf="leaveRequest">
-    <h2>Leave Request Details</h2>
-    <p><strong>ID:</strong> {{ leaveRequest.leaveRequestId }}</p>
-    <p><strong>Requester Employee ID:</strong> {{ leaveRequest.employeeId }}</p>
-    <p><strong>Leave Type:</strong> {{ leaveRequest.leaveType }}</p>
-    <p><strong>Reason:</strong> {{ leaveRequest.reason }}</p> <!-- Updated label -->
-    <p><strong>Start Date:</strong> {{ leaveRequest.startDate }}</p>
-    <p><strong>End Date:</strong> {{ leaveRequest.endDate }}</p>
-    <p><strong>Requested Date:</strong> {{ leaveRequest.requestDate }}</p>
-    <p><strong>Status:</strong> {{ leaveRequest.status }}</p>
-    <button (click)="goBack()">Back to List</button>
-  </div>
-  <div *ngIf="!leaveRequest">
-    <p>Leave request not found.</p>
-    <button (click)="goBack()">Back to List</button>
-  </div>
-  
+  <h2>Leave Request Details</h2>
+  <p><strong>ID:</strong> {{ leaveRequest.leaveRequestId }}</p>
+  <p><strong>Requester Employee ID:</strong> {{ leaveRequest.employeeId }}</p>
+  <p><strong>Leave Type:</strong> {{ leaveRequest.leaveType }}</p>
+  <p><strong>Reason:</strong> {{ leaveRequest.reason }}</p> <!-- Updated label -->
+  <p><strong>Start Date:</strong> {{ leaveRequest.startDate }}</p>
+  <p><strong>End Date:</strong> {{ leaveRequest.endDate }}</p>
+  <p><strong>Requested Date:</strong> {{ leaveRequest.requestDate }}</p>
+  <p><strong>Status:</strong> {{ leaveRequest.status }}</p>
+  <button (click)="goBack()">Back to List</button>
+</div>
+
+<div *ngIf="message" class="mt-4 alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
+  {{ message }}
+</div>
+<div *ngIf="!leaveRequest">
+  <p>Leave request not found.</p>
+  <button (click)="goBack()">Back to List</button>
+</div>

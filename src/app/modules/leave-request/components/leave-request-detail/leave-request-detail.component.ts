@@ -14,7 +14,8 @@ export class LeaveRequestDetailComponent implements OnInit{
 
   leaveRequest: LeaveRequest | undefined;
   requestId: number | null = null;
-
+  message: string | null = null; 
+  isSuccess: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private leaveRequestService: LeaveRequestService,

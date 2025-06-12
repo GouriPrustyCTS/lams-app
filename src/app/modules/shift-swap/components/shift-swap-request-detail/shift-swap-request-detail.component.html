@@ -1,3 +1,7 @@
+<!-- Success/Error Message -->
+<div *ngIf="message" class="mt-4 alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
+  {{ message }}
+</div>
 <div *ngIf="swapRequest">
     <h2>Shift Swap Request Details</h2>
     <p><strong>ID:</strong> {{ swapRequest.id }}</p>

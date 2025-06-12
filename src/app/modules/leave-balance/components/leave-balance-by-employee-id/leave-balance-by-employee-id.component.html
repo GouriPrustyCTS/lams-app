@@ -1,7 +1,7 @@
 <div class="container mt-4">
 
   <h2 class="mb-4"> <i class="bi bi-calendar-check-fill me-2"></i> Employee Leave Balances</h2>
-
+    <div *ngIf="message" class="mt-4 alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}"> {{ message }} </div> 
   <div class="card mb-4 shadow-sm">
       <div class="card-header">
           <h5 class="mb-0">Find Employee Leave Balances</h5>

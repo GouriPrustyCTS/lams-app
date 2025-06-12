@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { LeaveBalanceDTO } from '../../models/leave-balance.dto';
 import { LeaveBalanceService } from '../../services/leave-balance.service';
 import { Router, RouterModule } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'lams-create-leave-balance',
   templateUrl: './create-leave-balance.component.html',
   styleUrls: ['./create-leave-balance.component.css'],
-  imports:[NgIf,FormsModule, RouterModule]
+  imports:[CommonModule,FormsModule, RouterModule]
 })
 export class CreateLeaveBalanceComponent {
   leaveBalance: LeaveBalanceDTO = {
@@ -19,6 +19,8 @@ export class CreateLeaveBalanceComponent {
   };
   successMessage: string = '';
   errorMessage: string = '';
+  message: string | null = null; 
+  isSuccess: boolean = false;
 
   constructor(
     private leaveBalanceService: LeaveBalanceService,

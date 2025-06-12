@@ -25,6 +25,9 @@ export class LeaveRequestFormComponent {
   };
   isEditMode: boolean = false;
   requestId: number | null = null;
+  message: string | null = null;
+  isSuccess: boolean = false;
+  
 
   constructor(
     private leaveRequestService: LeaveRequestService,

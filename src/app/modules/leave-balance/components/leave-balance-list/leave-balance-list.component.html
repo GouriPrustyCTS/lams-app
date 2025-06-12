@@ -17,6 +17,8 @@
       </div>
       <div class="card-body p-4">
 
+        <div *ngIf="message" class="mt-4 alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}"> {{ message }} </div> 
+
         <div *ngIf="errorMessage" class="alert alert-danger d-flex align-items-center justify-content-center py-3 animate__animated animate__shakeX" role="alert">
           <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
           <div><strong>Error:</strong> {{ errorMessage }}</div>

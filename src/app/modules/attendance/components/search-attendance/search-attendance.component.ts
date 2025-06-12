@@ -19,6 +19,10 @@ export class SearchAttendanceComponent {
   // Set to true to show the search interface initially, as per your HTML's initial display logic
   showSearch = true;
 
+  // Properties for displaying feedback messages to the user
+  message: string | null = null;
+  isSuccess: boolean = false;
+
   constructor(private attendanceService: AttendanceService) {}
 
   /**
