@@ -40,4 +40,20 @@ export class CreateLeaveBalanceComponent {
       }
     });
   }
+
+  validateBalance(): void {
+    const maxLimit =
+      this.leaveBalance.leaveType === 'Sick Leave' || this.leaveBalance.leaveType === 'Casual Leave'
+        ? 15
+        : this.leaveBalance.leaveType === 'Annual Leave'
+        ? 30
+        : null;
+  
+    if (maxLimit !== null && this.leaveBalance.balance > maxLimit) {
+      this.leaveBalance.balance = maxLimit; // Restrict to the maximum limit
+      this.errorMessage = `The balance for ${this.leaveBalance.leaveType} cannot exceed ${maxLimit}.`;
+    } else {
+      this.errorMessage = ''; // Clear the error message if within the limit
+    }
+  }
 }
