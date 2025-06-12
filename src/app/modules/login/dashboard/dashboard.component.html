@@ -18,9 +18,13 @@
     </div>
 
     <div class="user-dropdown" *ngIf="showUserMenu">
-      <p><i class="fas fa-envelope"></i> {{ userDetails?.email }}</p>
-      <p><i class="fas fa-briefcase"></i> {{ userDetails?.title === "N/A" ? "HR Manager" : userDetails?.title }}</p>
-      <p><i class="fas fa-user-tag"></i> {{ userDetails?.roles?.join(', ') || 'No roles assigned' }}</p>
+      <p><i class="fas fa-id-badge"></i> {{ userDetails?.employeeId }}</p>
+<p><i class="fas fa-user"></i> {{ userDetails?.name }}</p>
+<p><i class="fas fa-envelope"></i> {{ userDetails?.email }}</p>
+<p><i class="fas fa-briefcase"></i> {{ userDetails?.title === "N/A" ? "HR Manager" : userDetails?.title }}</p>
+<p><i class="fas fa-building"></i> {{ userDetails?.department }}</p>
+<p><i class="fas fa-user-tag"></i> {{ userDetails?.roles?.join(', ') || 'No roles assigned' }}</p>
+<p><i class="fas fa-calendar-alt"></i> {{ userDetails?.hireDate | date:'mediumDate' }}</p>
     </div>
     <button (click)="logout()" class="m-1 logout-button">
       <i class="fas fa-sign-out-alt"></i> Logout
@@ -44,7 +48,7 @@
       <i class="fas fa-calendar-check"></i>
       <span>Attendance UI</span>
     </div>
-    <div class="card" (click)="viewEmployee()">
+    <div *ngIf="employeeId===0" class="card" (click)="viewEmployee()">
       <i class="fas fa-users"></i>
       <span>Employee UI</span>
     </div>

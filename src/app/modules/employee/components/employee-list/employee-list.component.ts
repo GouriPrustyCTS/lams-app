@@ -4,6 +4,7 @@ import { EmployeeService } from '../../services/employee.service';
 import { Router, RouterLink } from '@angular/router'; // Import RouterLink for [routerLink] directive
 import { CommonModule } from '@angular/common'; // Import CommonModule for *ngIf, *ngFor, date pipe
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { AuthService } from '../../../login/services/auth.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -13,6 +14,21 @@ import { HttpClientModule } from '@angular/common/http'; // Import HttpClientMod
   imports: [CommonModule, HttpClientModule], // Add HttpClientModule to imports
 })
 export class EmployeeListComponent implements OnInit {
+  employeeId!: number;
+
+  fetch(): void {
+    const employeeId = Number(
+      this.authService.getDetailsFromToken(this.authService.getToken())
+        .employeeId
+    ); // Assuming you store employeeId on login
+    this.employeeId = employeeId;
+    console.log(employeeId);
+  }
+
+  ngOnInit(): void {
+    this.fetch();
+    this.getAllEmployees();
+  }
   edit(id: number | undefined) {
     if (id !== undefined) {
       this.router.navigate(['employee/employees/edit/', id]); // Navigate to edit page with employee ID
@@ -23,11 +39,11 @@ export class EmployeeListComponent implements OnInit {
   message: string | null = null; // Property for success/error messages after actions
   isSuccess: boolean = false; // Flag to determine message type
 
-  constructor(private employeeService: EmployeeService, private router: Router) { }
-
-  ngOnInit(): void {
-    this.getAllEmployees();
-  }
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   /**
    * Fetches all employees from the service.
@@ -66,7 +82,12 @@ export class EmployeeListComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error deleting employee', err);
-        this.setMessage(`Failed to delete employee with ID ${id}. Error: ${err.message || 'Unknown error'}`, false);
+        this.setMessage(
+          `Failed to delete employee with ID ${id}. Error: ${
+            err.message || 'Unknown error'
+          }`,
+          false
+        );
       },
     });
   }
