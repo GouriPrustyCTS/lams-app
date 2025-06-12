@@ -88,8 +88,9 @@
                 <td>{{ record.name }}</td>
                 <td>{{ record.attendanceDate | date:"dd-MM-YYYY" }}</td>
                 <td>{{ record.clockInTime | date:'h:mm a' }}</td>
-                <td>{{ record.clockOutTime | date:'h:mm a' }}</td>
-                <td><span class="text-balance">{{ record.workHours }}</span></td>
+                <td>{{ record.clockOutTime ? (record.clockOutTime | date:'shortTime') : 'Still Clocked In' }}</td>
+                <td><span class="text-balance">{{ record.workHours !== null && record.workHours !== undefined ? record.workHours : 'N/A' }}
+                </span></td>
               </tr>
             </tbody>
           </table>

@@ -14,15 +14,30 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class DashboardComponent implements OnInit {
   showUserMenu = false;
+  employeeId!: number;
+
+  fetch(): void {
+    const employeeId = Number(
+      this.authService.getDetailsFromToken(this.authService.getToken())
+        .employeeId
+    ); // Assuming you store employeeId on login
+    this.employeeId = employeeId;
+    console.log(employeeId);
+  }
+
 
   toggleUserMenu() {
     this.showUserMenu = !this.showUserMenu;
-  }
+  } 
   viewEmployee() {
     this.router.navigate(['/employee/employees']);
   }
   viewAttendance() {
-    this.router.navigate(['/attendance']);
+    if(this.employeeId === 0){
+      this.router.navigate(['/attendance/list']); 
+    }else{
+      this.router.navigate(['/attendance/search-attendance']); 
+    }
   }
   viewLeaveCharts() {
     this.router.navigate(['/leave-chart']);
@@ -57,6 +72,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchUserDetails();
+    this.fetch();
+
   }
 
   fetchUserDetails(): void {

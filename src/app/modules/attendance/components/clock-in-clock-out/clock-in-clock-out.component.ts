@@ -1,17 +1,18 @@
 // clock-in-clock-out.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AttendanceService } from '../../services/attendance.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../login/services/auth.service';
 
 @Component({
   selector: 'app-clock-in-out',
   templateUrl: './clock-in-clock-out.component.html',
   styleUrls: ['./clock-in-clock-out.component.css'], // Make sure this CSS file exists or style directly in HTML
   standalone: true,
-  imports:[FormsModule, CommonModule]
+  imports: [FormsModule, CommonModule],
 })
-export class ClockInOutComponent {
+export class ClockInOutComponent implements OnInit {
   employeeId!: number;
   // This property is no longer used for toggling visibility in this standalone HTML
   // but can be kept if you plan to use it for other internal logic.
@@ -21,7 +22,22 @@ export class ClockInOutComponent {
   message: string | null = null;
   isSuccess: boolean = false;
 
-  constructor(private attendanceService: AttendanceService) {}
+  fetch(): void {
+    const employeeId = Number(
+      this.authService.getDetailsFromToken(this.authService.getToken())
+        .employeeId
+    ); // Assuming you store employeeId on login
+    this.employeeId = employeeId;
+    console.log(employeeId);
+  }
+
+  constructor(
+    private attendanceService: AttendanceService,
+    private authService: AuthService
+  ) {}
+  ngOnInit(): void {
+    this.fetch();
+  }
 
   // This method might not be needed if the component is always visible or controlled by a router
   // toggleClockInOut(): void {
@@ -34,8 +50,18 @@ export class ClockInOutComponent {
    */
   clockIn(): void {
     // Basic validation for employeeId
-    if (this.employeeId === null || this.employeeId === undefined || isNaN(this.employeeId)) {
+    this.fetch();
+    if (
+      this.employeeId === null ||
+      this.employeeId === undefined ||
+      isNaN(this.employeeId)
+    ) {
       this.setMessage('Please enter a valid Employee ID to clock in.', false);
+      return;
+    }
+
+    if (this.employeeId === 0) {
+      this.setMessage('You are Admin ', false);
       return;
     }
 
@@ -43,15 +69,25 @@ export class ClockInOutComponent {
       next: (response) => {
         console.log('Clocked in:', response);
         // Assuming the service response has a success message or a way to determine success
-        this.setMessage(`Successfully clocked in Employee ID: ${this.employeeId}`, true);
+        this.setMessage(
+          `Successfully clocked in Employee ID: ${this.employeeId}`,
+          true
+        );
         // Optionally clear employeeId after successful clock-in
         this.employeeId = null as any; // Cast to any to allow null assignment for number type
       },
       error: (error) => {
         console.error('Error clocking in:', error);
-        this.setMessage(`Failed to clock in for Employee ID: ${this.employeeId}. Error: ${error.message || 'Unknown error'}`, false);
-      }
+        // this.setMessage(`Failed to clock in for Employee ID: ${this.employeeId}. Error: ${error.message || 'Unknown error'}`, false);
+        this.setMessage(
+          `Failed to clock in for Employee ID: ${this.employeeId}. Error: ${
+            error.error || 'Unknown error'
+          }`,
+          false
+        );
+      },
     });
+    // this.fetch()
   }
 
   /**
@@ -60,8 +96,18 @@ export class ClockInOutComponent {
    */
   clockOut(): void {
     // Basic validation for employeeId
-    if (this.employeeId === null || this.employeeId === undefined || isNaN(this.employeeId)) {
+    this.fetch();
+    if (
+      this.employeeId === null ||
+      this.employeeId === undefined ||
+      isNaN(this.employeeId)
+    ) {
       this.setMessage('Please enter a valid Employee ID to clock out.', false);
+      return;
+    }
+
+    if (this.employeeId === 0) {
+      this.setMessage('You are Admin ', false);
       return;
     }
 
@@ -69,15 +115,24 @@ export class ClockInOutComponent {
       next: (response) => {
         console.log('Clocked out:', response);
         // Assuming the service response has a success message or a way to determine success
-        this.setMessage(`Successfully clocked out Employee ID: ${this.employeeId}`, true);
+        this.setMessage(
+          `Successfully clocked out Employee ID: ${this.employeeId}`,
+          true
+        );
         // Optionally clear employeeId after successful clock-out
         this.employeeId = null as any;
       },
       error: (error) => {
         console.error('Error clocking out:', error);
-        this.setMessage(`Failed to clock out for Employee ID: ${this.employeeId}. Error: ${error.message || 'Unknown error'}`, false);
-      }
+        this.setMessage(
+          `Failed to clock out for Employee ID: ${this.employeeId}. Error: ${
+            error.error || 'Unknown error'
+          }`,
+          false
+        );
+      },
     });
+    // this.fetch()
   }
 
   /**

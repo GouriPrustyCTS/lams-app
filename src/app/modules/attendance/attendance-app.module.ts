@@ -25,7 +25,7 @@ import { ClockInOutComponent } from './components/clock-in-clock-out/clock-in-cl
         path: '',
         component: AttendanceAppComponent,
         children: [
-          { path: '', component: AttendanceComponent },
+          { path: 'list', component: AttendanceComponent },
           { path: 'search-attendance', component: SearchAttendanceComponent },
           { path: 'delete-attendance', component: DeleteAttendanceComponent },
           { path: 'clock-in-out', component: ClockInOutComponent },
