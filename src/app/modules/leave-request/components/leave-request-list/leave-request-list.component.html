@@ -1,8 +1,8 @@
 <h2 class="mb-4">Leave Request List</h2>
 
 <!-- <button (click)="addLeaveRequest()">Create New Swap Request</button> -->
-<button class="btn btn-primary" (click)="viewRequests()">View Pending Requests</button>
-<button class="btn btn-primary" (click)="manageApprovals()">Manage Approvals</button>
+<button  class="btn btn-primary" (click)="viewRequests()">View Pending Requests</button>
+<button *ngIf="employeeId===0" class="btn btn-primary" (click)="manageApprovals()">Manage Approvals</button>
 <button class="btn btn-primary" (click)="viewAllRequests()">View All Requests</button> <!-- Ensure this button calls the correct function -->
 <div class="col-md-4">
   <div class="m-3 input-group input-group-sm">
@@ -36,7 +36,7 @@
       <th>End date</th>
       <th>Requested date</th>
       <th>Status</th>
-      <th>Actions</th>
+      <th *ngIf="employeeId!=0">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -50,8 +50,8 @@
       <td>{{ request.requestDate | date:'dd MMM yyyy' }}</td>
       <td>{{ request.status }}</td>
       
-      <td>
-        <div class="d-flex gap-2">
+      <td *ngIf="employeeId!=0">
+        <div *ngIf="employeeId==request.employeeId " class="d-flex gap-2">
           <button class="btn btn-sm btn-success" (click)="viewRequestDetails(request.leaveRequestId)">View</button>
           <button class="btn btn-sm btn-primary" (click)="edit(request.leaveRequestId)">Edit</button>
           <button class="btn btn-sm btn-danger" (click)="delete(request.leaveRequestId)">Delete</button>

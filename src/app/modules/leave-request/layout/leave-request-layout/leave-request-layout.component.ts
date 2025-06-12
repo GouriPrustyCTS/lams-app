@@ -5,6 +5,7 @@ import { Router, NavigationEnd, RouterModule } from '@angular/router'; // <-- Im
 import { CommonModule } from '@angular/common'; // <-- Import CommonModule
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../../login/services/auth.service';
 
 @Component({
   selector: 'app-leave-request-layout',
@@ -27,9 +28,21 @@ export class LeaveRequestLayoutComponent implements OnInit, OnDestroy {
 
   private routerSubscription!: Subscription;
 
-  constructor(private router: Router) {}
+  employeeId!: number;
+  fetch(): void {
+    const employeeId = Number(
+      this.authService.getDetailsFromToken(this.authService.getToken())
+        .employeeId
+    ); // Assuming you store employeeId on login
+    this.employeeId = employeeId;
+    console.log(employeeId);
+  }
+
+  constructor(private router: Router,private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.fetch();
+
     // Close mobile sidebar on route change within this module
     this.routerSubscription = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)

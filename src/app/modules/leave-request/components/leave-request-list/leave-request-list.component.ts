@@ -5,10 +5,11 @@ import { LeaveRequestService } from '../../service/leave-request.service';
 import { LeaveRequest } from '../../models/leave-request.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../login/services/auth.service';
 
 @Component({
   selector: 'app-leave-request-list',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './leave-request-list.component.html',
   styleUrl: './leave-request-list.component.css',
 })
@@ -16,12 +17,24 @@ export class LeaveRequestListComponent implements OnInit {
   leaveRequests: LeaveRequest[] = [];
   currentFilter: string = 'all';
 
+  employeeId!: number;
+  fetch(): void {
+    const employeeId = Number(
+      this.authService.getDetailsFromToken(this.authService.getToken())
+        .employeeId
+    ); // Assuming you store employeeId on login
+    this.employeeId = employeeId;
+    console.log(employeeId);
+  }
+
   constructor(
-    private leaveRequestService: LeaveRequestService,
+    private leaveRequestService: LeaveRequestService,private authService: AuthService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.fetch();
+
     this.fetchLeaveRequests();
   }
 

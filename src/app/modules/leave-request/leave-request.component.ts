@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../login/services/auth.service';
 
 @Component({
   selector: 'leave-request-root',
-  standalone:false,
+  standalone: false,
   templateUrl: './leave-request.component.html',
   styleUrl: './leave-request.component.css',
 })

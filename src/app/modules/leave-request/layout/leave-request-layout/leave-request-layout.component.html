@@ -20,7 +20,7 @@
                 <span class="lm-text">LAMS</span>
             </div>
             <ul class="sidebar-menu">
-                <li class="nav-item">
+                <li  class="nav-item">
                     <a class="nav-link"
                        routerLink="/leaveRequests"
                        routerLinkActive="active-link"
@@ -30,7 +30,7 @@
                     </a>
                 </li>
             
-                <li class="nav-item">
+                <li *ngIf="employeeId!==0" class="nav-item">
                     <a class="nav-link"
                        routerLink="/addLeaveRequests"
                        routerLinkActive="active-link"
@@ -40,7 +40,7 @@
                     </a>
                 </li>
             
-                <li class="nav-item">
+                <li *ngIf="employeeId===0" class="nav-item">
                     <a class="nav-link"
                        routerLink="/manage-approvals"
                        routerLinkActive="active-link"
@@ -50,7 +50,7 @@
                     </a>
                 </li>
             
-                <li class="nav-item">
+                <li *ngIf="employeeId===0" class="nav-item">
                     <a class="nav-link"
                        routerLink="/leave-report" routerLinkActive="active-link"
                        ariaCurrentWhenActive="page"

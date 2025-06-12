@@ -109,7 +109,7 @@ export class LeaveRequestFormComponent {
     this.dateValidationError = false;
     const start = new Date(this.leaveRequest.startDate);
     const end = new Date(this.leaveRequest.endDate);
-    if (start >= end) {
+    if (start > end) {
       this.dateValidationError = true;
       return;
     }
@@ -129,7 +129,7 @@ export class LeaveRequestFormComponent {
     if (this.isEditMode && this.requestId) {
       // Update logic
     } else {
-      this.leaveRequest.requestDate = new Date().toISOString().split('T')[0];
+      this.leaveRequest.requestDate = new Date().toISOString();
       this.leaveRequestService.add(this.leaveRequest).subscribe(
         () => {
           console.log('Leave request created successfully', this.leaveRequest);
