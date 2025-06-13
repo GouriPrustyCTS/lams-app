@@ -9,7 +9,7 @@
 <!-- Top Navigation Bar -->
 <div class="navbar mx-3">
   <div class="navbar-left">
-    <h3>Welcome, {{ userDetails?.name === "Unknown User" ? "Admin User" : userDetails?.name }}</h3>
+    <h3>Welcome, {{ userDetails?.name === "Unknown User" ? "Admin" : userDetails?.name }}</h3>
   </div>
   <div class="navbar-right">
     <div class="user-menu" (click)="toggleUserMenu()">
@@ -18,13 +18,13 @@
     </div>
 
     <div class="user-dropdown" *ngIf="showUserMenu">
-      <p><i class="fas fa-id-badge"></i> ID: {{ userDetails?.employeeId }}</p>
-<p><i class="fas fa-user"></i> NAME : {{ userDetails?.name }}</p>
+      <p *ngIf="employeeId!==0" ><i class="fas fa-id-badge"></i> ID: {{ userDetails?.employeeId }}</p>
+<p ><i class="fas fa-user"></i> {{ userDetails?.name === "Unknown User" ? "Admin" : userDetails?.name }}</p>
 <p><i class="fas fa-envelope"></i> {{ userDetails?.email }}</p>
 <p><i class="fas fa-briefcase"></i> {{ userDetails?.title === "N/A" ? "HR Manager" : userDetails?.title }}</p>
-<p><i class="fas fa-building"></i> {{ userDetails?.department }}</p>
+<p *ngIf="employeeId!==0" ><i class="fas fa-building"></i> {{ userDetails?.department }}</p>
 <p><i class="fas fa-user-tag"></i> {{ userDetails?.roles?.join(', ') || 'No roles assigned' }}</p>
-<p><i class="fas fa-calendar-alt"></i> {{ userDetails?.hireDate | date:'mediumDate' }}</p>
+<p *ngIf="employeeId!==0" ><i class="fas fa-calendar-alt"></i> {{ userDetails?.hireDate | date:'mediumDate' }}</p>
     </div>
     <button (click)="logout()" class="m-1 logout-button">
       <i class="fas fa-sign-out-alt"></i> Logout
@@ -46,31 +46,31 @@
   <div class="cards-section margin-custom">
     <div class="card" (click)="viewAttendance()">
       <i class="fas fa-calendar-check"></i>
-      <span>Attendance UI</span>
+      <span>Attendance</span>
     </div>
     <div *ngIf="employeeId===0" class="card" (click)="viewEmployee()">
       <i class="fas fa-users"></i>
-      <span>Employee UI</span>
+      <span>Employee</span>
     </div>
     <div class="card" (click)="viewLeaveBalance()">
       <i class="fas fa-balance-scale"></i>
-      <span>Leave Balance UI</span>
+      <span>Leave Balance</span>
     </div>
     <div class="card" (click)="viewLeaveRequest()">
       <i class="fas fa-envelope-open-text"></i>
-      <span>Leave Request UI</span>
+      <span>Leave Request</span>
     </div>
     <div class="card" (click)="viewShift()">
       <i class="fas fa-clock"></i>
-      <span>Shift UI</span>
+      <span>Shift</span>
     </div>
     <div class="card" (click)="viewShiftSwap()">
       <i class="fas fa-random"></i>
-      <span>Shift Swaps UI</span>
+      <span>Shift Swaps</span>
     </div>
     <div class="card" (click)="viewLeaveCharts()">
       <i class="fas fa-chart-bar"></i>
-      <span>Reports UI</span>
+      <span>Reports</span>
     </div>
   </div>
 

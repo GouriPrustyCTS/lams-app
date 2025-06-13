@@ -10,13 +10,13 @@ import { ShiftSwapRequestApprovalComponent } from './components/shift-swap-reque
 export const routes: Routes = [
   // Shift Routes 
   { path: 'shifts', component: ShiftListComponent },
-  { path: 'shifts/new', component: ShiftFormComponent }, // Route for adding new shifts
+  { path: 'newShits', component: ShiftFormComponent }, // Route for adding new shifts
   { path: 'shifts/edit/:id', component: ShiftFormComponent }, // Route for editing existing shifts
   { path: 'shifts/:id', component: ShiftDetailComponent }, // Route for viewing shift details
 
   // Shift Swap Request Routes
   { path: 'swap-requests', component: ShiftSwapRequestListComponent }, // List of all swap requests
-  { path: 'swap-requests/new', component: ShiftSwapRequestFormComponent }, // Form for creating new swap requests
+  { path: 'newSwap-requests/new', component: ShiftSwapRequestFormComponent }, // Form for creating new swap requests
   { path: 'swap-requests/:id', component: ShiftSwapRequestDetailComponent }, // Details of a specific swap request
   
   // Route for Managing Approvals (which you have in shift-swap-request-approval)

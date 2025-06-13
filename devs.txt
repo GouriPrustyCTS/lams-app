@@ -1,7 +1,7 @@
 http://localhost:4200/leaveRequests
 http://localhost:4200/attendance-employee
 http://localhost:4200/leave-balances
-http://localhost:4200/shifts
+http://localhost:4200/shift
 http://localhost:4200/swap-requests
 http://localhost:4200/leave-charts
 

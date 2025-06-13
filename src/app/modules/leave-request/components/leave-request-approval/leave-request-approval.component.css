@@ -23,6 +23,13 @@ body {
     font-weight: 600;
     letter-spacing: 0.5px;
   }
+  th {
+    text-align: justify;
+    padding: 12px;
+    font-weight: bold;
+    background-color: #f8f9fa;
+  }
+  
   .badge {
     font-size: 0.85em; /* Slightly smaller badge text */
     padding: 0.4em 0.7em;
