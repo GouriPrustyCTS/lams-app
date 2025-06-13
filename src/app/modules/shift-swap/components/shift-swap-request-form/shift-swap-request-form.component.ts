@@ -26,6 +26,8 @@ export class ShiftSwapRequestFormComponent implements OnInit {
     targetShiftId: 0,
     status: 'PENDING'
   };
+  message: string | null = null; 
+  isSuccess: boolean = false;
   isEditMode: boolean = false;
   requestId: number | null = null;
 

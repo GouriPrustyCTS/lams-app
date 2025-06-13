@@ -23,6 +23,8 @@ export class LeaveBalanceByEmployeeIdComponent implements OnInit {
   errorMessage: string | null = null;
   loading: boolean = false;
   searchTriggered: boolean = false
+  message: string | null = null; 
+  isSuccess: boolean = false;
 
    employeeId!: number;
     

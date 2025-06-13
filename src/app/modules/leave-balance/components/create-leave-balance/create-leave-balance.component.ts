@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { LeaveBalanceDTO } from '../../models/leave-balance.dto';
 import { LeaveBalanceService } from '../../services/leave-balance.service';
 import { Router, RouterModule } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'lams-create-leave-balance',
   templateUrl: './create-leave-balance.component.html',
   styleUrls: ['./create-leave-balance.component.css'],
-  imports:[NgIf,FormsModule, RouterModule]
+  imports:[NgIf,FormsModule, RouterModule,CommonModule]
 })
 export class CreateLeaveBalanceComponent {
   leaveBalance: LeaveBalanceDTO = {
@@ -17,6 +17,8 @@ export class CreateLeaveBalanceComponent {
     leaveType: '',
     balance: 0
   };
+  message: string | null = null; 
+  isSuccess: boolean = false;
   successMessage: string = '';
   errorMessage: string = '';
 
@@ -39,5 +41,21 @@ export class CreateLeaveBalanceComponent {
         this.errorMessage = 'Failed to create leave balance. Please check your input and try again.';
       }
     });
+  }
+
+  validateBalance(): void {
+    const maxLimit =
+      this.leaveBalance.leaveType === 'Sick Leave' || this.leaveBalance.leaveType === 'Casual Leave'
+        ? 15
+        : this.leaveBalance.leaveType === 'Annual Leave'
+        ? 30
+        : null;
+  
+    if (maxLimit !== null && this.leaveBalance.balance > maxLimit) {
+      this.leaveBalance.balance = maxLimit; // Restrict to the maximum limit
+      this.errorMessage = `The balance for ${this.leaveBalance.leaveType} cannot exceed ${maxLimit}.`;
+    } else {
+      this.errorMessage = ''; // Clear the error message if within the limit
+    }
   }
 }

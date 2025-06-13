@@ -12,6 +12,7 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 })
 export class AttendanceComponent implements OnInit {
   showSearch: boolean = false;
+isSuccess: boolean = false;
 
   toggleSearch() {
     this.showSearch = !this.showSearch;

@@ -14,6 +14,8 @@ import { HttpErrorResponse } from '@angular/common/http'; // Import for error ha
 })
 export class ShiftSwapRequestApprovalComponent implements OnInit {
   pendingRequests: ShiftSwapRequest[] = [];
+  message: string | null = null; 
+  isSuccess: boolean = false;
 
   constructor(
     private swapRequestService: ShiftSwapRequestService,

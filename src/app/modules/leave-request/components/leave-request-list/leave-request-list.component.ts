@@ -16,6 +16,8 @@ import { AuthService } from '../../../login/services/auth.service';
 export class LeaveRequestListComponent implements OnInit {
   leaveRequests: LeaveRequest[] = [];
   currentFilter: string = 'all';
+  message: string | null = null; 
+  isSuccess: boolean = false;
 
   employeeId!: number;
   fetch(): void {

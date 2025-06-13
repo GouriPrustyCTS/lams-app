@@ -1,74 +1,120 @@
 <div class="container mt-4">
-
-  <h2 class="mb-4"> <i class="bi bi-calendar-check-fill me-2"></i> Employee Leave Balances</h2>
-
+  <h2 class="mb-4">
+    <i class="bi bi-calendar-check-fill me-2"></i> Employee Leave Balances
+  </h2>
+  <div
+    *ngIf="message"
+    class="mt-4 alert"
+    [ngClass]="{ 'alert-success': isSuccess, 'alert-danger': !isSuccess }"
+  >
+    {{ message }}
+  </div>
   <div class="card mb-4 shadow-sm">
-      <div class="card-header">
-          <h5 class="mb-0">Find Employee Leave Balances</h5>
-      </div>
-      <div class="card-body">
-          <form (ngSubmit)="fetchLeaveBalances()">
-              <div class="mb-3">
-                  <label for="employeeIdToSearch" class="form-label">Enter Employee ID:</label>
-                  <div class="input-group">
-                      <input
-                          type="number"
-                          class="form-control" 
-                          id="employeeIdToSearch"
-                          [(ngModel)]="employeeIdInput"
-                          name="employeeIdToSearch"
-                          placeholder="e.g., 101"
-                          required
-                      >
-                      <button type="submit" class="btn btn-primary">Search</button>
-                  </div>
-              </div>
-          </form>
-      </div>
+    <div class="card-header">
+      <h5 class="mb-0">Find Employee Leave Balances</h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="fetchLeaveBalances()">
+        <div class="mb-3">
+          <label for="employeeIdToSearch" class="form-label"
+            >Enter Employee ID:</label
+          >
+          <div class="input-group">
+            <input
+              type="number"
+              class="form-control"
+              id="employeeIdToSearch"
+              [(ngModel)]="employeeIdInput"
+              name="employeeIdToSearch"
+              placeholder="e.g., 101"
+              required
+            />
+            <button type="submit" class="btn btn-primary">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 
   <div class="mb-4">
-      <div *ngIf="loading" class="alert alert-info text-center" role="status">
-          <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
-          Loading leave balances...
-      </div>
+    <div *ngIf="loading" class="alert alert-info text-center" role="status">
+      <span
+        class="spinner-border spinner-border-sm me-2"
+        aria-hidden="true"
+      ></span>
+      Loading leave balances...
+    </div>
 
-      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
-          {{ errorMessage }}
-      </div>
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
 
-      <div *ngIf="leaveBalances.length > 0 && !loading" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-          <div class="col" *ngFor="let lb of leaveBalances">
-              <div class="card h-100 shadow-sm">
-                  <div class="card-body">
-                      <h5 class="card-title">{{ lb.leaveType }} <span class="badge bg-primary float-end">ID: {{ lb.leaveBalanceId }}</span></h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Employee ID: {{ lb.employeeId }}</h6>
-                      <p class="card-text mb-1"><strong>Employee Name:</strong> {{ lb.name }}</p>
-                      <p class="card-text mb-3"><strong>Balance:</strong> {{ lb.balance }} days</p>
+    <div
+      *ngIf="leaveBalances.length > 0 && !loading"
+      class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4"
+    >
+      <div class="col" *ngFor="let lb of leaveBalances">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ lb.leaveType }}
+              <span class="badge bg-primary float-end"
+                >ID: {{ lb.leaveBalanceId }}</span
+              >
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Employee ID: {{ lb.employeeId }}
+            </h6>
+            <p class="card-text mb-1">
+              <strong>Employee Name:</strong> {{ lb.name }}
+            </p>
+            <p class="card-text mb-3">
+              <strong>Balance:</strong> {{ lb.balance }} days
+            </p>
 
-                      <div *ngIf="employeeId===0" class="d-flex gap-2 justify-content-end">
-                          <button class="btn btn-sm btn-outline-primary" [routerLink]="['/update-by-leave-id', lb.leaveBalanceId]">Edit</button>
-                          <button
-                              type="button"
-                              class="btn btn-sm btn-outline-danger"
-                              (click)="lb.leaveBalanceId !== undefined && deleteLeaveBalance(lb.leaveBalanceId)"
-                              [disabled]="lb.leaveBalanceId === undefined"
-                          >
-                              Delete
-                          </button>
-                      </div>
-                  </div>
-              </div>
+            <div
+              *ngIf="employeeId === 0"
+              class="d-flex gap-2 justify-content-end"
+            >
+              <button
+                class="btn btn-sm btn-outline-primary"
+                [routerLink]="['/update-by-leave-id', lb.leaveBalanceId]"
+              >
+                Edit
+              </button>
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-danger"
+                (click)="
+                  lb.leaveBalanceId !== undefined &&
+                    deleteLeaveBalance(lb.leaveBalanceId)
+                "
+                [disabled]="lb.leaveBalanceId === undefined"
+              >
+                Delete
+              </button>
+            </div>
           </div>
+        </div>
       </div>
+    </div>
 
-      <div *ngIf="!loading && searchTriggered && leaveBalances.length === 0 && !errorMessage" class="alert alert-info mt-3">
-          No leave balances found for Employee ID: **{{ employeeIdInput }}**.
-      </div>
+    <div
+      *ngIf="
+        !loading &&
+        searchTriggered &&
+        leaveBalances.length === 0 &&
+        !errorMessage
+      "
+      class="alert alert-info mt-3"
+    >
+      No leave balances found for Employee ID: **{{ employeeIdInput }}**.
+    </div>
   </div>
 
   <div class="d-flex justify-content-end mt-3">
-    <button class="btn btn-secondary" (click)="goToLeaveBalancesList()">Back </button>
-</div>
-
+    <button class="btn btn-secondary" (click)="goToLeaveBalancesList()">
+      Back
+    </button>
+  </div>
 </div>

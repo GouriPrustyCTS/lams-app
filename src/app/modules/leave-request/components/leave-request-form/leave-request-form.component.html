@@ -1,4 +1,6 @@
-
+<div *ngIf="message" class="mt-4 alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
+  {{ message }}
+</div>
 
 <form (ngSubmit)="onSubmit()" #leaveForm="ngForm">
   <!-- Leave Type -->

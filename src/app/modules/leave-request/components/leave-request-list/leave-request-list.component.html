@@ -1,5 +1,9 @@
 <h2 class="mb-4">Leave Request List</h2>
 
+<div *ngIf="message" class="mt-4 alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
+  {{ message }}
+</div>
+
 <!-- <button (click)="addLeaveRequest()">Create New Swap Request</button> -->
 <button  class="btn btn-primary" (click)="viewRequests()">View Pending Requests</button>
 <button *ngIf="employeeId===0" class="btn btn-primary" (click)="manageApprovals()">Manage Approvals</button>

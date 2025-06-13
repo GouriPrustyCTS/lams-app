@@ -15,6 +15,8 @@ import { AuthService } from '../../../login/services/auth.service';
 })
 export class ShiftListComponent implements OnInit {
   employeeId!: number;
+  message: string | null = null; 
+  isSuccess: boolean = false;
   fetch(): void {
     const employeeId = Number(
       this.authService.getDetailsFromToken(this.authService.getToken())

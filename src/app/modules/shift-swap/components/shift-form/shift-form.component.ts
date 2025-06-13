@@ -25,6 +25,8 @@ export class ShiftFormComponent implements OnInit {
 
   dateValidationError = false;
   timeValidationError = false;
+  message: string | null = null; 
+  isSuccess: boolean = false;
 
   constructor(
     private shiftService: ShiftService,

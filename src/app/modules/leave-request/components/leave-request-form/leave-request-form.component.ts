@@ -23,6 +23,8 @@ export class LeaveRequestFormComponent {
     leaveType: '',
     requestDate: ''
   };
+  message: string | null = null; 
+  isSuccess: boolean = false;
   isEditMode: boolean = false;
   requestId: number | null = null;
 

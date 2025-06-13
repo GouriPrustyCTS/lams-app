@@ -1,5 +1,7 @@
 <h2>{{ isEditMode ? 'Edit Shift Swap Request' : 'Create New Shift Swap Request' }}</h2>
- 
+<div *ngIf="message" class="mt-4 alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
+  {{ message }}
+</div>
 <form (ngSubmit)="onSubmit()">
   <!-- Requester Employee ID will be set by the application logic (e.g., from auth), not user input -->
   <!-- <div>

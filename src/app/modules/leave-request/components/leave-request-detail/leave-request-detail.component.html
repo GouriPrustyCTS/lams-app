@@ -10,6 +10,11 @@
     <p><strong>Status:</strong> {{ leaveRequest.status }}</p>
     <button (click)="goBack()">Back to List</button>
   </div>
+
+  <div *ngIf="message" class="mt-4 alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
+    {{ message }}
+  </div>
+  
   <div *ngIf="!leaveRequest">
     <p>Leave request not found.</p>
     <button (click)="goBack()">Back to List</button>

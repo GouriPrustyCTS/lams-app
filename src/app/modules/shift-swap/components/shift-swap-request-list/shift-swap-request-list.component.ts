@@ -17,6 +17,8 @@ export class ShiftSwapRequestListComponent implements OnInit {
   swapRequests: ShiftSwapRequest[] = [];
   currentFilter: string = 'all'; // To keep track of the current filter (e.g., 'all', 'PENDING')
   errorMessage: any;
+  message: string | null = null; 
+  isSuccess: boolean = false;
 
   employeeId!: number;
   fetch(): void {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LeaveBalanceService } from '../../services/leave-balance.service';
 import { LeaveBalanceDTO } from '../../models/leave-balance.dto';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     NgIf,
     NgFor,  
-    RouterModule   
+    RouterModule   ,CommonModule
   ],
   templateUrl: './leave-balance-list.component.html',
   styleUrls: ['./leave-balance-list.component.css'],
@@ -18,6 +18,8 @@ import { RouterModule } from '@angular/router';
 export class LeaveBalanceListComponent implements OnInit {
   leaveBalances: LeaveBalanceDTO[] = [];
   errorMessage: string = '';
+  message: string | null = null; 
+  isSuccess: boolean = false;
 
   constructor(private leaveBalanceService: LeaveBalanceService) { }
 

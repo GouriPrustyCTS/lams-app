@@ -72,6 +72,10 @@
       </div>
       <div class="card-body p-4">
 
+        <div *ngIf="message" class="mt-4 alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
+          {{ message }}
+        </div>
+
         <div *ngIf="errorMessage" class="alert alert-danger d-flex align-items-center justify-content-center py-3 animate__animated animate__shakeX" role="alert">
           <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
           <div><strong>Error:</strong> {{ errorMessage }}</div>
@@ -100,7 +104,7 @@
               <tr *ngFor="let lb of shifts">
                 <td>{{ lb.shiftId }}</td>
                 <td><span class="fw-semibold text-primary">{{ lb.shiftName }}</span></td>
-                <td><span class="text-dark">{{lb.shiftDate}}</span></td>
+                <td><span class="text-dark">{{lb.shiftDate | date:"dd-MM-YYYY"}}</span></td>
                 <td><span class="text-leave-type text-capitalize">{{ lb.employeeId }}</span></td>
                 <td><span class="text-balance fs-6">{{ lb.shiftStartTime }}</span></td>
                 <td><span class="text-balance fs-6">{{ lb.shiftEndTime }}</span></td>

@@ -62,7 +62,9 @@
         <i class="bi bi-person-check-fill me-2"></i> Employee Attendance Records
       </div>
       <div class="card-body p-4">
-
+        <div *ngIf="message" class="mt-4 alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
+          {{ message }}
+        </div>
         <h2 class="mb-3">Attendance Overview</h2>
         <div *ngIf="attendances.length === 0" class="alert alert-info d-flex align-items-center justify-content-center py-3 animate__animated animate__fadeIn" role="alert">
           <i class="bi bi-info-circle-fill me-2 fs-5"></i>
