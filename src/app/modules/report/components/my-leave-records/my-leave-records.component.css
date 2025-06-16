@@ -1,0 +1,122 @@
+/* General Body and Container Styles (assuming a clean background) */
+body {
+    font-family: 'Poppins', sans-serif; /* As indicated in your HTML imports */
+    background-color: #f0f2f5; /* Light background for the page */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Table Container (assuming it's wrapped in a div or content-card) */
+.content-card { /* Based on your HTML, this likely wraps the table */
+    background-color: #ffffff;
+    border-radius: 12px; /* Rounded corners for the card/table container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow around the card */
+    padding: 20px;
+    margin-bottom: 20px; /* Space below the table */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: separate; /* Allows for border-radius on cells */
+    border-spacing: 0;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px; /* Slightly rounded corners for the table itself */
+    overflow: hidden; /* Ensures content respects border-radius */
+}
+
+/* Table Header Styles */
+thead {
+    background-color: #e0e0e0; /* Light grey header background */
+    color: #333333; /* Darker text for headers */
+    font-weight: 600; /* Slightly bolder text */
+    text-align: left; /* Align text to the left */
+}
+
+th {
+    padding: 12px 15px; /* Padding inside header cells */
+    border-bottom: 1px solid #d0d0d0; /* Bottom border for header cells */
+    font-size: 0.95em;
+}
+
+/* Rounded corners for the first and last header cells */
+th:first-child {
+    border-top-left-radius: 8px;
+}
+th:last-child {
+    border-top-right-radius: 8px;
+}
+
+/* Table Body Rows */
+tbody tr {
+    border-bottom: 1px solid #eeeeee; /* Light separator lines between rows */
+}
+
+/* Alternating row colors (subtle) */
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Very light grey for odd rows */
+}
+tbody tr:nth-child(even) {
+    background-color: #ffffff; /* White for even rows */
+}
+
+/* Cell Styles */
+td {
+    padding: 10px 15px; /* Padding inside data cells */
+    color: #555555; /* Standard text color */
+    font-size: 0.9em;
+}
+
+/* Remove bottom border for the last row */
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Button Container/Grouping */
+.download-options { /* You might want to wrap your download buttons in a div with this class */
+    margin-top: 25px;
+    display: flex; /* Arrange buttons side-by-side */
+    gap: 15px; /* Space between buttons */
+    justify-content: flex-start; /* Align buttons to the start */
+}
+
+/* Base Button Styles */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px; /* Rounded corners for buttons */
+    color: white;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for buttons */
+}
+
+/* Specific Button Colors */
+button:first-of-type { /* Green button (Download Excel) */
+    background-color: #28a745; /* Bootstrap success green */
+}
+
+button:last-of-type { /* Light blue/cyan button (Download PDF) */
+    background-color: #17a2b8; /* Bootstrap info blue */
+}
+
+/* Button Hover Effects */
+button:first-of-type:hover {
+    background-color: #218838; /* Darker green on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+button:last-of-type:hover {
+    background-color: #138496; /* Darker blue on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Styling for the H3 for "Download Options" */
+h3 {
+    font-size: 1.2em;
+    color: #333333;
+    margin-bottom: 15px;
+}
