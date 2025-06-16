@@ -9,7 +9,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('HTTP error occurred:', error);
-        alert('An error occurred while processing your request.');
+        // alert('An error occurred while processing your request.');
         return throwError(() => error);
       })
     );

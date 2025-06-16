@@ -71,7 +71,7 @@ export class ShiftSwapRequestListComponent implements OnInit {
 
   // Action for "Create New Swap Request" button
   addSwapRequest(): void {
-    this.router.navigate(['/swap-requests/new']);
+    this.router.navigate(['/swap-request/new']);
   }
 
   // Action for "View Pending Requests" button
