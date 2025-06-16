@@ -6,7 +6,6 @@ import { LoginRoutingModule, routes } from './login-routing.module';
 
 import { LoginUiComponent } from './login-ui/login-ui.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MyLeaveRequestsComponent } from './my-leave-requests/my-leave-requests.component';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login.component';
@@ -21,7 +20,6 @@ import { LoginComponent } from './login.component';
     LoginRoutingModule,
     LoginUiComponent, 
     DashboardComponent,
-    MyLeaveRequestsComponent,
     RouterModule.forChild([
       {
         path: '',
