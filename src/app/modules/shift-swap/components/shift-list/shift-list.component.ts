@@ -58,7 +58,7 @@ export class ShiftListComponent implements OnInit {
 
   // Corrected: Navigates to '/shifts/new' to add a new shift
   addShift(): void {
-    this.router.navigate(['/shifts/new']);
+    this.router.navigate(['/shift/new']);
   }
 
   viewShiftDetails(shiftId: number | undefined): void {

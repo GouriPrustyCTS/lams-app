@@ -29,7 +29,9 @@ export class SearchAttendanceComponent {
   
     ngOnInit(): void {
       this.fetch();
-      this.getMyAttendance()
+      if(this.employeeId!=0){
+        this.getMyAttendance()
+      }
     }
   // selectedAttendances is an array, as the service methods return an array of Attendance
   selectedAttendances: Attendance[] = [];

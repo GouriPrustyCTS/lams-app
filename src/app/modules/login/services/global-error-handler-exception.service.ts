@@ -10,7 +10,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     // this.logErrorToServer(error);
 
     // Show a user-friendly message
-    alert('Something went wrong. Please try again later.');
+    // alert('Something went wrong. Please try again later.');
   }
 
   // Example method to log errors to a server

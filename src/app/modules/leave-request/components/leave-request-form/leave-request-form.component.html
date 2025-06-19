@@ -5,19 +5,22 @@
 <form (ngSubmit)="onSubmit()" #leaveForm="ngForm">
   <!-- Leave Type -->
   <div class="mb-3">
-    <label for="leaveType" class="form-label">Your Leave Type:</label>
-    <input
-      type="text" 
+    <label for="leaveType" class="form-label">Leave Type:</label>
+    <select
       class="form-control"
       id="leaveType"
       [(ngModel)]="leaveRequest.leaveType"
       name="leaveType"
+      [disabled]="!leaveRequest.employeeId" 
       required
-      minlength="4"
-      #leaveType="ngModel"
-    />
-    <div *ngIf="leaveType.invalid && leaveType.touched" class="text-danger">
-      Leave type must be at least 4 characters long.
+    >
+      <option value="" disabled selected>Select Leave Type</option>
+      <option value="Sick">Sick Leave</option>
+      <option value="Annual">Annual Leave</option>
+      <option value="Casual">Casual Leave</option>
+    </select>
+    <div class="invalid-feedback">
+      Please select a valid Leave Type.
     </div>
   </div>
 

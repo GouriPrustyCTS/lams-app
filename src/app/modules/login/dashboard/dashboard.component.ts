@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
     }
   }
   viewLeaveCharts() {
-    this.router.navigate(['/leave-chart']);
+    this.router.navigate(['/tru-time-chart']);
   }
   viewShiftSwap() {
     this.router.navigate(['/swap-requests']);
