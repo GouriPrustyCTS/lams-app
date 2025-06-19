@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/swap-requests']);
   }
   viewShift() {
-    this.router.navigate(['/shift']);
+    this.router.navigate(['/shifts']);
   }
   viewLeaveRequest() {
     this.router.navigate(['/leaveRequests']);

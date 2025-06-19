@@ -37,3 +37,90 @@
     <button (click)="backToDashboard()" class="back-button">Back to Dashboard</button>
 </div>
 
+<style>
+/* src/app/my-leave-requests/my-leave-requests.component.css */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #f9f9f9;
+    font-family: 'Inter', sans-serif;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.loading-message, .error-message, .no-data-message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    font-style: italic;
+}
+
+.loading-message {
+    background-color: #e6f7ff;
+    color: #0056b3;
+}
+
+.error-message {
+    background-color: #ffe6e6;
+    color: #c82333;
+}
+
+.no-data-message {
+    background-color: #f0f0f0;
+    color: #555;
+}
+
+.leave-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.leave-table th, .leave-table td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.leave-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.leave-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.leave-table tbody tr:hover {
+    background-color: #e9e9e9;
+}
+
+.back-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+}
+</style>

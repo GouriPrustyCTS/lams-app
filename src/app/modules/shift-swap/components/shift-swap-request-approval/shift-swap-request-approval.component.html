@@ -1,6 +1,10 @@
 <div class="p-4">
     <h2 class="text-2xl font-bold mb-4">Manage Shift Swap Approvals</h2>
    
+    <button (click)="goBackToSwapRequests()" class="btn btn-primary">
+      Back to All Swap Requests
+    </button>
+
     <div *ngIf="message" class="mt-4 alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
       {{ message }}
     </div>
@@ -25,14 +29,9 @@
           <td class="p-2 border">{{ request.requestedShiftId }}</td>
           <td class="p-2 border">{{ request.targetEmployeeId }}</td>
           <td class="p-2 border">{{ request.targetShiftId }}</td>
-          <td class="p-2 border" d-flex justify-content-between> 
-            <button (click)="approveRequest(request.id)" class="btn btn-success">
-              <i class="bi bi-check-circle-fill"></i> Approve
-            </button>
-            <button (click)="rejectRequest(request.id)" class="btn btn-danger">
-              <i class="bi bi-x-circle-fill"></i> Reject
-            </button>
-                     
+          <td class="p-2 border">
+            <button (click)="approveRequest(request.id)" class="btn btn-success">Approve</button>
+            <button (click)="rejectRequest(request.id)" class="btn btn-danger">Reject</button>
           </td>
         </tr>
         <tr *ngIf="pendingRequests.length === 0">
@@ -41,9 +40,4 @@
       </tbody>
     </table>
   </div>
-
-  <div class="d-flex justify-content-end mt-3">
-    <button class="btn btn-secondary" (click)="goBackToSwapRequests()">
-      Back
-    </button>
-  </div>
+  
