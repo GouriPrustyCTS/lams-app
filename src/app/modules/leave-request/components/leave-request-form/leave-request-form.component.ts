@@ -11,7 +11,7 @@ import { AuthService } from '../../../login/services/auth.service';
   selector: 'app-leave-request-form',
   imports: [CommonModule, FormsModule],
   templateUrl: './leave-request-form.component.html',
-  styleUrl: './leave-request-form.component.css'
+  styleUrl: './leave-request-form.component.css',
 })
 export class LeaveRequestFormComponent {
   leaveRequest: LeaveRequest = {
@@ -21,9 +21,9 @@ export class LeaveRequestFormComponent {
     reason: '',
     status: 'PENDING',
     leaveType: '',
-    requestDate: ''
+    requestDate: '',
   };
-  message: string | null = null; 
+  message: string | null = null;
   isSuccess: boolean = false;
   isEditMode: boolean = false;
   requestId: number | null = null;
@@ -32,17 +32,18 @@ export class LeaveRequestFormComponent {
     private leaveRequestService: LeaveRequestService,
     public router: Router,
     private route: ActivatedRoute,
-    private authService : AuthService
-  ) { }
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    // In a real app, populate requesterEmployeeId here if not done by an interceptor or auth guard
-    // Example: this.shiftSwapRequest.requesterEmployeeId = this.authService.getCurrentUserId();
-    const employeeId = Number(this.authService.getDetailsFromToken(this.authService.getToken()).employeeId); // Assuming you store employeeId on login
+    const employeeId = Number(
+      this.authService.getDetailsFromToken(this.authService.getToken())
+        .employeeId
+    ); 
     this.leaveRequest.employeeId = employeeId;
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       const idParam = params.get('id');
-      if (idParam) { 
+      if (idParam) {
         this.requestId = +idParam;
         this.isEditMode = true;
         this.loadLeaveRequest();
@@ -63,51 +64,11 @@ export class LeaveRequestFormComponent {
       );
     }
   }
-
-  // onSubmit(): void {
-  //   // IMPORTANT: Ensure shiftSwapRequest.requesterEmployeeId is set before submitting!
-  //   // Example: this.shiftSwapRequest.requesterEmployeeId = this.authService.getCurrentUserId();
-  //   if (this.leaveRequest.employeeId === 0 && !this.isEditMode) {
-  //     console.error("Requester Employee ID is not set. Cannot leave request.");
-  //     alert("Please ensure you are logged in. Could not determine your Employee ID.");
-  //     return;
-  //   }
-
- 
-  //   console.log('Attempting to send Leave Request data:', this.leaveRequest);
-
-  //   if (this.isEditMode && this.requestId) {
-  //     this.leaveRequestService.updateStatus(this.requestId, this.leaveRequest.status).subscribe(
-  //       () => {
-  //         console.log('Leave request updated successfully');
-  //         this.router.navigate(['/leaveRequests']);
-  //       },
-  //       (error: HttpErrorResponse) => {
-  //         console.error('Error updating leave request:', error);
-  //         if (error.error) {
-  //             console.error('Backend Validation Errors:', error.error);
-  //         }
-  //       }
-  //     );
-  //   } else {
-  //     this.leaveRequest.requestDate = new Date().toISOString().split('T')[0]; 
-  //     this.leaveRequestService.add(this.leaveRequest).subscribe(
-  //       () => {
-  //         console.log('Leave request created successfully',this.leaveRequest);
-  //         this.router.navigate(['/leaveRequests']);
-  //       },
-  //       (error: HttpErrorResponse) => {
-  //         console.error('Error creating leave request:', error);
-  //         if (error.error) {
-  //           console.error('Backend Validation Errors:', error.error);
-  //         }
-  //       }
-  //     );
-  //   }
-  // }
   timeValidationError = false;
   dateValidationError = false;
   onSubmit(): void {
+    console.log('Attempting to send Leave Request data:', this.leaveRequest);
+
     this.dateValidationError = false;
     const start = new Date(this.leaveRequest.startDate);
     const end = new Date(this.leaveRequest.endDate);
@@ -117,19 +78,50 @@ export class LeaveRequestFormComponent {
     }
 
     const now = new Date();
-    const shiftDateTime = new Date(this.leaveRequest.startDate);
-    shiftDateTime.setHours(0, 0, 0, 0);  // just date comparison
-    const minValidDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // now + 24h
-    minValidDate.setHours(0, 0, 0, 0);
+    const todayMidnight = new Date(now);
+    todayMidnight.setHours(0, 0, 0, 0);
+    const tomorrowMidnight = new Date(todayMidnight);
+    tomorrowMidnight.setDate(todayMidnight.getDate() + 1);
+    const requestStartDate = new Date(this.leaveRequest.startDate);
+    requestStartDate.setHours(0, 0, 0, 0);
 
-    if (shiftDateTime < minValidDate) {
+    if (requestStartDate < tomorrowMidnight) {
+      console.log(
+        'Leave Request Start Date (',
+        requestStartDate.toDateString(),
+        ') is before the minimum valid date (',
+        tomorrowMidnight.toDateString(),
+        '). It must be from tomorrow or later.'
+      );
       this.timeValidationError = true;
       return;
     }
 
-    // Existing submission logic
+    console.log(
+      'Leave Request Start Date (',
+      requestStartDate.toDateString(),
+      ') is valid. It is on or after (',
+      tomorrowMidnight.toDateString(),
+      ').'
+    );
+    this.timeValidationError = false;
+
     if (this.isEditMode && this.requestId) {
-      // Update logic
+      this.leaveRequest.requestDate = new Date().toISOString();
+      this.leaveRequestService
+        .update(this.requestId, this.leaveRequest)
+        .subscribe(
+          () => {
+            console.log(
+              'Leave request updated successfully',
+              this.leaveRequest
+            );
+            this.router.navigate(['/leaveRequests']);
+          },
+          (error: HttpErrorResponse) => {
+            console.error('Error creating leave request:', error);
+          }
+        );
     } else {
       this.leaveRequest.requestDate = new Date().toISOString();
       this.leaveRequestService.add(this.leaveRequest).subscribe(
@@ -143,5 +135,4 @@ export class LeaveRequestFormComponent {
       );
     }
   }
-
 }

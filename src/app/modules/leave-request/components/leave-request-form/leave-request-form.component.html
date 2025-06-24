@@ -51,7 +51,7 @@
       id="startDate"
       [(ngModel)]="leaveRequest.startDate"
       name="startDate"
-      required
+      required 
       #startDate="ngModel"
     />
     <div *ngIf="timeValidationError" class="text-danger">
@@ -74,31 +74,18 @@
   </div>
 
   <!-- Status (Only in Edit Mode) -->
-  <div class="mb-3" *ngIf="isEditMode">
-    <label for="status" class="form-label">Status:</label>
-    <select
-      class="form-select"
-      id="status"
-      [(ngModel)]="leaveRequest.status"
-      name="status"
-      required
-    >
-      <option value="PENDING">PENDING</option>
-      <option value="APPROVED">APPROVED</option>
-      <option value="REJECTED">REJECTED</option>
-    </select>
-  </div>
 
   <!-- Submit Button -->
   <button
     type="submit"
     class="btn btn-primary me-2"
     [disabled]="leaveForm.invalid"
+    
   >
     {{ isEditMode ? 'Update Request' : 'Create Request' }}
   </button>
   <button
-    type="button"
+    type="button" 
     class="btn btn-secondary"
     (click)="router.navigate(['/leaveRequests'])"
   >

@@ -55,7 +55,7 @@
       <td>{{ request.status }}</td>
       
       <td *ngIf="employeeId!=0">
-        <div *ngIf="employeeId==request.employeeId " class="d-flex gap-2">
+        <div *ngIf="employeeId==request.employeeId && request.status.toLowerCase() == 'pending'" class="d-flex gap-2">
           <button class="btn btn-sm btn-success" (click)="viewRequestDetails(request.leaveRequestId)">View</button>
           <button class="btn btn-sm btn-primary" (click)="edit(request.leaveRequestId)">Edit</button>
           <button class="btn btn-sm btn-danger" (click)="delete(request.leaveRequestId)">Delete</button>
