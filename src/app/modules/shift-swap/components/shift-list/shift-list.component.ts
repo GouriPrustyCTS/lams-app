@@ -29,6 +29,8 @@ export class ShiftListComponent implements OnInit {
     throw new Error('Method not implemented.');
   }
   shifts: Shift[] = [];
+  temp : Shift[] = []; 
+  
   errorMessage: any;
 
   constructor(
@@ -47,6 +49,7 @@ export class ShiftListComponent implements OnInit {
       (data: Shift[]) => {
         // Explicitly type data
         this.shifts = data;
+        this.temp = data; 
       },
       (error: HttpErrorResponse) => {
         // Explicitly type error
@@ -94,5 +97,15 @@ export class ShiftListComponent implements OnInit {
         }
       );
     }
+  }
+
+  filterMyShifts(){
+    this.shifts = this.temp;
+    this.shifts = this.shifts.filter(shift => shift.employeeId === this.employeeId);
+  }
+
+  filterOtherShifts(){
+    this.shifts = this.temp;
+    this.shifts = this.shifts.filter(shift => shift.employeeId != this.employeeId);
   }
 }

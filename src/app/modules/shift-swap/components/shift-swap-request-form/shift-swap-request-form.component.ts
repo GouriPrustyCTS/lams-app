@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ShiftSwapRequest } from '../../models/shift-swap-request';
 import { ShiftSwapRequestService } from '../../services/shift-swap-request.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../../../login/services/auth.service';
 
 @Component({
   selector: 'app-shift-swap-request-form',
@@ -30,16 +31,26 @@ export class ShiftSwapRequestFormComponent implements OnInit {
   isSuccess: boolean = false;
   isEditMode: boolean = false;
   requestId: number | null = null;
+  employeeId!: number;
 
   constructor(
     private swapRequestService: ShiftSwapRequestService,
-    public router: Router,
-    private route: ActivatedRoute
-  ) { }
+    public router: Router, 
+    private route: ActivatedRoute,
+    private authService: AuthService
+  ) { } 
 
   ngOnInit(): void {
     // In a real app, populate requesterEmployeeId here if not done by an interceptor or auth guard
     // Example: this.shiftSwapRequest.requesterEmployeeId = this.authService.getCurrentUserId();
+
+    const employeeId = Number(
+      this.authService.getDetailsFromToken(this.authService.getToken())
+        .employeeId
+    ); 
+    this.employeeId=employeeId;
+    this.shiftSwapRequest.requesterEmployeeId = employeeId;
+   
 
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');

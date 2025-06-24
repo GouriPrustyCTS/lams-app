@@ -34,7 +34,7 @@ export class ShiftSwapRequestListComponent implements OnInit {
     private swapRequestService: ShiftSwapRequestService,private authService: AuthService,
     private router: Router
   ) {}
-
+ 
   ngOnInit(): void {
     // On component initialization, fetch all requests
     this.fetch();
