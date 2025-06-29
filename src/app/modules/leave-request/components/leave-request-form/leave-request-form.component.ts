@@ -39,7 +39,7 @@ export class LeaveRequestFormComponent {
     const employeeId = Number(
       this.authService.getDetailsFromToken(this.authService.getToken())
         .employeeId
-    ); 
+    );
     this.leaveRequest.employeeId = employeeId;
     this.route.paramMap.subscribe((params) => {
       const idParam = params.get('id');
@@ -129,10 +129,22 @@ export class LeaveRequestFormComponent {
           console.log('Leave request created successfully', this.leaveRequest);
           this.router.navigate(['/leaveRequests']);
         },
-        (error: HttpErrorResponse) => {
-          console.error('Error creating leave request:', error);
+        (error) => {
+          this.setMessage(
+            `Failed to create Leave Request : ${error.error.errors}`,
+            false
+          );
+          console.error('Error creating leave request:', error.error.errors);
         }
       );
     }
+  }
+  private setMessage(msg: string, success: boolean): void {
+    this.message = msg;
+    this.isSuccess = success;
+    // Clear message after a few seconds
+    setTimeout(() => {
+      this.message = null;
+    }, 5000); // Message disappears after 5 seconds
   }
 }
